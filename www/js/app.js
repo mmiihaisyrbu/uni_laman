@@ -2,6 +2,7 @@
  
 // declare modules
 angular.module('Authentication', []);
+angular.module('Main', []);
 
 // Ionic Starter App
 
@@ -10,10 +11,7 @@ angular.module('Authentication', []);
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('laman', ['ionic', 'Authentication'/*,
-    'ngRoute',
-    'ngCookies'*/
-    /*, 'laman.controllers', 'laman.services'*/])
+angular.module('laman', ['ionic', 'Authentication', 'Main'])
 
 .config(function($stateProvider, $urlRouterProvider) {
 
@@ -32,6 +30,7 @@ angular.module('laman', ['ionic', 'Authentication'/*,
     
     .state('main', {
       url: '/main',
+      controller: 'MainController',
       templateUrl: 'templates/main.html'
     })
     

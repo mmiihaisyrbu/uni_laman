@@ -12,10 +12,11 @@ angular.module('Authentication')
 
 	    $scope.login = function() {
 	    	$scope.dataLoading = true;
-	        console.log("LOGIN user: " + $scope.data.username + " - PW: " + $scope.data.password);
+
 	        AuthenticationService.Login($scope.data.username, $scope.data.password, function(response) {
-                if(response.success) {
+                if( response.status == 201 ) {
                     //AuthenticationService.SetCredentials(username, password);
+                    $scope.dataLoading = false;
                     $location.path('/main');
                 } else {
                     $scope.error = response.message;
@@ -24,3 +25,9 @@ angular.module('Authentication')
             });
 	    }
     }]);
+
+angular.module('Main')
+
+.controller('MainController', ['$scope', function($scope) {
+    
+}]);

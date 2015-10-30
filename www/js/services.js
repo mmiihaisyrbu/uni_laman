@@ -3,8 +3,8 @@
 angular.module('Authentication')
 
 .factory('AuthenticationService',
-    ['$http', '$rootScope',
-    function ($http, $rootScope) {
+    ['$http',
+    function ($http) {
         var service = {};
  
         service.Login = function (username, password, callback) { 
@@ -33,3 +33,44 @@ angular.module('Authentication')
   
         return service;
     }]);
+
+angular.module('Main')
+
+.factory('GetClientInfo', 
+    ['$http', 
+    function ($http) {
+    var service = {};
+    var session_id = localStorage['session_id'];
+
+    service.Info = function (callback) {
+        $http({
+                method: "GET",
+                headers: {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'},
+                url: "http://client.uni-laman.com/android/ver_2/index.php/client_info/"+session_id
+            })
+            .then(function(data, status, headers, config) {
+                console.log(data);
+                callback(data);
+            }, 
+            function(response) { // optional
+                // bad login
+            });
+    };
+
+    service.Report = function (callback) {
+        $http({
+                method: "GET",
+                headers: {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'},
+                url: "http://client.uni-laman.com/android/ver_2/index.php/report/"+session_id
+            })
+            .then(function(data, status, headers, config) {
+                console.log(data);
+                callback(data);
+            }, 
+            function(response) { // optional
+                // bad login
+            });
+    };
+
+    return service;
+}])

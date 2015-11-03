@@ -3,6 +3,7 @@
 // declare modules
 angular.module('Authentication', []);
 angular.module('Main', []);
+angular.module('Containers', []);
 
 // Ionic Starter App
 
@@ -41,6 +42,7 @@ angular.module('laman', ['ionic', 'Authentication', 'Main'])
     
     .state('containers', {
       url: '/containers',
+      controller: 'ContainersController',
       templateUrl: 'templates/containers.html'
     })
     

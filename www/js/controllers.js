@@ -4,7 +4,7 @@ angular.module('Authentication')
 
 .controller('LoginController',
     ['$scope', '$location', 'AuthenticationService',
-    function ($scope, $location, AuthenticationService) {
+    function($scope, $location, AuthenticationService) {
     	$scope.data = {};
 		
 	    $scope.login = function() {
@@ -26,7 +26,7 @@ angular.module('Main')
 
 .controller('MainController',
     ['$scope', 'GetClientInfo',
-    function ($scope, GetClientInfo) {
+    function($scope, GetClientInfo) {
         $scope.data = {};
 
         GetClientInfo.Info(function(response) {
@@ -41,5 +41,18 @@ angular.module('Main')
             $scope.data.sailing = response.data.data['sailing'];
             $scope.data.in_pod = response.data.data['in_pod'];
             $scope.data.on_road = response.data.data['on_road'];
+        });
+}]);
+
+angular.module('Containers')
+
+.controller('ContainersController', 
+    ['$scope', 'GetContainers', 
+    function($scope, GetContainers) {
+        $scope.data = {};
+        var params = "?params=order by 1 limit 1";
+
+        GetContainers.ContainersList(function(params, response) {
+            console.log(response.data);
         });
 }]);

@@ -4,10 +4,10 @@ angular.module('Authentication')
 
 .factory('AuthenticationService',
     ['$http',
-    function ($http) {
+    function($http) {
         var service = {};
  
-        service.Login = function (username, password, callback) { 
+        service.Login = function(username, password, callback) { 
 
             var url = "http://client.uni-laman.com/android/ver_2/index.php/login";
 
@@ -38,11 +38,11 @@ angular.module('Main')
 
 .factory('GetClientInfo', 
     ['$http', 
-    function ($http) {
+    function($http) {
     var service = {};
     var session_id = localStorage['session_id'];
 
-    service.Info = function (callback) {
+    service.Info = function(callback) {
         $http({
                 method: "GET",
                 headers: {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'},
@@ -53,11 +53,11 @@ angular.module('Main')
                 callback(data);
             }, 
             function(response) { // optional
-                // bad login
+                // bad request
             });
     };
 
-    service.Report = function (callback) {
+    service.Report = function(callback) {
         $http({
                 method: "GET",
                 headers: {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'},
@@ -68,9 +68,34 @@ angular.module('Main')
                 callback(data);
             }, 
             function(response) { // optional
-                // bad login
+                // bad request
             });
     };
 
     return service;
-}])
+}]);
+
+angular.module('Containers')
+
+.factory('GetContainers',
+    ['$http', function($http) {
+    var service = {};
+    var session_id = localStorage['session_id'];
+
+    service.ContainersList = function(params, callback) {
+        $http({
+                method: "GET",
+                headers: {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'},
+                url: "http://client.uni-laman.com/android/ver_2/index.php/containers/"+session_id+params
+            })
+            .then(function(data, status, headers, config) {
+                console.log(data);
+                callback(data);
+            }, 
+            function(response) { // optional
+                // bad request
+            });
+    };
+
+    return service;
+}]);

@@ -32,7 +32,6 @@ angular.module('Main')
         GetClientInfo.Info(function(response) {
             console.log(response.data);
             $scope.data.company_name = response.data.data['client_name'];
-            console.log(response.data.data['client_name']);
         });
 
         GetClientInfo.Report(function(response) {
@@ -49,10 +48,11 @@ angular.module('Containers')
 .controller('ContainersController', 
     ['$scope', 'GetContainers', 
     function($scope, GetContainers) {
-        $scope.data = {};
-        var params = "?params=order by 1 limit 1";
+        $scope.containers = {};
+        var params = ""; //"?params=order by 1 limit 1";
 
-        GetContainers.ContainersList(function(params, response) {
-            console.log(response.data);
+        GetContainers.ContainersList(params, function(response) {
+            console.log(response.data.data);
+            $scope.containers = response.data.data;
         });
 }]);

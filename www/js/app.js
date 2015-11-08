@@ -4,6 +4,9 @@
 angular.module('Authentication', []);
 angular.module('Main', []);
 angular.module('Containers', []);
+angular.module('Invoices', []);
+angular.module('Contact', []);
+angular.module('Reviews', []);
 
 // Ionic Starter App
 
@@ -12,7 +15,7 @@ angular.module('Containers', []);
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('laman', ['ionic', 'Authentication', 'Main', 'Containers'])
+angular.module('laman', ['ionic', 'Authentication', 'Main', 'Containers', 'Invoices', 'Contact', 'Reviews'])
 
 .config(function($stateProvider, $urlRouterProvider) {
 
@@ -48,33 +51,26 @@ angular.module('laman', ['ionic', 'Authentication', 'Main', 'Containers'])
     
     .state('reviews', {
       url: '/reviews',
+      controller: 'ReviewsController',
       templateUrl: 'templates/reviews.html'
     })
     
     .state('contact', {
       url: '/contact',
+      controller: 'ContactController',
       templateUrl: 'templates/contact.html'
     })
     
     .state('invoices', {
       url: '/invoices',
+      controller: 'InvoicesController',
       templateUrl: 'templates/invoices.html'
-    })
-    
-    .state('contdetails', {
-      url: '/contdetails',
-      templateUrl: 'templates/contdetails.html'
-    })
-    
-    .state('invoicedetails', {
-      url: '/invoicedetails',
-      templateUrl: 'templates/invoicedetails.html'
     })
     ;
 
   // if none of the above states are matched, use this as the fallback
   
-  $urlRouterProvider.otherwise('/login');
+  $urlRouterProvider.otherwise('/main');
 })
 .run(function($ionicPlatform, $location, $http, $rootScope) {
   $ionicPlatform.ready(function() {

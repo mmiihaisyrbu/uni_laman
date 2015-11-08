@@ -99,3 +99,69 @@ angular.module('Containers')
 
     return service;
 }]);
+
+angular.module('Invoices')
+
+.factory('GetInvoices',
+    ['$http', function($http) {
+    var service = {};
+    var session_id = localStorage['session_id'];
+
+    service.InvoicesList = function(params, callback) {
+        $http({
+                method: "GET",
+                headers: {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'},
+                url: "http://client.uni-laman.com/android/ver_2/index.php/invoices/"+session_id+params
+            })
+            .then(function(data, status, headers, config) {
+                console.log(data);
+                callback(data);
+            }, 
+            function(response) { // optional
+                // bad request
+            });
+    };
+
+    return service;
+}]);
+
+angular.module('Reviews')
+
+.factory('GetReviews',
+    ['$http', function($http) {
+    var service = {};
+    var session_id = localStorage['session_id'];
+
+    service.ReviewsList = function(callback) {
+        $http({
+                method: "GET",
+                headers: {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'},
+                url: "http://client.uni-laman.com/android/ver_2/index.php/reviews/"+session_id
+            })
+            .then(function(data, status, headers, config) {
+                console.log(data);
+                callback(data);
+            }, 
+            function(response) { // optional
+                // bad request
+            });
+    };
+
+    service.AddReview = function(comment, callback) {
+    	$http({
+                method: "POST",
+                headers: {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'},
+                url: "http://client.uni-laman.com/android/ver_2/index.php/review",
+                data: { 'session_id': session_id, 'comment': comment }
+            })
+            .then(function(data) {
+                console.log(data);
+                callback(data);
+            }, 
+            function(response) { // optional
+                // bad request
+            });
+    };
+
+    return service;
+}]);

@@ -1,17 +1,12 @@
 <ion-view title="Reviews">
     <ion-content padding="true" scroll="false">
         <ion-list>
-            <ion-item>Item 1</ion-item>
-            <ion-item>Item 2</ion-item>
-            <ion-item>Item 3</ion-item>
+            <ion-item ng-repeat="review in reviews" style="padding: 0px !important;">
+                <ng-include src="'templates/review-item.html'" />
+            </ion-item>
         </ion-list>
-        <div class="spacer" style="width: 300px; height: 210px;"></div>
-        <form>
-            <label class="item item-input">
-                <span class="input-label">Input</span>
-                <input type="text" placeholder="">
-            </label>
-        </form>
-        <button class="button button-stable button-block ">Tap me!</button>
     </ion-content>
+    <ion-footer-bar>
+	    <button class="button button-stable button-stable" ng-click="openModal()">Add review</button>
+    </ion-footer-bar>
 </ion-view>

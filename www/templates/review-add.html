@@ -1,0 +1,14 @@
+<ion-modal-view>
+	<ion-header-bar class="bar bar-header">
+		<h1 class="title">Add new review</h1>
+		<button class="button button-clear button-primary" ng-click="modal.hide()">Close</button>
+	</ion-header-bar>
+	<ion-content class="padding">
+		<label class="item item-input item-floating-label">
+			<input type="text" placeholder="text" ng-model="comment">
+		</label>
+		<button class="button button-block button-stable" ng-disabled="!comment" ng-click="addReview(comment)">
+			Save
+		</button>
+	</ion-content>
+</ion-modal-view>

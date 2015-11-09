@@ -25,8 +25,8 @@ angular.module('Authentication')
 angular.module('Main')
 
 .controller('MainController',
-    ['$scope', 'GetClientInfo',
-    function($scope, GetClientInfo) {
+    ['$scope', 'GetClientInfo', '$location',
+    function($scope, GetClientInfo, $location) {
         $scope.data = {};
 
         GetClientInfo.Info(function(response) {
@@ -41,6 +41,11 @@ angular.module('Main')
             $scope.data.in_pod = response.data.data['in_pod'];
             $scope.data.on_road = response.data.data['on_road'];
         });
+
+        $scope.showContainers = function(cont_status) {
+        	localStorage['cont_status'] = '?cont_status='+cont_status;
+        	$location.path('/containers');
+        };
 	}]);
 
 angular.module('Containers')
@@ -49,7 +54,7 @@ angular.module('Containers')
     ['$scope', 'GetContainers', '$ionicModal', 
     function($scope, GetContainers, $ionicModal) {
         $scope.containers = {};
-        var params = ""; //"?params=order by 1 limit 1";
+        var params = localStorage['cont_status'];
 
         GetContainers.ContainersList(params, function(response) {
             console.log(response.data.data);
@@ -97,6 +102,10 @@ angular.module('Invoices')
 		$scope.closeModal = function() {
 			$scope.modal.hide();
 		};
+
+		$scope.addHr = function(str) {
+			return str.replace(/,/g, '<hr>');
+		};
 	}]);
 
 angular.module('Contact')
@@ -110,6 +119,13 @@ angular.module('Contact')
 			$scope.contact = response.data.data;
             console.log($scope.contact);
         });
+
+        $scope.formatPhone = function(str) {
+			if ( str != null ) {
+				str = str.replace(/[^\d\;\+]/gi, '');
+			}
+			return str;
+		}
 	}]);
 
 angular.module('Reviews')

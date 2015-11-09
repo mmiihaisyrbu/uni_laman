@@ -4,7 +4,7 @@
             <div class="item item-divider">Contact sales manager</div>
             <div class="item item-body">
                 <div>{{contact.sales_name}}</div>
-                <div>{{contact.sales_phone}}</div>
+                <div>{{formatPhone(contact.sales_phone)}}</div>
                 <div>{{contact.sales_email}}</div>
             </div>
         </div>
@@ -12,7 +12,7 @@
             <div class="item item-divider">Contact chief of sales</div>
             <div class="item item-body">
                 <div>{{contact.sales_chief_name}}</div>
-                <div>{{contact.sales_chief_phone}}</div>
+                <div>{{formatPhone(contact.sales_chief_phone)}}</div>
                 <div>{{contact.sales_chief_email}}</div>
             </div>
         </div>

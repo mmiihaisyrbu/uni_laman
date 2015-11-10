@@ -3,8 +3,7 @@
 angular.module('Authentication')
 
 .controller('LoginController',
-    ['$scope', '$location', 'AuthenticationService',
-    function($scope, $location, AuthenticationService) {
+    function($scope, $location, AuthenticationService, $ionicLoading) {
     	$scope.data = {};
 		
 	    $scope.login = function() {
@@ -20,13 +19,12 @@ angular.module('Authentication')
                 }
             });
 	    }
-    }]);
+    });
 
 angular.module('Main')
 
 .controller('MainController',
-    ['$scope', 'GetClientInfo', '$location',
-    function($scope, GetClientInfo, $location) {
+    function($scope, GetClientInfo, $location, $ionicLoading) {
         $scope.data = {};
 
         GetClientInfo.Info(function(response) {
@@ -46,13 +44,12 @@ angular.module('Main')
         	localStorage['cont_status'] = '?cont_status='+cont_status;
         	$location.path('/containers');
         };
-	}]);
+	});
 
-angular.module('Containers')
+angular.module('Containers', ['ionic'])
 
 .controller('ContainersController', 
-    ['$scope', 'GetContainers', '$ionicModal', 
-    function($scope, GetContainers, $ionicModal) {
+    function($scope, GetContainers, $ionicLoading, $ionicModal) {
         $scope.containers = {};
         var params = localStorage['cont_status'];
 
@@ -74,13 +71,12 @@ angular.module('Containers')
 		$scope.closeModal = function() {
 			$scope.modal.hide();
 		};
-	}]);
+	});
 
 angular.module('Invoices')
 
 .controller('InvoicesController', 
-    ['$scope', 'GetInvoices', '$ionicModal', 
-    function($scope, GetInvoices, $ionicModal) {
+    function($scope, GetInvoices, $ionicModal, $ionicLoading) {
         $scope.invoices = {};
         var params = ""; //"?params=order by 1 limit 1";
 
@@ -106,13 +102,12 @@ angular.module('Invoices')
 		$scope.addHr = function(str) {
 			return str.replace(/,/g, '<hr>');
 		};
-	}]);
+	});
 
 angular.module('Contact')
 
 .controller('ContactController',
-	['$scope', 'GetClientInfo',
-	function($scope, GetClientInfo) {
+	function($scope, GetClientInfo, $ionicLoading) {
 		$scope.contact = {};
 
 		GetClientInfo.Info(function(response) {
@@ -126,13 +121,12 @@ angular.module('Contact')
 			}
 			return str;
 		}
-	}]);
+	});
 
 angular.module('Reviews')
 
 .controller('ReviewsController',
-	['$scope', 'GetReviews', '$ionicModal',
-	function($scope, GetReviews, $ionicModal) {
+	function($scope, GetReviews, $ionicModal, $ionicLoading) {
 		$scope.reviews = {};
 
 		$scope.loadReviews = function() {
@@ -163,4 +157,4 @@ angular.module('Reviews')
 				$scope.loadReviews();
 			});
 		};
-	}]);
+	});

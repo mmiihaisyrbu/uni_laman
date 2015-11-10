@@ -36,9 +36,7 @@ angular.module('Authentication')
 
 angular.module('Main')
 
-.factory('GetClientInfo', 
-    ['$http', 
-    function($http) {
+.factory('GetClientInfo', function($http) {
     var service = {};
     var session_id = localStorage['session_id'];
 
@@ -73,12 +71,11 @@ angular.module('Main')
     };
 
     return service;
-}]);
+});
 
 angular.module('Containers')
 
-.factory('GetContainers',
-    ['$http', function($http) {
+.factory('GetContainers', function($http) {
     var service = {};
     var session_id = localStorage['session_id'];
 
@@ -98,12 +95,11 @@ angular.module('Containers')
     };
 
     return service;
-}]);
+});
 
 angular.module('Invoices')
 
-.factory('GetInvoices',
-    ['$http', function($http) {
+.factory('GetInvoices', function($http) {
     var service = {};
     var session_id = localStorage['session_id'];
 
@@ -123,7 +119,7 @@ angular.module('Invoices')
     };
 
     return service;
-}]);
+});
 
 angular.module('Reviews')
 

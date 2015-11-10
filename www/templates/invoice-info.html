@@ -13,6 +13,10 @@
 		    	<div style="float:left">Conts no</div>
 				<div style="float:right" ng-bind-html="addHr(invoice.containers)"></div>
 		    </li>
+		    <li class="item">
+		    	<div style="float:left">Final date of payment</div>
+		    	<div style="float:right">{{invoice.debt_date_delay}}</div>
+		    </li>
 		</ul>
 	</ion-content>
 </ion-modal-view>

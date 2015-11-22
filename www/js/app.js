@@ -7,8 +7,14 @@ angular.module('Containers', []);
 angular.module('Invoices', []);
 angular.module('Contact', []);
 angular.module('Reviews', []);
+angular.module('ModalWindow', []);
+angular.module('More', []);
 
-angular.module('laman', ['ionic', 'Authentication', 'Main', 'Containers', 'Invoices', 'Contact', 'Reviews'])
+angular.module('laman', ['ionic', 'Authentication', 'Main', 'Containers', 'Invoices', 'Contact', 'Reviews', 'ModalWindow', 'More'])
+
+.constant('$ionicLoadingConfig', {
+  template: 'Loading...'
+})
 
 .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 
@@ -29,6 +35,7 @@ angular.module('laman', ['ionic', 'Authentication', 'Main', 'Containers', 'Invoi
     
     .state('more', {
       url: '/more',
+      controller: 'MoreController',
       templateUrl: 'templates/more.html'
     })
     
@@ -56,7 +63,11 @@ angular.module('laman', ['ionic', 'Authentication', 'Main', 'Containers', 'Invoi
       templateUrl: 'templates/invoices.html'
     });
 
-	$urlRouterProvider.otherwise('/main');
+    if ( localStorage['session_id'] ) {
+		$urlRouterProvider.otherwise('/main');
+	} else {
+		$urlRouterProvider.otherwise('/login');
+	}
 
 	$httpProvider.interceptors.push(function($rootScope) {
 		return {
@@ -73,7 +84,7 @@ angular.module('laman', ['ionic', 'Authentication', 'Main', 'Containers', 'Invoi
 })
 .run(function($ionicPlatform, $rootScope, $ionicLoading) {
 	$rootScope.$on('loading:show', function() {
-		$ionicLoading.show({template: 'Loading...'});
+		$ionicLoading.show();
 	})
 
 	$rootScope.$on('loading:hide', function() {

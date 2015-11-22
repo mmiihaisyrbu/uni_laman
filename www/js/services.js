@@ -7,7 +7,7 @@ angular.module('Authentication')
     function($http) {
         var service = {};
  
-        service.Login = function(username, password, callback) { 
+        service.LogIn = function(username, password, callback) { 
 
             var url = "http://client.uni-laman.com/android/ver_2/index.php/login";
 
@@ -18,7 +18,7 @@ angular.module('Authentication')
 			        data: { 'login': username, 'pass': password }
 			    })
 			    .then(function(response) {
-			        console.log(response.data);
+			        console.log('response.data', response.data);
                     /*$.each(response.data, function( index, value ) {
                         console.log( index + ": " + value );
                     });*/
@@ -27,9 +27,30 @@ angular.module('Authentication')
                     callback(response.data);
 			    }, 
 			    function(response) { // optional
-                    // bad login
+                    console.log(JSON.stringify(response));
 				});
         };
+
+        service.LogOut = function(callback) {
+
+        	var session_id = localStorage["session_id"];
+
+        	$http({
+			        method: "POST",
+			        headers: {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'},
+			        url: "http://client.uni-laman.com/android/ver_2/index.php/logout",
+			        data: { 'session_id': session_id }
+			    })
+			    .then(function(response) {
+			        console.log(response.data);
+
+                    localStorage.clear();
+                    callback(response.data);
+			    }, 
+			    function(response) { // optional
+                    // bad login
+				});
+        }
   
         return service;
     }]);
@@ -75,7 +96,7 @@ angular.module('Main')
 
 angular.module('Containers')
 
-.factory('GetContainers', function($http) {
+.factory('GetContainers', function($http, $ionicModal) {
     var service = {};
     var session_id = localStorage['session_id'];
 
@@ -95,6 +116,43 @@ angular.module('Containers')
     };
 
     return service;
+});
+
+angular.module('ModalWindow', ['ionic'])
+
+.service('ModalService', function($ionicModal, $rootScope) {
+
+
+  var init = function(tpl, $scope) {
+
+    var promise;
+    $scope = $scope || $rootScope.$new();
+
+    promise = $ionicModal.fromTemplateUrl(tpl, {
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function(modal) {
+      $scope.modal = modal;
+      return modal;
+    });
+/*
+    $scope.openModal = function() {
+       $scope.modal.show();
+     };
+     $scope.closeModal = function() {
+       $scope.modal.hide();
+     };*/
+     $scope.$on('$destroy', function() {
+       $scope.modal.remove();
+     });
+
+    return promise;
+  }
+
+  return {
+    init: init
+  }
+
 });
 
 angular.module('Invoices')

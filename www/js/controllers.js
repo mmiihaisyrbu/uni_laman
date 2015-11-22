@@ -3,19 +3,21 @@
 angular.module('Authentication')
 
 .controller('LoginController',
-    function($scope, $location, AuthenticationService, $ionicLoading) {
-    	$scope.data = {};
-		
-	    $scope.login = function() {
-	    	$scope.dataLoading = true;
+    function($scope, $location, AuthenticationService, $ionicHistory) {
+    	console.log('test', 'test');
+    	$scope.data = {username: 'test_fox', password: 'fox_test'};
 
-	        AuthenticationService.Login($scope.data.username, $scope.data.password, function(response) {
+	    $scope.logIn = function() {
+
+	        AuthenticationService.LogIn($scope.data.username, $scope.data.password, function(response) {
+	        	console.log('response', response);
                 if( response.status == 201 ) {
-                    $scope.dataLoading = false;
+                	$ionicHistory.nextViewOptions({
+						disableBack: true
+					});
                     $location.path('/main');
                 } else {
                     $scope.error = response.message;
-                    $scope.dataLoading = false;
                 }
             });
 	    }
@@ -24,8 +26,10 @@ angular.module('Authentication')
 angular.module('Main')
 
 .controller('MainController',
-    function($scope, GetClientInfo, $location, $ionicLoading) {
+    function($scope, GetClientInfo, $location) {
         $scope.data = {};
+
+        console.log(localStorage['session_id']);
 
         GetClientInfo.Info(function(response) {
             console.log(response.data);
@@ -46,37 +50,50 @@ angular.module('Main')
         };
 	});
 
+angular.module('More', ['ionic'])
+
+.controller('MoreController',
+	function($scope, AuthenticationService, $location, $ionicHistory) {
+		$scope.logOut = function() {
+	    	AuthenticationService.LogOut(function(response) {
+                if( response.status == 200 ) {
+                    $ionicHistory.nextViewOptions({
+						disableBack: true
+					});
+					$location.path('/login');
+
+                } else {
+                    $scope.error = response.message;
+                }
+            });
+	    }
+	});
+
 angular.module('Containers', ['ionic'])
 
 .controller('ContainersController', 
-    function($scope, GetContainers, $ionicLoading, $ionicModal) {
+    function($scope, GetContainers, ModalService) {
         $scope.containers = {};
-        var params = localStorage['cont_status'];
+        var params = '';//localStorage['cont_status'];
 
         GetContainers.ContainersList(params, function(response) {
-            console.log(response.data.data);
             $scope.containers = response.data.data;
         });
 
-        $ionicModal.fromTemplateUrl('templates/container-info.html', {
-		    scope: $scope,
-		    animation: 'slide-in-up'
-		  }).then(function(modal) {
-		    $scope.modal = modal;
-		  });
-		$scope.openModal = function(container) {
-			$scope.container = container;
-		    $scope.modal.show();
-		};
-		$scope.closeModal = function() {
-			$scope.modal.hide();
+        $scope.openModal = function(container) {
+        	$scope.container = container;
+			ModalService
+			.init('templates/container-info.html', $scope)
+			.then(function(modal) {
+				modal.show();
+			});
 		};
 	});
 
 angular.module('Invoices')
 
 .controller('InvoicesController', 
-    function($scope, GetInvoices, $ionicModal, $ionicLoading) {
+    function($scope, GetInvoices, ModalService) {
         $scope.invoices = {};
         var params = ""; //"?params=order by 1 limit 1";
 
@@ -85,29 +102,27 @@ angular.module('Invoices')
             $scope.invoices = response.data.data;
         });
 
-        $ionicModal.fromTemplateUrl('templates/invoice-info.html', {
-		    scope: $scope,
-		    animation: 'slide-in-up'
-		  }).then(function(modal) {
-		    $scope.modal = modal;
-		  });
-		$scope.openModal = function(invoice) {
-			$scope.invoice = invoice;
-		    $scope.modal.show();
-		};
-		$scope.closeModal = function() {
-			$scope.modal.hide();
+        $scope.openModal = function(invoice) {
+        	$scope.invoice = invoice;
+			ModalService
+			.init('templates/invoice-info.html', $scope)
+			.then(function(modal) {
+				modal.show();
+			});
 		};
 
 		$scope.addHr = function(str) {
-			return str.replace(/,/g, '<hr>');
+			if ( str == undefined )
+				return str;
+			else
+				return str.replace(/,/g, '<hr>');
 		};
 	});
 
 angular.module('Contact')
 
 .controller('ContactController',
-	function($scope, GetClientInfo, $ionicLoading) {
+	function($scope, GetClientInfo) {
 		$scope.contact = {};
 
 		GetClientInfo.Info(function(response) {
@@ -126,7 +141,7 @@ angular.module('Contact')
 angular.module('Reviews')
 
 .controller('ReviewsController',
-	function($scope, GetReviews, $ionicModal, $ionicLoading) {
+	function($scope, GetReviews, ModalService) {
 		$scope.reviews = {};
 
 		$scope.loadReviews = function() {
@@ -137,17 +152,12 @@ angular.module('Reviews')
 		}
 		$scope.loadReviews();
 
-        $ionicModal.fromTemplateUrl('templates/review-add.html', {
-			scope: $scope,
-		    animation: 'slide-in-up'
-		  }).then(function(modal) {
-			$scope.modal = modal;
-		  });
-		$scope.openModal = function() {
-		    $scope.modal.show();
-		};
-		$scope.closeModal = function() {
-			$scope.modal.hide();
+        $scope.openModal = function() {
+			ModalService
+			.init('templates/review-add.html', $scope)
+			.then(function(modal) {
+				modal.show();
+			});
 		};
 
 		$scope.addReview = function (comment) {

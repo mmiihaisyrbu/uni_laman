@@ -1,0 +1,46 @@
+<ion-modal-view>
+	<ion-header-bar class="bar bar-header">
+		<h1 class="title">Container details</h1>
+		<button class="button button-clear button-primary" ng-click="modal.hide()">Close</button>
+	</ion-header-bar>
+	<ion-content class="padding">
+		<ul class="list">
+		    <li class="item">
+		    	<div style="float:left">Order no</div>
+				<div style="float:right">{{container.order_no_ext}}</div>
+		    </li>
+		    <li class="item">
+		    	<div style="float:left">Cont no</div>
+				<div style="float:right">{{container.cont_no}}</div>
+		    </li>
+		    <li class="item">
+		    	<div style="float:left">Cont type</div>
+				<div style="float:right">{{container.cont_type}}</div>
+		    </li>
+		    <li class="item">
+		    	<div style="float:left">ETD</div>
+				<div style="float:right">{{container.etd}}</div>
+		    </li>
+		    <li class="item">
+		    	<div style="float:left">ETA</div>
+				<div style="float:right">{{container.eta}}</div>
+		    </li>
+		    <li class="item">
+		    	<div style="float:left">POL</div>
+				<div style="float:right">{{container.ports_of_loading}}</div>
+		    </li>
+		    <li class="item">
+		    	<div style="float:left">POD</div>
+				<div style="float:right">{{container.ports_of_discharge}}</div>
+		    </li>
+		    <li class="item">
+		    	<div style="float:left">Cargo</div>
+				<div style="float:right">{{container.cargo}}</div>
+		    </li>
+		    <li class="item">
+		    	<div style="float:left">Brutto</div>
+				<div style="float:right">{{container.brutto}}</div>
+		    </li>
+		</ul>
+	</ion-content>
+</ion-modal-view>

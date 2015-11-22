@@ -1,0 +1,2 @@
+/home/syrbu/projects/uni_laman/platforms/android/build/intermediates/classes/debug
+/home/syrbu/projects/uni_laman/platforms/android/build/intermediates/pre-dexed/debug/classes-efdeab11397b4a2533aeb561a011509c2ff10e82.jar

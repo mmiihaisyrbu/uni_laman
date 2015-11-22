@@ -1,0 +1,38 @@
+<ion-view title="Uni-Laman">
+    <ion-content padding="false">
+        <div>
+            <p align="center">
+                {{ data.company_name }}
+            </p>
+        </div>
+        <ion-list>
+            <ion-item class="item-thumbnail-left" ng-click="showContainers('in_pol')">
+                <img src="img/port_loading.png">
+                <h2>At the port of loading</h2>
+                <p>{{ data.in_pol }}</p>
+            </ion-item>
+            <ion-item class="item-thumbnail-left" ng-click="showContainers('sailing')">
+                <img src="img/vessel.png">
+                <h2>Sailing</h2>
+                <p>{{ data.sailing }}</p>
+            </ion-item>
+            <ion-item class="item-thumbnail-left" ng-click="showContainers('in_pod')">
+                <img src="img/port_discharge.png">
+                <h2>At the discharge port</h2>
+                <p>{{ data.in_pod }}</p>
+            </ion-item>
+			<ion-item class="item-thumbnail-left" ng-click="showContainers('on_road')">
+			    <img src="img/auto.png">
+			    <h2>On the road</h2>
+			    <p>{{ data.on_road }}</p>
+			</ion-item>
+        </ion-list>
+    </ion-content>
+    <ion-footer-bar>
+        <div class="button-bar">
+            <a href="#/containers" class="button icon ion-folder"></a>
+            <a href="#/invoices" class="button icon ion-card"></a>
+            <a href="#/more" class="button icon ion-android-add"></a>
+        </div>
+    </ion-footer-bar>
+</ion-view>

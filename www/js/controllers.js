@@ -38,14 +38,14 @@ angular.module('Main')
 
         GetClientInfo.Report(function(response) {
             console.log(response.data);
-            $scope.data.in_pol = response.data.data['in_pol'];
+            $scope.data.wait_sailing = response.data.data['wait_sailing'];
             $scope.data.sailing = response.data.data['sailing'];
-            $scope.data.in_pod = response.data.data['in_pod'];
-            $scope.data.on_road = response.data.data['on_road'];
+            $scope.data.arrived = response.data.data['arrived'];
+            $scope.data.closed = response.data.data['closed'];
         });
 
         $scope.showContainers = function(cont_status) {
-        	localStorage['cont_status'] = '?cont_status='+cont_status;
+        	localStorage['cont_status'] = '/status='+cont_status;
         	$location.path('/containers');
         };
 	});
@@ -74,7 +74,7 @@ angular.module('Containers', ['ionic'])
 .controller('ContainersController', 
     function($scope, GetContainers, ModalService) {
         $scope.containers = {};
-        var params = '';//localStorage['cont_status'];
+        var params = localStorage['cont_status'];
 
         GetContainers.ContainersList(params, function(response) {
             $scope.containers = response.data.data;

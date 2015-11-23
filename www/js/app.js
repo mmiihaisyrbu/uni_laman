@@ -14,6 +14,7 @@ angular.module('laman', ['ionic', 'Authentication', 'Main', 'Containers', 'Invoi
 
 .constant('$ionicLoadingConfig', {
   template: 'Loading...'
+  //templateUrl: '/img/loader.gif'
 })
 
 .config(function($stateProvider, $urlRouterProvider, $httpProvider) {

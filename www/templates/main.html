@@ -6,25 +6,21 @@
             </p>
         </div>
         <ion-list>
-            <ion-item class="item-thumbnail-left" ng-click="showContainers('in_pol')">
-                <img src="img/port_loading.png">
-                <h2>At the port of loading</h2>
-                <p>{{ data.in_pol }}</p>
+            <ion-item ng-click="showContainers('wait_sailing')">
+                <h2>Waiting for sailing</h2>
+                <p>{{ data.wait_sailing }}</p>
             </ion-item>
-            <ion-item class="item-thumbnail-left" ng-click="showContainers('sailing')">
-                <img src="img/vessel.png">
+            <ion-item ng-click="showContainers('sailing')">
                 <h2>Sailing</h2>
                 <p>{{ data.sailing }}</p>
             </ion-item>
-            <ion-item class="item-thumbnail-left" ng-click="showContainers('in_pod')">
-                <img src="img/port_discharge.png">
-                <h2>At the discharge port</h2>
-                <p>{{ data.in_pod }}</p>
+            <ion-item ng-click="showContainers('arrived')">
+                <h2>Arrived</h2>
+                <p>{{ data.arrived }}</p>
             </ion-item>
-			<ion-item class="item-thumbnail-left" ng-click="showContainers('on_road')">
-			    <img src="img/auto.png">
-			    <h2>On the road</h2>
-			    <p>{{ data.on_road }}</p>
+			<ion-item ng-click="showContainers('closed')">
+			    <h2>Closed</h2>
+			    <p>{{ data.closed }}</p>
 			</ion-item>
         </ion-list>
     </ion-content>

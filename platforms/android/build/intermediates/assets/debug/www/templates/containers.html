@@ -7,10 +7,19 @@
     </div>
     <ion-content padding="true" class="has-header has-subheader">
         <div class="spacer" style="width: auto; height: 15px;"></div>
+		<ion-refresher
+		    pulling-text="Pull to refresh..."
+		    on-refresh="loadContainers()">
+		</ion-refresher>
         <ion-list>
             <ion-item ng-repeat="container in containers | filter:search" style="padding: 0px !important;" ng-click="openModal(container)">
                 <ng-include src="'templates/container-item.html'" />
             </ion-item>
         </ion-list>
+        <ion-infinite-scroll
+			on-infinite="loadContainers(true)"
+			distance="1%"
+			ng-if="!is_last">
+		</ion-infinite-scroll>
     </ion-content>
 </ion-view>

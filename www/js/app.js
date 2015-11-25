@@ -90,6 +90,8 @@ angular.module('laman', ['ionic', 'Authentication', 'Main', 'Containers', 'Invoi
 
 	$rootScope.$on('loading:hide', function() {
 	    $ionicLoading.hide();
+	    $rootScope.$broadcast('scroll.refreshComplete');
+	    $rootScope.$broadcast('scroll.infiniteScrollComplete');
 	})
 	$ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard

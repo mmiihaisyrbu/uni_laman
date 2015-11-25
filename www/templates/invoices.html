@@ -7,6 +7,10 @@
     </div>
     <ion-content padding="true" class="has-header has-subheader">
     	<div class="spacer" style="width: auto; height: 15px;"></div>
+    	<ion-refresher
+		    pulling-text="Pull to refresh..."
+		    on-refresh="loadInvoices()">
+		</ion-refresher>
         <ion-list>
             <ion-item ng-repeat="invoice in invoices | filter:search" style="padding: 0px !important;" ng-click="openModal(invoice)">
                 <ng-include src="'templates/invoice-item.html'" />

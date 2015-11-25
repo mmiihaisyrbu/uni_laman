@@ -18,10 +18,6 @@ angular.module('Authentication')
 			        data: { 'login': username, 'pass': password }
 			    })
 			    .then(function(response) {
-			        console.log('response.data', response.data);
-                    /*$.each(response.data, function( index, value ) {
-                        console.log( index + ": " + value );
-                    });*/
                     localStorage['session_id'] = response.data['session_id'];
                     localStorage['client_id'] = response.data['client_id'];
                     callback(response.data);
@@ -42,9 +38,7 @@ angular.module('Authentication')
 			        data: { 'session_id': session_id }
 			    })
 			    .then(function(response) {
-			        console.log(response.data);
-
-                    localStorage.clear();
+			        localStorage.clear();
                     callback(response.data);
 			    }, 
 			    function(response) { // optional

@@ -5,7 +5,7 @@
             <div class="item item-body">
                 <div>{{contact.sales_name}}</div>
                 <div>{{formatPhone(contact.sales_phone)}}</div>
-                <div>{{contact.sales_email}}</div>
+                <div><a href="#" ng-click="openModal(contact.sales_email)">Send mail</a></div>
             </div>
         </div>
         <div class="list card">
@@ -13,7 +13,8 @@
             <div class="item item-body">
                 <div>{{contact.sales_chief_name}}</div>
                 <div>{{formatPhone(contact.sales_chief_phone)}}</div>
-                <div>{{contact.sales_chief_email}}</div>
+                <div><a href="#" ng-click="openModal(contact.sales_chief_email)">Send mail</a></div>
+                <a class="button icon-left ion-ios7-telephone button-calm" ng-href="tel: 0973536219">Call (097) 3536 219</a>
             </div>
         </div>
     </ion-content>

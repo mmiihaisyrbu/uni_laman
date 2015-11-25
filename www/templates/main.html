@@ -5,6 +5,10 @@
                 {{ data.company_name }}
             </p>
         </div>
+        <ion-refresher
+		    pulling-text="Pull to refresh..."
+		    on-refresh="loadReport()">
+		</ion-refresher>
         <ion-list>
             <ion-item ng-click="showContainers('wait_sailing')">
                 <h2>Waiting for sailing</h2>

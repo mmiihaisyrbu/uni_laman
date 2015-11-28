@@ -6,6 +6,7 @@ angular.module('Authentication')
     function($scope, $location, AuthenticationService, $ionicHistory) {
     	console.log('test', 'test');
     	$scope.data = {username: 'test_fox', password: 'fox_test'};
+    	//$scope.data = {username: 'mcv-bus', password: 'egypt-mcv'};
 
 	    $scope.logIn = function() {
 
@@ -29,16 +30,14 @@ angular.module('Main')
     function($scope, GetClientInfo, $location) {
         $scope.data = [];
 
-        console.log(localStorage['session_id']);
-
-        GetClientInfo.Info(function(response) {
-            console.log(response.data);
-            $scope.data.company_name = response.data.data['client_name'];
-        });
+        $scope.getClientInfo = function() {
+	        GetClientInfo.Info(function(response) {
+	            $scope.data.company_name = response.data.data['client_name'];
+	        });
+	    }
 
         $scope.loadReport = function() {
 	        GetClientInfo.Report(function(response) {
-	            console.log(response.data);
 	            $scope.data.wait_sailing = response.data.data['wait_sailing'];
 	            $scope.data.sailing = response.data.data['sailing'];
 	            $scope.data.arrived = response.data.data['arrived'];
@@ -47,6 +46,7 @@ angular.module('Main')
 	    }
 
 	    $scope.loadReport();
+	    $scope.getClientInfo();
 
         $scope.showContainers = function(cont_status) {
         	localStorage['cont_status'] = '/status='+cont_status;
@@ -152,7 +152,7 @@ angular.module('Invoices')
 angular.module('Contact')
 
 .controller('ContactController',
-	function($scope, GetClientInfo, ModalService) {
+	function($scope, GetClientInfo, ModalService, EmailService) {
 		$scope.contact = [];
 
 		GetClientInfo.Info(function(response) {
@@ -163,16 +163,25 @@ angular.module('Contact')
         $scope.formatPhone = function(str) {
 			if ( str != null ) {
 				str = str.replace(/[^\d\;\+]/gi, '');
+				str = str.split(';');
 			}
 			return str;
 		}
 
-		$scope.openModal = function(to) {
+		$scope.openModal = function(to, to_name) {
 			$scope.send_to_email = to;
+			$scope.send_to_name_email = to_name;
 			ModalService
 			.init('templates/mail.html', $scope)
 			.then(function(modal) {
 				modal.show();
+			});
+		};
+
+		$scope.sendEmail = function(to, subject, message) {
+			EmailService.SendEmail(to, subject, message, function(response) {
+				console.log(response);
+				modal.hide();
 			});
 		};
 	});

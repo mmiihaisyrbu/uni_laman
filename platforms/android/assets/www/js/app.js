@@ -9,8 +9,9 @@ angular.module('Contact', []);
 angular.module('Reviews', []);
 angular.module('ModalWindow', []);
 angular.module('More', []);
+angular.module('Email', []);
 
-angular.module('laman', ['ionic', 'Authentication', 'Main', 'Containers', 'Invoices', 'Contact', 'Reviews', 'ModalWindow', 'More'])
+angular.module('laman', ['ionic', 'Authentication', 'Main', 'Containers', 'Invoices', 'Contact', 'Reviews', 'ModalWindow', 'More', 'Email'])
 
 .constant('$ionicLoadingConfig', {
   template: 'Loading...'

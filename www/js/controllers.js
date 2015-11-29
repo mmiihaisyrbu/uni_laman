@@ -1,11 +1,11 @@
 'use strict';
   
-angular.module('Authentication')
+angular.module('Authentication', ['ionic'])
 
 .controller('LoginController',
     function($scope, $location, AuthenticationService, $ionicHistory) {
-    	console.log('test', 'test');
-    	$scope.data = {username: 'test_fox', password: 'fox_test'};
+    	$scope.data = [];
+    	//$scope.data = {username: 'test_foxx', password: 'foxx_test'};
     	//$scope.data = {username: 'mcv-bus', password: 'egypt-mcv'};
 
 	    $scope.logIn = function() {

@@ -1,12 +1,12 @@
 'use strict';
   
-angular.module('Authentication')
+angular.module('Authentication', ['ionic'])
 
 .controller('LoginController',
     function($scope, $location, AuthenticationService, $ionicHistory) {
-    	console.log('test', 'test');
-    	//$scope.data = {username: 'test_fox', password: 'fox_test'};
-    	$scope.data = {username: 'mcv-bus', password: 'egypt-mcv'};
+    	$scope.data = [];
+    	//$scope.data = {username: 'test_foxx', password: 'foxx_test'};
+    	//$scope.data = {username: 'mcv-bus', password: 'egypt-mcv'};
 
 	    $scope.logIn = function() {
 
@@ -30,9 +30,11 @@ angular.module('Main')
     function($scope, GetClientInfo, $location) {
         $scope.data = [];
 
-        GetClientInfo.Info(function(response) {
-            $scope.data.company_name = response.data.data['client_name'];
-        });
+        $scope.getClientInfo = function() {
+	        GetClientInfo.Info(function(response) {
+	            $scope.data.company_name = response.data.data['client_name'];
+	        });
+	    }
 
         $scope.loadReport = function() {
 	        GetClientInfo.Report(function(response) {
@@ -44,6 +46,7 @@ angular.module('Main')
 	    }
 
 	    $scope.loadReport();
+	    $scope.getClientInfo();
 
         $scope.showContainers = function(cont_status) {
         	localStorage['cont_status'] = '/status='+cont_status;

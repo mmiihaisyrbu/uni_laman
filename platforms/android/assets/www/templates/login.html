@@ -14,7 +14,7 @@
                 </label>
             </ion-list>
             <div class="spacer" style="height: 40px;"></div>
-            <button class="button button-stable button-block" ng-click="logIn()">Login</button>
+            <button class="button button-stable button-block" ng-disabled="!data.username || !data.password" ng-click="logIn()">Login</button>
             <div ng-show="error" class="alert alert-danger">{{error}}</div>
     </ion-content>
 </ion-view>

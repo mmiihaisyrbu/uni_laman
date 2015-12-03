@@ -11,7 +11,7 @@ angular.module('ModalWindow', []);
 angular.module('More', []);
 angular.module('Email', []);
 
-angular.module('laman', ['ionic', 'ionic-toast', 'Authentication', 'Main', 'Containers', 'Invoices', 'Contact', 'Reviews', 'ModalWindow', 'More', 'Email'])
+angular.module('laman', ['ionic', 'ngCordova', 'Authentication', 'Main', 'Containers', 'Invoices', 'Contact', 'Reviews', 'ModalWindow', 'More', 'Email'])
 
 .constant('$ionicLoadingConfig', {
   template: 'Loading...'
@@ -71,7 +71,7 @@ angular.module('laman', ['ionic', 'ionic-toast', 'Authentication', 'Main', 'Cont
 		$urlRouterProvider.otherwise('/login');
 	}
 
-	$httpProvider.interceptors.push(function($rootScope) {
+	$httpProvider.interceptors.push(function($rootScope, $cordovaNetwork) {
 		return {
 			request: function(config) {
 				$rootScope.$broadcast('loading:show')
@@ -86,32 +86,59 @@ angular.module('laman', ['ionic', 'ionic-toast', 'Authentication', 'Main', 'Cont
 			},
 			responseError: function(response) {
 				$rootScope.$broadcast('loading:hide');
-				console.log(response);
-				$rootScope.showToast(response.data.message);
+				if ( ! $cordovaNetwork.isOnline() ) {
+					$rootScope.showToast('The internet is disconnected on your device!');
+				} else {
+					$rootScope.showToast(response.data.message);
+				}
 			}
 		}
 	});
 })
-.run(function($ionicPlatform, $rootScope, $ionicLoading, ionicToast) {
+.run(function($ionicPlatform, $rootScope, $ionicLoading, $ionicPopup, $cordovaNetwork, $cordovaToast) {
 	$rootScope.$on('loading:show', function() {
 		$ionicLoading.show();
-	})
+	});
 
 	$rootScope.$on('loading:hide', function() {
 	    $ionicLoading.hide();
 	    $rootScope.$broadcast('scroll.refreshComplete');
 	    $rootScope.$broadcast('scroll.infiniteScrollComplete');
-	})
+	});
 
 	$rootScope.showToast = function(err_msg) {
-	  ionicToast.show(err_msg, 'top', true, 2500);
+	  $cordovaToast
+	    .show(err_msg, 'long', 'bottom')
+	    .then(function(success) {
+	      // success
+	    }, function (error) {
+	      // error
+	    });
 	};
 
-	$rootScope.hideToast = function(){
-		ionicToast.hide();
-	};
+	// listen for Online event
+    $rootScope.$on('$cordovaNetwork:online', function(event, networkState) {
+    	$rootScope.showToast('Network:online');
+    });
+
+    // listen for Offline event
+    $rootScope.$on('$cordovaNetwork:offline', function(event, networkState) {
+    	$rootScope.showToast('Network:offline');
+    });
 
 	$ionicPlatform.ready(function() {
-
+		if(window.Connection) {
+            if( navigator.connection.type == Connection.NONE ) {
+                $ionicPopup.confirm({
+                    title: "Internet Disconnected",
+                    content: "The internet is disconnected on your device."
+                })
+                .then(function(result) {
+                    if(!result) {
+                        ionic.Platform.exitApp();
+                    }
+                });
+            }
+        }
 	});
 });

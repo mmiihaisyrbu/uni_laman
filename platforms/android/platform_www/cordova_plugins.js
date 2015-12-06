@@ -35,6 +35,22 @@ module.exports = [
         "file": "plugins/cordova-plugin-x-toast/test/tests.js",
         "id": "cordova-plugin-x-toast.tests",
         "pluginId": "cordova-plugin-x-toast"
+    },
+    {
+        "file": "plugins/com.bez4pieci.cookies/www/cookies.js",
+        "id": "com.bez4pieci.cookies.cookies",
+        "pluginId": "com.bez4pieci.cookies",
+        "clobbers": [
+            "cookies"
+        ]
+    },
+    {
+        "file": "plugins/at.modalog.cordova.plugin.cache/www/Cache.js",
+        "id": "at.modalog.cordova.plugin.cache.Cache",
+        "pluginId": "at.modalog.cordova.plugin.cache",
+        "clobbers": [
+            "cache"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -42,7 +58,9 @@ module.exports.metadata =
 {
     "cordova-plugin-whitelist": "1.2.0",
     "org.apache.cordova.network-information": "0.2.15",
-    "cordova-plugin-x-toast": "2.2.3"
+    "cordova-plugin-x-toast": "2.2.3",
+    "com.bez4pieci.cookies": "0.0.1",
+    "at.modalog.cordova.plugin.cache": "1.0.0"
 }
 // BOTTOM OF METADATA
 });

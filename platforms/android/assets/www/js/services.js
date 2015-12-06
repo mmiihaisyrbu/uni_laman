@@ -3,11 +3,10 @@
 angular.module('Authentication')
 
 .factory('AuthenticationService',
-    ['$http',
-    function($http) {
+    function($http, $ionicPlatform) {
         var service = {};
  
-        service.LogIn = function(username, password, callback) { 
+        service.LogIn = function(username, password, callback) {
 
             var url = "http://client.uni-laman.com/android/ver_2/index.php/login";
 
@@ -20,6 +19,8 @@ angular.module('Authentication')
 			    .then(function(response) {
                     localStorage['session_id'] = response.data['session_id'];
                     localStorage['client_id'] = response.data['client_id'];
+
+                    console.log('localStorage='+JSON.stringify(localStorage));
                     callback(response.data);
 			    }, 
 			    function(response) { // optional
@@ -29,16 +30,21 @@ angular.module('Authentication')
 
         service.LogOut = function(callback) {
 
-        	var session_id = localStorage["session_id"];
-
         	$http({
 			        method: "POST",
 			        headers: {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'},
 			        url: "http://client.uni-laman.com/android/ver_2/index.php/logout",
-			        data: { 'session_id': session_id }
+			        data: { 'session_id': localStorage['session_id'] }
 			    })
 			    .then(function(response) {
-			        localStorage.clear();
+			        
+			        $ionicPlatform.ready(function() {
+				        window.cookies.clear(function() {
+						    console.log('Cookies cleared!');
+						});
+				    });
+				    localStorage.clear();
+
                     callback(response.data);
 			    }, 
 			    function(response) { // optional
@@ -47,22 +53,21 @@ angular.module('Authentication')
         }
   
         return service;
-    }]);
+    });
 
 angular.module('Main')
 
 .factory('GetClientInfo', function($http) {
     var service = {};
-    var session_id = localStorage['session_id'];
 
     service.Info = function(callback) {
         $http({
                 method: "GET",
                 headers: {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'},
-                url: "http://client.uni-laman.com/android/ver_2/index.php/client_info/"+session_id
+                url: "http://client.uni-laman.com/android/ver_2/index.php/client_info/"+localStorage['session_id']
             })
             .then(function(data, status, headers, config) {
-                console.log(data);
+                console.log(JSON.stringify(data));
                 callback(data);
             }, 
             function(response) { // optional
@@ -74,10 +79,10 @@ angular.module('Main')
         $http({
                 method: "GET",
                 headers: {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'},
-                url: "http://client.uni-laman.com/android/ver_2/index.php/report/"+session_id
+                url: "http://client.uni-laman.com/android/ver_2/index.php/report/"+localStorage['session_id']
             })
             .then(function(data, status, headers, config) {
-                console.log(data);
+                console.log(JSON.stringify(data));
                 callback(data);
             }, 
             function(response) { // optional
@@ -90,18 +95,17 @@ angular.module('Main')
 
 angular.module('Containers')
 
-.factory('GetContainers', function($http, $ionicModal) {
+.factory('GetContainers', function($http) {
     var service = {};
-    var session_id = localStorage['session_id'];
 
     service.ContainersList = function(params, callback) {
         $http({
                 method: "GET",
                 headers: {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'},
-                url: "http://client.uni-laman.com/android/ver_2/index.php/containers/"+session_id+params
+                url: "http://client.uni-laman.com/android/ver_2/index.php/containers/"+localStorage['session_id']+params
             })
             .then(function(data, status, headers, config) {
-                console.log(data);
+                console.log(JSON.stringify(data));
                 callback(data);
             }, 
             function(response) { // optional
@@ -153,16 +157,15 @@ angular.module('Invoices')
 
 .factory('GetInvoices', function($http) {
     var service = {};
-    var session_id = localStorage['session_id'];
 
     service.InvoicesList = function(params, callback) {
         $http({
                 method: "GET",
                 headers: {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'},
-                url: "http://client.uni-laman.com/android/ver_2/index.php/invoices/"+session_id+params
+                url: "http://client.uni-laman.com/android/ver_2/index.php/invoices/"+localStorage['session_id']+params
             })
             .then(function(data, status, headers, config) {
-                console.log(data);
+                console.log(JSON.stringify(data));
                 callback(data);
             }, 
             function(response) { // optional
@@ -176,18 +179,17 @@ angular.module('Invoices')
 angular.module('Reviews')
 
 .factory('GetReviews',
-    ['$http', function($http) {
+    function($http) {
     var service = {};
-    var session_id = localStorage['session_id'];
 
     service.ReviewsList = function(callback) {
         $http({
                 method: "GET",
                 headers: {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'},
-                url: "http://client.uni-laman.com/android/ver_2/index.php/reviews/"+session_id
+                url: "http://client.uni-laman.com/android/ver_2/index.php/reviews/"+localStorage['session_id']
             })
             .then(function(data, status, headers, config) {
-                console.log(data);
+                console.log(JSON.stringify(data));
                 callback(data);
             }, 
             function(response) { // optional
@@ -200,10 +202,10 @@ angular.module('Reviews')
                 method: "POST",
                 headers: {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'},
                 url: "http://client.uni-laman.com/android/ver_2/index.php/review",
-                data: { 'session_id': session_id, 'comment': comment }
+                data: { 'session_id': localStorage['session_id'], 'comment': comment }
             })
             .then(function(data) {
-                console.log(data);
+                console.log(JSON.stringify(data));
                 callback(data);
             }, 
             function(response) { // optional
@@ -212,24 +214,23 @@ angular.module('Reviews')
     };
 
     return service;
-}]);
+});
 
 angular.module('Email')
 
 .factory('EmailService',
-    ['$http', function($http) {
+    function($http) {
     var service = {};
-    var session_id = localStorage['session_id'];
 
     service.SendEmail = function(to, subject, message, callback) {
         $http({
                 method: "POST",
                 headers: {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'},
                 url: "http://client.uni-laman.com/android/ver_2/index.php/mail",
-                data: { 'session_id': session_id, 'to': to, 'subject': subject, 'message': message }
+                data: { 'session_id': localStorage['session_id'], 'to': to, 'subject': subject, 'message': message }
             })
             .then(function(data, status, headers, config) {
-                console.log(data);
+                console.log(JSON.stringify(data));
                 callback(data);
             }, 
             function(response) { // optional
@@ -238,4 +239,4 @@ angular.module('Email')
     };
 
     return service;
-}]);
+});

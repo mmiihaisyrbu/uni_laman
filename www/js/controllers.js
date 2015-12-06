@@ -5,6 +5,7 @@ angular.module('Authentication', ['ionic'])
 .controller('LoginController',
     function($scope, $location, AuthenticationService, $ionicHistory) {
     	$scope.data = [];
+
     	//$scope.data = {username: 'test_foxx', password: 'foxx_test'};
     	//$scope.data = {username: 'mcv-bus', password: 'egypt-mcv'};
 
@@ -16,6 +17,7 @@ angular.module('Authentication', ['ionic'])
                 	$ionicHistory.nextViewOptions({
 						disableBack: true
 					});
+        			window.location.reload();
                     $location.path('/main');
                 } else {
                     $scope.error = response.message;
@@ -24,7 +26,7 @@ angular.module('Authentication', ['ionic'])
 	    }
     });
 
-angular.module('Main')
+angular.module('Main', ['ionic'])
 
 .controller('MainController',
     function($scope, GetClientInfo, $location) {
@@ -49,8 +51,8 @@ angular.module('Main')
 	    $scope.getClientInfo();
 
         $scope.showContainers = function(cont_status) {
-        	localStorage['cont_status'] = '/status='+cont_status;
-        	localStorage['from_to_cont'] = 'main';
+        	window.localStorage['cont_status'] = '/status='+cont_status;
+        	window.localStorage['from_to_cont'] = 'main';
         	$location.path('/containers');
         };
 	});
@@ -58,7 +60,7 @@ angular.module('Main')
 angular.module('More', ['ionic'])
 
 .controller('MoreController',
-	function($scope, AuthenticationService, $location, $ionicHistory) {
+	function($scope, AuthenticationService, $location, $ionicHistory, $rootScope) {
 		$scope.logOut = function() {
 	    	AuthenticationService.LogOut(function(response) {
                 if( response.status == 200 ) {
@@ -66,7 +68,6 @@ angular.module('More', ['ionic'])
 						disableBack: true
 					});
 					$location.path('/login');
-
                 } else {
                     $scope.error = response.message;
                 }
@@ -83,8 +84,8 @@ angular.module('Containers', ['ionic'])
         $scope.offset_p = '';
         $scope.is_last = false;
 
-        if ( localStorage['from_to_cont'] != 'main' ) { localStorage.removeItem('cont_status'); }
-        var params = localStorage['cont_status']||"/q=0";
+        if ( window.localStorage['from_to_cont'] != 'main' ) { window.localStorage.removeItem('cont_status'); }
+        var params = window.localStorage['cont_status']||"/q=0";
 
         $scope.loadContainers = function(more) {
         	more = typeof more !== 'undefined' ? more : false;
@@ -103,7 +104,7 @@ angular.module('Containers', ['ionic'])
 	    }
 
 	    $scope.loadContainers();
-	    localStorage['from_to_cont'] = ' ';
+	    window.localStorage['from_to_cont'] = ' ';
 
         $scope.openModal = function(container) {
         	$scope.container = container;

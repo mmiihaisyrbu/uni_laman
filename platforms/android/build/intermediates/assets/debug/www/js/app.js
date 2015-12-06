@@ -78,7 +78,10 @@ angular.module('laman', ['ionic', 'ngCordova', 'Authentication', 'Main', 'Contai
 				return config
 			},
 			response: function(response) {
-				$rootScope.$broadcast('loading:hide')
+				$rootScope.$broadcast('loading:hide');
+				/*window.cookies.clear(function() {
+					console.log('Cookies cleared!');
+				});*/
 				return response
 			},
 			requestError: function(config) {

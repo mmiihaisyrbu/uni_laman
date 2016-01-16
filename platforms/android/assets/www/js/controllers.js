@@ -3,7 +3,7 @@
 angular.module('Authentication', ['ionic'])
 
 .controller('LoginController',
-    function($scope, $location, AuthenticationService, $ionicHistory, $state, $stateParams) {
+    function($scope, $location, AuthenticationService, $ionicHistory) {
     	$scope.data = [];
 
     	//$scope.data = {username: 'test_foxx', password: 'foxx_test'};
@@ -18,7 +18,6 @@ angular.module('Authentication', ['ionic'])
 						disableBack: true
 					});
         			window.location.reload();
-                    //$state.go('main');
                     $location.path('/main');
                 } else {
                     $scope.error = response.message;

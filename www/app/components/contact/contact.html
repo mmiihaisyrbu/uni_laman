@@ -1,0 +1,36 @@
+<ion-view title="Contact">
+    <ion-content padding="true" class="has-header">
+        <div class="list card">
+            <div class="item item-divider">Contact sales manager</div>
+            <div class="item item-body">
+                <div>{{contact.sales_name}}</div>
+                <div>
+                	<ul>
+					    <li ng-repeat="phone in formatPhone(contact.sales_phone)">
+	                		<a class="button button-icon icon ion-ios-telephone" ng-href="tel: {{phone}}">&nbsp;Call {{phone}}</a>
+	            		</li>
+	                </ul>
+                </div>
+                <div>
+                	<a href="#" ng-click="openModal(contact.sales_email, contact.sales_name)" class="button button-icon icon ion-email">&nbsp;Send email</a>
+                </div>
+            </div>
+        </div>
+        <div class="list card">
+            <div class="item item-divider">Contact chief of sales</div>
+            <div class="item item-body">
+                <div>{{contact.sales_chief_name}}</div>
+                <div>
+                	<ul>
+					    <li ng-repeat="phone in formatPhone(contact.sales_chief_phone)">
+	                		<a class="button button-icon icon ion-ios-telephone" ng-href="tel: {{phone}}">&nbsp;Call {{phone}}</a>
+	            		</li>
+	                </ul>
+                </div>
+                <div>
+                	<a href="#" ng-click="openModal(contact.sales_chief_email, contact.sales_chief_name)" class="button button-icon icon ion-email">&nbsp;Send email</a>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,12 @@
+<ion-view title="Reviews">
+    <ion-content padding="true" scroll="false">
+        <ion-list>
+            <ion-item ng-repeat="review in reviews" style="padding: 0px !important;">
+                <ng-include src="'app/components/reviews/review-item.html'" />
+            </ion-item>
+        </ion-list>
+    </ion-content>
+    <button id="fab" class="button button-positive button-fab button-fab-bottom-right" ng-click="openModal()">
+        <i class="icon ion-plus-round"></i>
+    </button>
+</ion-view>

@@ -1,7 +1,7 @@
 angular.module('app')
 
 .constant('$ionicLoadingConfig', {
-  template: 'Loading...'
+  template: '<div class="loader"><svg class="circular"><circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/></svg></div>'
   //templateUrl: '/img/loader.gif'
 })
 
@@ -18,7 +18,7 @@ angular.module('app')
     
     .state('login', {
       url: '/login',
-      controller: 'LoginController',
+      controller: 'LoginController as login',
       templateUrl: 'app/components/authentication/login.html',
       hideMenus: true
     })
@@ -47,8 +47,8 @@ angular.module('app')
 		url: '/container-info',
 		views: {
 			'menuContent': {
-				templateUrl: 'app/components/containers/container-info.html'/*,
-				controller: 'ContainersController'*/
+				templateUrl: 'app/components/containers/container-info.html',
+				controller: 'containerDetailsController'
 			}
 		}
 	})
@@ -78,7 +78,17 @@ angular.module('app')
 		views: {
 			'menuContent': {
 				templateUrl: 'app/components/contact/contact.html',
-				controller: 'ContactController'
+				controller: 'ContactController as contact'
+			}
+		}
+	})
+
+	.state('app.contact-mail', {
+		url: '/contact-mail',
+		views: {
+			'menuContent': {
+				templateUrl: 'app/components/contact/mail.html',
+				controller: 'SendMailController as mail'
 			}
 		}
 	})
@@ -89,6 +99,16 @@ angular.module('app')
 			'menuContent': {
 				templateUrl: 'app/components/invoices/invoices.html',
 				controller: 'InvoicesController'
+			}
+		}
+	})
+
+	.state('app.invoice-info', {
+		url: '/invoice-info',
+		views: {
+			'menuContent': {
+				templateUrl: 'app/components/invoices/invoice-info.html',
+				controller: 'invoiceDetailsController'
 			}
 		}
 	});

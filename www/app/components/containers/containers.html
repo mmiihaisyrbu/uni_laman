@@ -12,7 +12,7 @@
 		    on-refresh="loadContainers()">
 		</ion-refresher>
         <ion-list>
-            <ion-item ng-repeat="container in containers | filter:search" style="padding: 0px !important;" ng-click="openModal(container)">
+            <ion-item ng-repeat="container in containers | filter:search" style="padding: 0px !important;" ng-click="openContainerDetails(container)">
                 <ng-include src="'app/components/containers/container-item.html'" />
             </ion-item>
         </ion-list>

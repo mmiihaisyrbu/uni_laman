@@ -12,7 +12,7 @@
 		    on-refresh="loadInvoices()">
 		</ion-refresher>
         <ion-list>
-            <ion-item ng-repeat="invoice in invoices | filter:search" style="padding: 0px !important;" ng-click="openModal(invoice)">
+            <ion-item ng-repeat="invoice in invoices | filter:search" style="padding: 0px !important;" ng-click="openInvoiceDetails(invoice)">
                 <ng-include src="'app/components/invoices/invoice-item.html'" />
             </ion-item>
         </ion-list>

@@ -1,8 +1,22 @@
 angular.module('app.containers')
 	.controller('ContainersController', ContainersController)
-	.factory('GetContainers', GetContainers);
+	.controller('containerDetailsController', containerDetailsController)
+	.factory('GetContainers', GetContainers)
+	.service('ContainerDetailsStorage', ContainerDetailsStorage);
 
-function ContainersController($scope, GetContainers, ModalService, $location) {
+function ContainerDetailsStorage() {
+    var _container = [];
+    return {
+        setData: function (container) {
+            _container = container;
+        },
+        getData: function () {
+            return _container;
+        }
+    }
+}
+
+function ContainersController($scope, GetContainers, $location, ContainerDetailsStorage) {
     $scope.containers = [];
     $scope.offset = 0;
     $scope.offset_p = '';
@@ -30,13 +44,8 @@ function ContainersController($scope, GetContainers, ModalService, $location) {
     $scope.loadContainers();
     window.localStorage['from_to_cont'] = ' ';
 
-    $scope.openModal = function(container) {
-    	$scope.container = container;
-		/*ModalService
-		.init('templates/container-info.html', $scope)
-		.then(function(modal) {
-			modal.show();
-		});*/
+    $scope.openContainerDetails = function(container) {
+    	ContainerDetailsStorage.setData(container);
 		$location.path('/app/container-info');
 	};
 }
@@ -59,4 +68,8 @@ function GetContainers($http) {
             });
     };
     return service;
+}
+
+function containerDetailsController($scope, ContainerDetailsStorage) {
+	$scope.container = ContainerDetailsStorage.getData();
 }

@@ -2,15 +2,13 @@ angular.module('app.authentication')
 	.controller('LoginController', LoginController)
 	.factory('AuthenticationService', AuthenticationService);
 
-function LoginController($scope, $location, AuthenticationService, $ionicHistory) {
-	$scope.data = [];
-
+function LoginController($location, AuthenticationService, $ionicHistory) {
 	//$scope.data = {username: 'test_foxx', password: 'foxx_test'};
 	//$scope.data = {username: 'mcv-bus', password: 'egypt-mcv'};
 
-    $scope.logIn = function() {
+    this.logIn = function() {
 
-        AuthenticationService.LogIn($scope.data.username, $scope.data.password, function(response) {
+        AuthenticationService.LogIn(this.username, this.password, function(response) {
         	console.log('response', response);
             if( response.status == 201 ) {
             	$ionicHistory.nextViewOptions({
@@ -19,7 +17,7 @@ function LoginController($scope, $location, AuthenticationService, $ionicHistory
     			window.location.reload();
                 $location.path('/app/home');
             } else {
-                $scope.error = response.message;
+                this.error = response.message;
             }
         });
     }

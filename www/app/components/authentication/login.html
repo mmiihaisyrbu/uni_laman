@@ -1,29 +1,5 @@
-<!--
-<ion-view title="">
-    <ion-content padding="true" class="has-header has-footer">
-        <div style="line-height: 250px; border: 1px solid rgb(238, 238, 238); border-radius: 3px; text-align: center; width: 100%; height: auto; background-color: rgb(255, 255, 255);">
-            <img src="img/logo.png" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;">
-        </div>
-            <ion-list>
-                <label class="item item-input">
-                    <span class="input-label">Username</span>
-                    <input type="text" placeholder="" name="username" id="username" class="form-control" ng-model="data.username">
-                </label>
-                <label class="item item-input">
-                    <span class="input-label">Password</span>
-                    <input type="password" placeholder="" name="password" id="password" class="form-control" ng-model="data.password">
-                </label>
-            </ion-list>
-            <div class="spacer" style="height: 40px;"></div>
-            <button class="button button-stable button-block" ng-disabled="!data.username || !data.password" ng-click="logIn()">Login</button>
-            <div ng-show="error" class="alert alert-danger">{{error}}</div>
-    </ion-content>
-</ion-view>
-
--->
-
 <ion-view view-title="Login" align-title="left">
-    <ion-content style="background: url(/assets/img/background.jpg) center; background-size: cover;">
+    <ion-content class="app-background">
         <div class="hero no-header flat">
             <div class="content">
                 <div class="app-icon"></div>
@@ -31,11 +7,11 @@
             </div>
         </div>
         <div class="list">
-            <ion-md-input placeholder="Username" highlight-color="balanced" type="text" ng-model="data.username"></ion-md-input>
-            <ion-md-input placeholder="Password" highlight-color="energized" type="password" ng-model="data.password"></ion-md-input>
+            <ion-md-input placeholder="Username" highlight-color="balanced" type="text" ng-model="login.username"></ion-md-input>
+            <ion-md-input placeholder="Password" highlight-color="energized" type="password" ng-model="login.password"></ion-md-input>
         </div>
         <div class="padding">
-            <button class="button button-full button-positive ink" ng-disabled="!data.username || !data.password" ng-click="logIn()">Login</button>
+            <button class="button button-full button-positive ink" ng-disabled="!login.username || !login.password" ng-click="login.logIn()">Login</button>
         </div>
         <div ng-show="error" class="alert alert-danger">{{error}}</div>
         <!--<div class="button-bar social-login">

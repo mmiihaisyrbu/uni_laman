@@ -1,7 +1,21 @@
 angular.module('app.contact')
-	.controller('ContactController', ContactController);
+	.controller('ContactController', ContactController)
+	.controller('SendMailController', SendMailController)
+	.service('MailInfoStorage', MailInfoStorage);
 
-function ContactController($scope, GetClientInfo, ModalService, EmailService) {
+function MailInfoStorage() {
+    var _data = [];
+    return {
+        setData: function (key, data) {
+            _data[key] = data;
+        },
+        getData: function (key) {
+            return _data[key];
+        }
+    }
+}
+
+function ContactController($scope, $location, GetClientInfo, MailInfoStorage) {
 	$scope.contact = [];
 
 	GetClientInfo.Info(function(response) {
@@ -17,20 +31,21 @@ function ContactController($scope, GetClientInfo, ModalService, EmailService) {
 		return str;
 	}
 
-	$scope.openModal = function(to, to_name) {
-		$scope.send_to_email = to;
-		$scope.send_to_name_email = to_name;
-		ModalService
-		.init('components/contact/mail.html', $scope)
-		.then(function(modal) {
-			modal.show();
-		});
+	$scope.openMailWindow = function(to, to_name) {
+		MailInfoStorage.setData('send_to_email', to);
+		MailInfoStorage.setData('send_to_name_email', to_name);
+		$location.path('/app/contact-mail');
 	};
+}
 
-	$scope.sendEmail = function(to, subject, message) {
+function SendMailController($scope, EmailService, MailInfoStorage) {
+	this.send_to_email = MailInfoStorage.getData('send_to_email');
+	this.send_to_name_email = MailInfoStorage.getData('send_to_name_email');
+
+	this.sendEmail = function(to, subject, message) {
 		EmailService.SendEmail(to, subject, message, function(response) {
 			console.log(response);
-			modal.hide();
+			//modal.hide();
 		});
 	};
 }

@@ -1,8 +1,22 @@
 angular.module('app.invoices')
 	.controller('InvoicesController', InvoicesController)
-	.factory('GetInvoices', GetInvoices);
+	.controller('invoiceDetailsController', invoiceDetailsController)
+	.factory('GetInvoices', GetInvoices)
+	.service('InvoiceDetailsStorage', InvoiceDetailsStorage);
 
-function InvoicesController($scope, GetInvoices, ModalService) {
+function InvoiceDetailsStorage() {
+    var _invoice = [];
+    return {
+        setData: function (invoice) {
+            _invoice = invoice;
+        },
+        getData: function () {
+            return _invoice;
+        }
+    }
+}
+
+function InvoicesController($scope, GetInvoices, $location, InvoiceDetailsStorage) {
     $scope.invoices = [];
     var params = "";
 
@@ -15,13 +29,9 @@ function InvoicesController($scope, GetInvoices, ModalService) {
 
     $scope.loadInvoices();
 
-    $scope.openModal = function(invoice) {
-    	$scope.invoice = invoice;
-		ModalService
-		.init('app/components/invoices/invoice-info.html', $scope)
-		.then(function(modal) {
-			modal.show();
-		});
+    $scope.openInvoiceDetails = function(invoice) {
+		InvoiceDetailsStorage.setData(invoice);
+		$location.path('/app/invoice-info');
 	};
 
 	$scope.addHr = function(str) {
@@ -30,6 +40,10 @@ function InvoicesController($scope, GetInvoices, ModalService) {
 		else
 			return str.replace(/,/g, '<hr>');
 	};
+}
+
+function invoiceDetailsController($scope, InvoiceDetailsStorage) {
+	$scope.invoice = InvoiceDetailsStorage.getData();
 }
 
 function GetInvoices($http) {

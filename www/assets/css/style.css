@@ -50,6 +50,10 @@ p {
 }
 /* Menu */
 
+.item.item-complex.activated {
+	background-color: gray;
+}
+
 .menu-icon {
 	font-size: x-large;
 }
@@ -220,12 +224,17 @@ margin-top:10px;
 ==================================*/
 .app-icon {
     background-color: #fff;
-    background: url('/assets/img/icon.png') center;
+    background: url('../img/icon.png') center;
     background-size: cover;
     border-radius: 50%;
     height: 125px;
     margin: 0 auto;
     width: 125px;
+}
+
+.app-background {
+	background: url('../img/background.jpg') center;
+	background-size: cover;
 }
 
 .social-login {

@@ -59,7 +59,7 @@ function AuthenticationService($http, $ionicPlatform) {
 		    .then(function(response) {
 		        
 		        $ionicPlatform.ready(function() {
-			    /*    window.cookies.clear(function() {
+			        /*window.cookies.clear(function() {
 					    console.log('Cookies cleared!');
 					});*/
 			    });

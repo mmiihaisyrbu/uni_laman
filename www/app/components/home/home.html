@@ -1,6 +1,6 @@
 <ion-view title="Uni-Laman">
     <ion-content padding="false">
-        <div>
+        <!--<div>
             <p align="center">
                 {{ data.company_name }}
             </p>
@@ -26,15 +26,33 @@
 			    <h2>Closed</h2>
 			    <p>{{ data.closed }}</p>
 			</ion-item>
-        </ion-list>
+        </ion-list>-->
+
+        <ion-slide-box on-slide-changed="slideHasChanged($index)" auto-play="true" does-continue="true">
+            <ion-slide>
+                <div class="slide-menu">
+                    <img src="assets/img/slide_pic1.jpg" class="slide-menu-image">
+                    <h2 class="slide-menu-text"><span>Marine container transportation</span></h2>
+                </div>
+            </ion-slide>
+            <ion-slide>
+                <div class="slide-menu">
+                    <img src="assets/img/slide_pic2.jpg" class="slide-menu-image">
+                    <h2 class="slide-menu-text"><span>Auto transport</span></h2>
+                </div>
+            </ion-slide>
+            <ion-slide>
+                <div class="slide-menu">
+                    <img src="assets/img/slide_pic3.jpg" class="slide-menu-image">
+                    <h2 class="slide-menu-text"><span>LCL cargo</span></h2>
+                </div>
+            </ion-slide>
+            <ion-slide>
+                <div class="slide-menu">
+                    <img src="assets/img/slide_pic4.jpg" class="slide-menu-image">
+                    <h2 class="slide-menu-text"><span>Rail transportation</span></h2>
+                </div>
+            </ion-slide>
+        </ion-slide-box>
     </ion-content>
-    <!--
-    <ion-footer-bar>
-        <div class="button-bar">
-            <a href="#/app/containers" class="button icon ion-folder"></a>
-            <a href="#/app/invoices" class="button icon ion-card"></a>
-            <a href="#/app/more" class="button icon ion-android-add"></a>
-        </div>
-    </ion-footer-bar>
-    -->
 </ion-view>

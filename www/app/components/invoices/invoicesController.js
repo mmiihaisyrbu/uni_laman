@@ -29,16 +29,17 @@ function InvoicesController($scope, GetInvoices, $location, InvoiceDetailsStorag
 
     $scope.loadInvoices();
 
+    $scope.addHr = function(str) {
+        if ( str == undefined )
+            return str;
+        else
+            return str.replace(/,/g, "<hr>");
+    };
+
     $scope.openInvoiceDetails = function(invoice) {
+        invoice.containers = $scope.addHr(invoice.containers);
 		InvoiceDetailsStorage.setData(invoice);
 		$location.path('/app/invoice-info');
-	};
-
-	$scope.addHr = function(str) {
-		if ( str == undefined )
-			return str;
-		else
-			return str.replace(/,/g, '<hr>');
 	};
 }
 

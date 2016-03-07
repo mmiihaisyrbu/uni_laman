@@ -1,5 +1,4 @@
-﻿
-<ion-side-menus enable-menu-with-back-views="false">
+﻿<ion-side-menus enable-menu-with-back-views="false">
     <ion-side-menu-content>
         <ion-nav-bar class="bar-positive">
             <ion-nav-back-button class="no-text">
@@ -24,35 +23,35 @@
             </div>
         </ion-header-bar>
         <ion-content class="stable-bg has-expanded-header">
-            <ion-list>
-            	<ion-item nav-clear menu-close href="#/app/main" ion-home>
+            <ion-list ng-init="menu.item_sel='home'">
+            	<ion-item nav-clear menu-close href="#/app/main" ion-home ng-click="menu.item_sel='home'" ng-class="{'menu-item-active': menu.item_sel == 'home'}">
                     <i class="icon ion-home menu-icon"></i>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     Home
                 </ion-item>
-                <ion-item nav-clear menu-close href="#/app/containers">
+                <ion-item nav-clear menu-close href="#/app/containers" ng-click="menu.item_sel='containers'" ng-class="{'menu-item-active': menu.item_sel == 'containers'}">
                     <i class="icon ion-archive menu-icon"></i>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     Containers List
                 </ion-item>
-                <ion-item nav-clear menu-close href="#/app/invoices">
+                <ion-item nav-clear menu-close href="#/app/invoices" ng-click="menu.item_sel='invoices'" ng-class="{'menu-item-active': menu.item_sel == 'invoices'}">
                     <i class="icon ion-card menu-icon"></i>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     Invoices
                 </ion-item>
                 <hr>
-                <ion-item nav-clear menu-close href="#/app/contact">
+                <ion-item nav-clear menu-close href="#/app/contact" ng-click="menu.item_sel='contact'" ng-class="{'menu-item-active': menu.item_sel == 'contact'}">
                     <i class="icon ion-android-contacts menu-icon"></i>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     Contact Manager
                 </ion-item>
-                <ion-item nav-clear menu-close href="#/app/reviews">
+                <ion-item nav-clear menu-close href="#/app/reviews" ng-click="menu.item_sel='reviews'" ng-class="{'menu-item-active': menu.item_sel == 'reviews'}">
                     <i class="icon ion-android-star menu-icon"></i>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     App Feedback
                 </ion-item>
                 <hr>
-                <ion-item nav-clear menu-close href="#" ng-click="logOut()">
+                <ion-item nav-clear menu-close href="#" ng-click="logOut()" ng-click="menu.item_sel='logout'" ng-class="{'menu-item-active': menu.item_sel == 'logout'}">
                     <i class="icon ion-log-out menu-icon"></i>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     Log out

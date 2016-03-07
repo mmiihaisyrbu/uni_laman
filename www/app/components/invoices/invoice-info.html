@@ -1,17 +1,26 @@
 <ion-view title="Invoice details">
-    <ion-content padding="true" scroll="false">
+    <ion-content padding="true" scroll="true">
 		<ul class="list">
 		    <li class="item">
-		    	<div style="float:left">Order no</div>
-				<div style="float:right">{{invoice.order_no_ext}}</div>
+		    	<div class="inv-info-th">Order no:</div>
+				<div class="inv-info-td">
+					&nbsp;
+					{{invoice.order_no_ext}}
+				</div>
 		    </li>
 		    <li class="item">
-		    	<div style="float:left">Conts no</div>
-				<div style="float:right" ng-bind-html="addHr(invoice.containers)"></div>
+		    	<div class="inv-info-th">Conts no:</div>
+				<div class="inv-info-td">
+					&nbsp;
+					<div ng-bind-html="invoice.containers"></div>
+				</div>
 		    </li>
 		    <li class="item">
-		    	<div style="float:left">Final date of payment</div>
-		    	<div style="float:right">{{invoice.debt_date_delay}}</div>
+		    	<div class="inv-info-th">Final date of payment:</div>
+		    	<div class="inv-info-td">
+		    		&nbsp;
+		    		{{invoice.debt_date_delay}}
+		    	</div>
 		    </li>
 		</ul>
 	</ion-content>

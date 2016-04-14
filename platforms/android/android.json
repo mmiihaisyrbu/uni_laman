@@ -9,11 +9,11 @@
                 "parents": {
                     "/*": [
                         {
-                            "xml": "<feature name=\"Whitelist\"><param name=\"android-package\" value=\"org.apache.cordova.whitelist.WhitelistPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "xml": "<feature name=\"Cookies\"><param name=\"android-package\" value=\"com.bez4pieci.cookies.Cookies\" /></feature>",
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"NetworkStatus\"><param name=\"android-package\" value=\"org.apache.cordova.networkinformation.NetworkManager\" /></feature>",
+                            "xml": "<feature name=\"Whitelist\"><param name=\"android-package\" value=\"org.apache.cordova.whitelist.WhitelistPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
                         },
                         {
@@ -21,11 +21,7 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"Cookies\"><param name=\"android-package\" value=\"com.bez4pieci.cookies.Cookies\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"Cache\"><param name=\"android-package\" value=\"at.modalog.cordova.plugin.cache.Cache\" /></feature>",
+                            "xml": "<feature name=\"NetworkStatus\"><param name=\"android-package\" value=\"org.apache.cordova.networkinformation.NetworkManager\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -44,29 +40,47 @@
         }
     },
     "installed_plugins": {
-        "cordova-plugin-whitelist": {
+        "com.bez4pieci.cookies": {
             "PACKAGE_NAME": "com.ionicframework.unilaman171672"
         },
-        "org.apache.cordova.network-information": {
+        "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.ionicframework.unilaman171672"
         },
         "cordova-plugin-x-toast": {
             "PACKAGE_NAME": "com.ionicframework.unilaman171672"
         },
-        "com.bez4pieci.cookies": {
-            "PACKAGE_NAME": "com.ionicframework.unilaman171672"
-        },
-        "at.modalog.cordova.plugin.cache": {
+        "org.apache.cordova.network-information": {
             "PACKAGE_NAME": "com.ionicframework.unilaman171672"
         }
     },
     "dependent_plugins": {},
     "modules": [
         {
+            "file": "plugins/com.bez4pieci.cookies/www/cookies.js",
+            "id": "com.bez4pieci.cookies.cookies",
+            "pluginId": "com.bez4pieci.cookies",
+            "clobbers": [
+                "cookies"
+            ]
+        },
+        {
             "file": "plugins/cordova-plugin-whitelist/whitelist.js",
             "id": "cordova-plugin-whitelist.whitelist",
             "pluginId": "cordova-plugin-whitelist",
             "runs": true
+        },
+        {
+            "file": "plugins/cordova-plugin-x-toast/www/Toast.js",
+            "id": "cordova-plugin-x-toast.Toast",
+            "pluginId": "cordova-plugin-x-toast",
+            "clobbers": [
+                "window.plugins.toast"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-x-toast/test/tests.js",
+            "id": "cordova-plugin-x-toast.tests",
+            "pluginId": "cordova-plugin-x-toast"
         },
         {
             "file": "plugins/org.apache.cordova.network-information/www/network.js",
@@ -84,42 +98,12 @@
             "clobbers": [
                 "Connection"
             ]
-        },
-        {
-            "file": "plugins/cordova-plugin-x-toast/www/Toast.js",
-            "id": "cordova-plugin-x-toast.Toast",
-            "pluginId": "cordova-plugin-x-toast",
-            "clobbers": [
-                "window.plugins.toast"
-            ]
-        },
-        {
-            "file": "plugins/cordova-plugin-x-toast/test/tests.js",
-            "id": "cordova-plugin-x-toast.tests",
-            "pluginId": "cordova-plugin-x-toast"
-        },
-        {
-            "file": "plugins/com.bez4pieci.cookies/www/cookies.js",
-            "id": "com.bez4pieci.cookies.cookies",
-            "pluginId": "com.bez4pieci.cookies",
-            "clobbers": [
-                "cookies"
-            ]
-        },
-        {
-            "file": "plugins/at.modalog.cordova.plugin.cache/www/Cache.js",
-            "id": "at.modalog.cordova.plugin.cache.Cache",
-            "pluginId": "at.modalog.cordova.plugin.cache",
-            "clobbers": [
-                "cache"
-            ]
         }
     ],
     "plugin_metadata": {
-        "cordova-plugin-whitelist": "1.2.0",
-        "org.apache.cordova.network-information": "0.2.15",
-        "cordova-plugin-x-toast": "2.2.3",
         "com.bez4pieci.cookies": "0.0.1",
-        "at.modalog.cordova.plugin.cache": "1.0.0"
+        "cordova-plugin-whitelist": "1.2.0",
+        "cordova-plugin-x-toast": "2.2.3",
+        "org.apache.cordova.network-information": "0.2.15"
     }
 }

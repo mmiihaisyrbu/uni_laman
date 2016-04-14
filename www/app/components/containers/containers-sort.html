@@ -1,0 +1,13 @@
+<ion-popover-view>
+	<ion-header-bar>
+		<h1 class="title">Sort</h1>
+	</ion-header-bar>
+	<ion-content>
+		<ion-list>
+			<ion-radio ng-model="this.order_by" ng-value="1" ng-change="changedSort(this.order_by)">ETA max to min</ion-radio>
+			<ion-radio ng-model="this.order_by" ng-value="2" ng-change="changedSort(this.order_by)">ETA min to max</ion-radio>
+			<ion-radio ng-model="this.order_by" ng-value="3" ng-change="changedSort(this.order_by)">ETD max to min</ion-radio>
+			<ion-radio ng-model="this.order_by" ng-value="4" ng-change="changedSort(this.order_by)">ETD min to max</ion-radio>
+		</ion-list>
+	</ion-content>
+</ion-popover-view>

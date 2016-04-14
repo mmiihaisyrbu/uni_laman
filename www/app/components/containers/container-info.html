@@ -38,5 +38,38 @@
 				<div style="float:right">{{container.brutto}}</div>
 		    </li>
 		</ul>
+		<a ng-href="#/app/documents" class="button button-full button-positive">
+			Documents
+		</a>
+		<div class="list card" ng-show="container.driver_name != null">
+            <div class="item item-divider">Driver info</div>
+            <div class="item item-body">
+            	<ul class="list">
+					<li class="item">
+						<div style="float:left">Driver</div>
+						<div style="float:right">{{container.driver_name}}</div>
+					</li>
+					<li class="item">
+						<div style="float:left">Auto No</div>
+						<div style="float:right">{{container.auto_no}}</div>
+					</li>
+					<li class="item">
+						<div style="float:left">Phone</div>
+						<div>
+							<ul>
+							    <li ng-repeat="phone in container.driver_phone.split(',')">
+			                		<div class="item item-button-right">
+										{{phone}}
+										<a class="button button-balanced ink" ng-href="tel: {{phone}}">
+											<i class="icon ion-ios-telephone"></i>
+										</a>
+									</div>
+			            		</li>
+			                </ul>
+						</div>
+					</li>
+			    </ul>
+            </div>
+        </div>
 	</ion-content>
 </ion-view>

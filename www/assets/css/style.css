@@ -98,3 +98,23 @@
 .rev-item {
 	background-color: #EFF2FB !important;
 }
+
+.cont-list {
+	@import 'ionic.filter.bar.css';
+}
+
+.container-item-closed {
+  background-color: #F5F395;
+}
+
+.container-item-onweek {
+  background-color: #FC6262;
+}
+
+.container-item-delivery {
+  background-color: #91EE89;
+}
+
+.item {
+  padding: 1% !important;
+}

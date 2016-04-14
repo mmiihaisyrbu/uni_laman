@@ -16,21 +16,30 @@ function ContainerDetailsStorage() {
     }
 }
 
-function ContainersController($scope, GetContainers, $location, ContainerDetailsStorage) {
+function ContainersController($scope, GetContainers, $location, ContainerDetailsStorage, $ionicPopover) {
     $scope.containers = [];
     $scope.offset = 0;
     $scope.offset_p = '';
     $scope.is_last = false;
+    $scope.order_by = 1;
+    $scope.activeLoad = false;
 
     if ( window.localStorage['from_to_cont'] != 'home' ) { window.localStorage.removeItem('cont_status'); }
     var params = window.localStorage['cont_status']||"/q=0";
 
     $scope.loadContainers = function(more) {
+        console.log(more);
     	more = typeof more !== 'undefined' ? more : false;
 
-    	if ( more == true ) { $scope.offset++; $scope.offset_p = '&offset='+$scope.offset; };
+    	if ( more === true && $scope.containers !== [] ) {
+            $scope.offset++; $scope.offset_p = '&offset='+$scope.offset; 
+        } else {
+            $scope.offset_p = '';
+            $scope.is_last = false;
+            $scope.containers = [];
+        }
 
-        GetContainers.ContainersList(params+$scope.offset_p, function(response) {
+        GetContainers.ContainersList(params+$scope.offset_p+'&order_by='+$scope.order_by, function(response) {
             if ( response.data.data.length > 0 ) {
             	$scope.containers = $scope.containers.concat(response.data.data);
             } else {
@@ -38,16 +47,61 @@ function ContainersController($scope, GetContainers, $location, ContainerDetails
             }
 
 			$scope.$broadcast('scroll.infiniteScrollComplete');
+            $scope.activeLoad = true;
         });
     }
 
-    $scope.loadContainers();
+    //$scope.loadContainers();
     window.localStorage['from_to_cont'] = ' ';
 
     $scope.openContainerDetails = function(container) {
+        window.localStorage['cont_id'] = container.cont_id;
+        console.log(window.localStorage['cont_id']);
     	ContainerDetailsStorage.setData(container);
 		$location.path('/app/container-info');
 	};
+
+    /*$scope.showFilterBar = function () {
+      filterBarInstance = $ionicFilterBar.show({
+        items: $scope.items,
+        update: function (filteredItems, filterText) {
+          $scope.items = filteredItems;
+          if (filterText) {
+            console.log(filterText);
+          }
+        }
+      });
+    };*/
+    $ionicPopover.fromTemplateUrl('app/components/containers/containers-sort.html', {
+            scope: $scope
+        }).then(function(popover) {
+            $scope.popover = popover;
+        });
+
+    $scope.openPopover = function($event) {
+        $scope.popover.show($event);
+    };
+    $scope.closePopover = function() {
+        $scope.popover.hide();
+    };
+    //Cleanup the popover when we're done with it!
+    $scope.$on('$destroy', function() {
+        $scope.popover.remove();
+    });
+    // Execute action on hide popover
+    $scope.$on('popover.hidden', function() {
+    // Execute action
+    });
+    // Execute action on remove popover
+    $scope.$on('popover.removed', function() {
+    // Execute action
+    });
+
+    $scope.changedSort = function(order_by) {
+        $scope.closePopover();
+        $scope.order_by = order_by;
+        $scope.loadContainers();
+    }
 }
 
 function GetContainers($http) {

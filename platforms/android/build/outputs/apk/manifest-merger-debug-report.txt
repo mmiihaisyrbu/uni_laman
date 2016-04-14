@@ -31,11 +31,11 @@ uses-permission#android.permission.INTERNET
 ADDED from AndroidManifest.xml:4:5
 	android:name
 		ADDED from AndroidManifest.xml:4:22
-uses-permission#android.permission.ACCESS_WIFI_STATE
+uses-permission#android.permission.ACCESS_NETWORK_STATE
 ADDED from AndroidManifest.xml:5:5
 	android:name
 		ADDED from AndroidManifest.xml:5:22
-uses-permission#android.permission.CALL_PHONE
+uses-permission#android.permission.ACCESS_WIFI_STATE
 ADDED from AndroidManifest.xml:6:5
 	android:name
 		ADDED from AndroidManifest.xml:6:22
@@ -82,7 +82,3 @@ MERGED from android:CordovaLib:unspecified:debug:25:5
 		ADDED from AndroidManifest.xml:15:42
 	android:minSdkVersion
 		ADDED from AndroidManifest.xml:15:15
-uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from AndroidManifest.xml:16:5
-	android:name
-		ADDED from AndroidManifest.xml:16:22

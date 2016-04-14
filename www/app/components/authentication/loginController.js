@@ -38,7 +38,6 @@ function AuthenticationService($http, $ionicPlatform) {
 		    })
 		    .then(function(response) {
                 localStorage['session_id'] = response.data['session_id'];
-                localStorage['client_id'] = response.data['client_id'];
 
                 console.log('localStorage='+JSON.stringify(localStorage));
                 callback(response.data);
@@ -59,9 +58,9 @@ function AuthenticationService($http, $ionicPlatform) {
 		    .then(function(response) {
 		        
 		        $ionicPlatform.ready(function() {
-			        /*window.cookies.clear(function() {
+			        window.cookies.clear(function() {
 					    console.log('Cookies cleared!');
-					});*/
+					});
 			    });
 			    localStorage.clear();
 

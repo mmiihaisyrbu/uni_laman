@@ -111,6 +111,16 @@ angular.module('app')
 				controller: 'invoiceDetailsController'
 			}
 		}
+	})
+
+	.state('app.documents', {
+		url: '/documents',
+		views: {
+			'menuContent': {
+				templateUrl: 'app/components/documents/documents.html',
+				controller: 'DocumentsController'
+			}
+		}
 	});
 
     if ( window.localStorage['session_id'] ) {
@@ -191,5 +201,11 @@ angular.module('app')
                 });
             }
         }
+        document.addEventListener("deviceReady", function () {
+            document.addEventListener("resume", function () {
+            	console.log("on resume !!!!!!!");
+
+			   }, false);
+        }, false);
 	});
 });

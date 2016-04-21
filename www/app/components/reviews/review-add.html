@@ -1,10 +1,15 @@
-<ion-view title="Add new review">
+<ion-view title="{{ 'ADD_NEW_REVIEW' | translate }}">
     <ion-content padding="true" scroll="false">
 		<label class="item item-input item-floating-label">
-			<textarea type="text" placeholder="text" ng-model="comment" rows="4"></textarea>
+			<textarea 
+				type="text" 
+				placeholder="{{ 'EMAIL_MESSAGE' | translate }}" 
+				ng-model="comment" rows="4"
+				>
+			</textarea>
 		</label>
 		<button class="button button-block button-positive" ng-disabled="!comment" ng-click="addReview(comment)">
-			Send
+			{{ 'SEND' | translate }}
 		</button>
 	</ion-content>
 </ion-modal-view>

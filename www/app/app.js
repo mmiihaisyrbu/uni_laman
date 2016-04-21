@@ -1,3 +1,101 @@
+var translations = {
+	"en": {
+		"LANGUAGE": "Language",
+		"HOME": "Home",
+		"CONTAINERS_LIST": "Containers List",
+		"INVOICES": "Invoices",
+		"CONTACT_MANAGER": "Contact Manager",
+		"APP_FEEDBACK": "App Feedback",
+		"SETTINGS": "Settings",
+		"LOG_OUT": "Log out",
+		"LOGIN": "Login",
+		"USERNAME": "Username",
+		"PASSWORD": "Password",
+		"CONTACT_SALES_MANAGER": "Contact sales manager",
+		"CONTACT_CHIEF_OF_SALES": "Contact chief of sales",
+		"SEND_EMAIL": "Send email",
+		"SEND": "Send",
+		"SEND_TO": "To",
+		"EMAIL_MESSAGE": "Message",
+		"SUBJECT": "Subject",
+		"PULL_TO_REFRESH": "Pull to refresh...",
+		"SEARCH": "Search",
+		"SORT": "Sort",
+		"ETA_MAX_TO_MIN": "ETA max to min",
+		"ETA_MIN_TO_MAX": "ETA min to max",
+		"ETD_MAX_TO_MIN": "ETD max to min",
+		"ETD_MIN_TO_MAX": "ETD min to max",
+		"CONTAINERS_DETAILS": "Containers details",
+		"ORDER_NO": "Order no",
+		"CONT_NO": "Cont no",
+		"CONT_TYPE": "Cont type",
+		"ETD": "ETD",
+		"ETA": "ETA",
+		"POL": "Port of loading",
+		"CARGO": "Cargo",
+		"BRUTTO": "Brutto",
+		"DOCUMENTS": "Documents",
+		"DRIVER_INFO": "Driver info",
+		"DRIVER": "Driver",
+		"AUTO_NO": "Auto No",
+		"PHONE": "Phone",
+		"MARINE_CONTAINER_TRANSPORTATION": "Marine container transportation",
+		"AUTO_TRANSPORT": "Auto transport",
+		"LCL_CARGO": "LCL cargo",
+		"RAIL_TRANSPORTATION": "Rail transportation",
+		"DOCUMENTS_LIST": "Documents list",
+		"ADD_NEW_REVIEW": "Add new review"
+	},
+	"ru": {
+		"LANGUAGE": "Язык",
+		"HOME": "Главная",
+		"CONTAINERS_LIST": "Список контейнеров",
+		"INVOICES": "Счета",
+		"CONTACT_MANAGER": "Связь с менеджером",
+		"APP_FEEDBACK": "Отзывы о приложении",
+		"SETTINGS": "Настройки",
+		"LOG_OUT": "Выйти",
+		"LOGIN": "Вход",
+		"USERNAME": "Логин",
+		"PASSWORD": "Пароль",
+		"CONTACT_SALES_MANAGER": "Связаться с менеджером",
+		"CONTACT_CHIEF_OF_SALES": "Связаться с начальнико менеджера",
+		"SEND_EMAIL": "Отправить email",
+		"SEND": "Отправить",
+		"SEND_TO": "Кому",
+		"EMAIL_MESSAGE": "Текст",
+		"SUBJECT": "Тема",
+		"PULL_TO_REFRESH": "Потяните, чтобы обновить...",
+		"SEARCH": "Поиск",
+		"SORT": "Сортировка",
+		"ETA_MAX_TO_MIN": "ETA по убыванию",
+		"ETA_MIN_TO_MAX": "ETA по возрастанию",
+		"ETD_MAX_TO_MIN": "ETD по убыванию",
+		"ETD_MIN_TO_MAX": "ETD по возрастанию",
+		"CONTAINERS_DETAILS": "Детальная информация",
+		"ORDER_NO": "Номер заказа",
+		"CONT_NO": "Номер контейнера",
+		"CONT_TYPE": "Тип контейнера",
+		"ETD": "ETD",
+		"ETA": "ETA",
+		"POL": "Порт загрузки",
+		"POD": "Порт выгрузки",
+		"CARGO": "Груз",
+		"BRUTTO": "Вес",
+		"DOCUMENTS": "Документы",
+		"DRIVER_INFO": "Информация о водителе",
+		"DRIVER": "Водитель",
+		"AUTO_NO": "Номер авто",
+		"PHONE": "Телефон",
+		"MARINE_CONTAINER_TRANSPORTATION": "Морские контейнерные перевозки",
+		"AUTO_TRANSPORT": "Авто перевозки",
+		"LCL_CARGO": "LCL грузы",
+		"RAIL_TRANSPORTATION": "Ж/Д перевозки",
+		"DOCUMENTS_LIST": "Список документов",
+		"ADD_NEW_REVIEW": "Добавить отзыв"
+	}
+}
+
 angular.module('app')
 
 .constant('$ionicLoadingConfig', {
@@ -5,7 +103,7 @@ angular.module('app')
   //templateUrl: '/img/loader.gif'
 })
 
-.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
+.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $translateProvider) {
 
   $stateProvider
 
@@ -121,7 +219,24 @@ angular.module('app')
 				controller: 'DocumentsController'
 			}
 		}
+	})
+
+	.state('app.settings', {
+		url: '/settings',
+		views: {
+			'menuContent': {
+				templateUrl: 'app/components/settings/settings.html',
+				controller: 'SettingsController'
+			}
+		}
 	});
+
+	for(lang in translations){
+		$translateProvider.translations(lang, translations[lang]);
+	}
+
+
+	$translateProvider.preferredLanguage('en');
 
     if ( window.localStorage['session_id'] ) {
 		$urlRouterProvider.otherwise('app/home');
@@ -156,7 +271,9 @@ angular.module('app')
 		}
 	});
 })
-.run(function($ionicPlatform, $rootScope, $ionicLoading, $ionicPopup, $cordovaNetwork, $cordovaToast) {
+.run(function($ionicPlatform, $rootScope, $ionicLoading, $ionicPopup, $cordovaNetwork, $cordovaToast, $translate) {
+	$translate.use(localStorage['lang']);
+
 	$rootScope.$on('loading:show', function() {
 		$ionicLoading.show();
 	});

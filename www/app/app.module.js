@@ -10,5 +10,23 @@ angular.module('ModalWindow', []);
 angular.module('mail', []);
 angular.module('app.menu', ['ionic', 'ionic-material']);
 angular.module('app.documents', []);
+angular.module('app.settings', []);
 
-angular.module('app', ['ionic', 'ionic-material', 'ionMdInput', 'ngCordova', 'app.authentication', 'app.home', 'app.containers', 'app.invoices', 'app.contact', 'app.reviews', 'ModalWindow', 'mail', 'app.menu', 'app.documents']);
+angular.module('app', [
+	'ionic', 
+	'ionic-material', 
+	'ionMdInput', 
+	'ngCordova', 
+	'app.authentication', 
+	'app.home', 
+	'app.containers', 
+	'app.invoices', 
+	'app.contact', 
+	'app.reviews', 
+	'ModalWindow', 
+	'mail', 
+	'app.menu', 
+	'app.documents', 
+	'app.settings',
+	'pascalprecht.translate'
+	]);

@@ -1,4 +1,4 @@
-<ion-view view-title="Login" align-title="left">
+<ion-view view-title="{{ 'LOGIN' | translate }}" align-title="left">
     <ion-content class="app-background">
         <div class="hero no-header flat">
             <div class="content">
@@ -7,11 +7,28 @@
             </div>
         </div>
         <div class="list">
-            <ion-md-input placeholder="Username" highlight-color="balanced" type="text" ng-model="login.username"></ion-md-input>
-            <ion-md-input placeholder="Password" highlight-color="energized" type="password" ng-model="login.password"></ion-md-input>
+            <ion-md-input 
+                placeholder="{{ 'USERNAME' | translate }}" 
+                highlight-color="balanced" 
+                type="text" 
+                ng-model="login.username"
+                >
+            </ion-md-input>
+            <ion-md-input 
+                placeholder="{{ 'PASSWORD' | translate }}" 
+                highlight-color="energized" 
+                type="password" 
+                ng-model="login.password"
+                >
+            </ion-md-input>
         </div>
         <div class="padding">
-            <button class="button button-full button-positive ink" ng-disabled="!login.username || !login.password" ng-click="login.logIn()">Login</button>
+            <button 
+                class="button button-full button-positive ink" 
+                ng-disabled="!login.username || !login.password" 
+                ng-click="login.logIn()"
+                >{{ 'LOGIN' | translate }}
+            </button>
         </div>
         <div ng-show="error" class="alert alert-danger">{{error}}</div>
         <!--<div class="button-bar social-login">

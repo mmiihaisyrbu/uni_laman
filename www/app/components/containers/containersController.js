@@ -24,6 +24,20 @@ function ContainersController($scope, GetContainers, $location, ContainerDetails
     $scope.order_by = 1;
     $scope.activeLoad = false;
 
+    $scope.sortList = [{
+        name: 'ETA_MAX_TO_MIN',
+        value: 1
+    }, {
+        name: 'ETA_MIN_TO_MAX',
+        value: 2
+    }, {
+        name: 'ETD_MAX_TO_MIN',
+        value: 3
+    }, {
+        name: 'ETD_MIN_TO_MAX',
+        value: 4
+    }];
+
     if ( window.localStorage['from_to_cont'] != 'home' ) { window.localStorage.removeItem('cont_status'); }
     var params = window.localStorage['cont_status']||"/q=0";
 

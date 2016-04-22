@@ -8,7 +8,7 @@ function EmailService($http) {
         $http({
                 method: "POST",
                 headers: {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'},
-                url: "http://client.uni-laman.com/android/ver_2/index.php/mail",
+                url: server_url+"/mail",
                 data: { 'session_id': localStorage['session_id'], 'to': to, 'subject': subject, 'message': message }
             })
             .then(function(data, status, headers, config) {

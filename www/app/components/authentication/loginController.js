@@ -28,12 +28,10 @@ function AuthenticationService($http, $ionicPlatform) {
 
     service.LogIn = function(username, password, callback) {
 
-        var url = "http://client.uni-laman.com/android/ver_2/index.php/login";
-
 		$http({
 		        method: "POST",
 		        headers: {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'},
-		        url: url,
+		        url: server_url+"/login",
 		        data: { 'login': username, 'pass': password }
 		    })
 		    .then(function(response) {
@@ -52,7 +50,7 @@ function AuthenticationService($http, $ionicPlatform) {
     	$http({
 		        method: "POST",
 		        headers: {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'},
-		        url: "http://client.uni-laman.com/android/ver_2/index.php/logout",
+		        url: server_url+"/logout",
 		        data: { 'session_id': localStorage['session_id'] }
 		    })
 		    .then(function(response) {

@@ -37,7 +37,7 @@ function GetClientInfo($http) {
         $http({
                 method: "GET",
                 headers: {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'},
-                url: "http://client.uni-laman.com/android/ver_2/index.php/client_info/"+localStorage['session_id']
+                url: server_url+"/client_info/"+localStorage['session_id']
             })
             .then(function(data, status, headers, config) {
                 console.log(JSON.stringify(data));
@@ -52,7 +52,7 @@ function GetClientInfo($http) {
         $http({
                 method: "GET",
                 headers: {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'},
-                url: "http://client.uni-laman.com/android/ver_2/index.php/report/"+localStorage['session_id']
+                url: server_url+"/report/"+localStorage['session_id']
             })
             .then(function(data, status, headers, config) {
                 console.log(JSON.stringify(data));

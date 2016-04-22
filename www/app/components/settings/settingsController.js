@@ -10,6 +10,10 @@ function SettingsController($scope, $translate) {
 		'ru': {
 		  	name: 'Русский',
 			value: 'ru'
+		}, 
+		'ua': {
+		  	name: 'Українська',
+			value: 'ua'
 		}
 	};
 

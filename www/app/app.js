@@ -93,8 +93,58 @@ var translations = {
 		"RAIL_TRANSPORTATION": "Ж/Д перевозки",
 		"DOCUMENTS_LIST": "Список документов",
 		"ADD_NEW_REVIEW": "Добавить отзыв"
+	},
+	"ua": {
+		"LANGUAGE": "Мова",
+		"HOME": "Головна",
+		"CONTAINERS_LIST": "Список контейнерів",
+		"INVOICES": "Рахунки",
+		"CONTACT_MANAGER": "Зв'язок з менеджером",
+		"APP_FEEDBACK": "Відгуки про програму",
+		"SETTINGS": "Налаштування",
+		"LOG_OUT": "Вийти",
+		"LOGIN": "Вхід",
+		"USERNAME": "Логін",
+		"PASSWORD": "Пароль",
+		"CONTACT_SALES_MANAGER": "Зв'язатися з менеджером",
+		"CONTACT_CHIEF_OF_SALES": "Зв'язатися з начальником менеджера",
+		"SEND_EMAIL": "Відправити email",
+		"SEND": "Відправити",
+		"SEND_TO": "Кому",
+		"EMAIL_MESSAGE": "Текст",
+		"SUBJECT": "Тема",
+		"PULL_TO_REFRESH": "Потягніть, щоб оновити...",
+		"SEARCH": "Пошук",
+		"SORT": "Сортування",
+		"ETA_MAX_TO_MIN": "ETA за зменшенням",
+		"ETA_MIN_TO_MAX": "ETA за зростанням",
+		"ETD_MAX_TO_MIN": "ETD за зменшенням",
+		"ETD_MIN_TO_MAX": "ETD за зростанням",
+		"CONTAINERS_DETAILS": "Детальна інформація",
+		"ORDER_NO": "Номер замовлення",
+		"CONT_NO": "Номер контейнера",
+		"CONT_TYPE": "Тип контейнера",
+		"ETD": "ETD",
+		"ETA": "ETA",
+		"POL": "Порт завантаження",
+		"POD": "Порт вивантаження",
+		"CARGO": "Вантаж",
+		"BRUTTO": "Вага",
+		"DOCUMENTS": "Документи",
+		"DRIVER_INFO": "Інформація про водія",
+		"DRIVER": "Водій",
+		"AUTO_NO": "Номер авто",
+		"PHONE": "Телефон",
+		"MARINE_CONTAINER_TRANSPORTATION": "Морські контейнерні перевезення",
+		"AUTO_TRANSPORT": "Автоперевезення",
+		"LCL_CARGO": "LCL вантажі",
+		"RAIL_TRANSPORTATION": "Ж/Д перевезення",
+		"DOCUMENTS_LIST": "Перелік документів",
+		"ADD_NEW_REVIEW": "Додати відгук"
 	}
 }
+
+var server_url = "http://client.uni-laman.com/android/ver_3/index.php";
 
 angular.module('app')
 

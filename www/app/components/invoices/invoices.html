@@ -1,4 +1,4 @@
-<ion-view title="Invoices">
+<ion-view title="{{ 'INVOICES' | translate }}">
 	<div class="bar bar-subheader">
 		<label class="item item-input">
 	        <i class="icon ion-search placeholder-icon"></i>
@@ -8,7 +8,7 @@
     <ion-content padding="true" class="has-header has-subheader">
     	<div class="spacer" style="width: auto; height: 15px;"></div>
     	<ion-refresher
-		    pulling-text="Pull to refresh..."
+		    pulling-text="{{ 'PULL_TO_REFRESH' | translate }}"
 		    on-refresh="loadInvoices()">
 		</ion-refresher>
         <ion-list>

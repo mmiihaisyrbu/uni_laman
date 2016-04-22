@@ -39,7 +39,7 @@ function GetReviews($http) {
         $http({
                 method: "GET",
                 headers: {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'},
-                url: "http://client.uni-laman.com/android/ver_2/index.php/reviews/"+localStorage['session_id']
+                url: server_url+"/reviews/"+localStorage['session_id']
             })
             .then(function(data, status, headers, config) {
                 console.log(JSON.stringify(data));
@@ -54,7 +54,7 @@ function GetReviews($http) {
     	$http({
                 method: "POST",
                 headers: {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'},
-                url: "http://client.uni-laman.com/android/ver_2/index.php/review",
+                url: server_url+"/review",
                 data: { 'session_id': localStorage['session_id'], 'comment': comment }
             })
             .then(function(data) {

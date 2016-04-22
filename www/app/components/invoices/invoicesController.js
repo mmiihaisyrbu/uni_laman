@@ -54,7 +54,7 @@ function GetInvoices($http) {
         $http({
                 method: "GET",
                 headers: {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'},
-                url: "http://client.uni-laman.com/android/ver_2/index.php/invoices/"+localStorage['session_id']+params
+                url: server_url+"/invoices/"+localStorage['session_id']+params
             })
             .then(function(data, status, headers, config) {
                 console.log(JSON.stringify(data));

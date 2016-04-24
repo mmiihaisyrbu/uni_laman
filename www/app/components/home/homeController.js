@@ -1,18 +1,18 @@
 angular.module('app.home')
 	.controller('HomeController', HomeController)
-	.factory('GetClientInfo', GetClientInfo);
+	.factory('GetCustomerInfo', GetCustomerInfo);
 
-function HomeController($scope, GetClientInfo, $location) {
+function HomeController($scope, GetCustomerInfo, $location) {
     $scope.data = [];
 
-    $scope.getClientInfo = function() {
-        GetClientInfo.Info(function(response) {
-            $scope.data.company_name = response.data.data['client_name'];
+    /*$scope.getCustomerInfo = function() {
+        GetCustomerInfo.Info(function(response) {
+            $scope.data.company_name = response.data.data['customer_name'];
         });
-    }
+    }*/
 
-    $scope.loadReport = function() {
-        GetClientInfo.Report(function(response) {
+    /*$scope.loadReport = function() {
+        GetCustomerInfo.Report(function(response) {
             $scope.data.wait_sailing = response.data.data['wait_sailing'];
             $scope.data.sailing = response.data.data['sailing'];
             $scope.data.arrived = response.data.data['arrived'];
@@ -20,24 +20,31 @@ function HomeController($scope, GetClientInfo, $location) {
         });
     }
 
-    $scope.loadReport();
-    $scope.getClientInfo();
+    $scope.loadReport();*/
+    //$scope.getCustomerInfo();
 
-    $scope.showContainers = function(cont_status) {
+    /*$scope.showContainers = function(cont_status) {
     	window.localStorage['cont_status'] = '/status='+cont_status;
     	window.localStorage['from_to_cont'] = 'home';
     	$location.path('/app/containers');
-    };
+    };*/
 }
 
-function GetClientInfo($http) {
+function GetCustomerInfo($http) {
     var service = {};
 
     service.Info = function(callback) {
+        var info_mode = 'client_info';
+        if ( localStorage['mode'] === 'client' ) {
+            info_mode = 'client_info';
+        } else if ( localStorage['mode'] === 'manager' ) {
+            info_mode = 'manager_info';
+        }
+
         $http({
                 method: "GET",
                 headers: {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'},
-                url: server_url+"/client_info/"+localStorage['session_id']
+                url: server_url+"/"+info_mode+"/"+localStorage['session_id']
             })
             .then(function(data, status, headers, config) {
                 console.log(JSON.stringify(data));

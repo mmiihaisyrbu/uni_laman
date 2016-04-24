@@ -15,10 +15,10 @@ function MailInfoStorage() {
     }
 }
 
-function ContactController($scope, $location, GetClientInfo, MailInfoStorage) {
+function ContactController($scope, $location, GetCustomerInfo, MailInfoStorage) {
 	$scope.contact = [];
 
-	GetClientInfo.Info(function(response) {
+	GetCustomerInfo.Info(function(response) {
 		$scope.contact = response.data.data;
         console.log($scope.contact);
     });

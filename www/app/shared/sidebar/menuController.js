@@ -1,11 +1,12 @@
 ﻿angular.module('app.menu')
 	.controller('MenuController', MenuController);
 
-function MenuController($scope, $ionicModal, $ionicPopover, GetClientInfo, AuthenticationService, $location, $ionicHistory) {
+function MenuController($scope, $ionicModal, $ionicPopover, GetCustomerInfo, AuthenticationService, $location, $ionicHistory) {
 	$scope.data = [];
+    $scope.mode = localStorage['mode'];
 
-	GetClientInfo.Info(function(response) {
-		$scope.data.company_name = response.data.data['client_name'];
+	GetCustomerInfo.Info(function(response) {
+		$scope.data.customer_name = response.data.data['customer_name'];
 	});
 
 	$scope.logOut = function() {
@@ -30,8 +31,8 @@ function MenuController($scope, $ionicModal, $ionicPopover, GetClientInfo, Authe
 
     /*var fab = document.getElementById('fab');
     fab.addEventListener('click', function () {
-        //location.href = 'https://twitter.com/satish_vr2011';
-        window.open('https://twitter.com/satish_vr2011', '_blank');
+        //location.href = 'https://twitter.com/';
+        window.open('https://twitter.com/', '_blank');
     });*/
 
     // .fromTemplate() method

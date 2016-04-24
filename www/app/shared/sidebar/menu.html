@@ -19,7 +19,7 @@
         <ion-header-bar class="expanded">
             <img src="assets/img/profile-icon.png" class="avatar motion spin fade">
             <div class="menu-bottom">
-                {{ data.company_name }}
+                {{ data.customer_name }}
             </div>
         </ion-header-bar>
         <ion-content class="stable-bg has-expanded-header">
@@ -40,7 +40,12 @@
                     {{ 'INVOICES' | translate }}
                 </ion-item>
                 <hr>
-                <ion-item nav-clear menu-close href="#/app/contact" ng-click="menu.item_sel='contact'" ng-class="{'menu-item-active': menu.item_sel == 'contact'}">
+                <ion-item nav-clear menu-close 
+                    href="#/app/contact" 
+                    ng-click="menu.item_sel='contact'" 
+                    ng-class="{'menu-item-active': menu.item_sel == 'contact'}"
+                    ng-show="mode == 'client'"
+                    >
                     <i class="icon ion-android-contacts menu-icon"></i>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     {{ 'CONTACT_MANAGER' | translate }}

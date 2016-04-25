@@ -14,6 +14,7 @@ angular.module('app.settings', []);
 
 angular.module('app', [
 	'ionic', 
+	'ionic.service.core',
 	'ionic-material', 
 	'ionMdInput', 
 	'ngCordova', 

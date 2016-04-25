@@ -32,7 +32,7 @@ function AuthenticationService($http, $ionicPlatform) {
 		        method: "POST",
 		        headers: {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'},
 		        url: server_url+"/login",
-		        data: { 'login': username, 'pass': password }
+		        data: { 'login': username, 'pass': password, 'device_token': localStorage['device_token']||'' }
 		    })
 		    .then(function(response) {
                 localStorage['session_id'] = response.data['session_id'];
@@ -57,11 +57,13 @@ function AuthenticationService($http, $ionicPlatform) {
 		    .then(function(response) {
 		        
 		        $ionicPlatform.ready(function() {
-			        /*window.cookies.clear(function() {
+			        window.cookies.clear(function() {
 					    console.log('Cookies cleared!');
-					});*/
+					});
 			    });
-			    localStorage.clear();
+			    
+			    window.localStorage.removeItem("session_id");
+			    window.localStorage.removeItem("mode");;
 
                 callback(response.data);
 		    }, 

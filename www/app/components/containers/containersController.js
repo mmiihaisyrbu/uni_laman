@@ -16,7 +16,7 @@ function ContainerDetailsStorage() {
     }
 }
 
-function ContainersController($scope, GetContainers, $location, ContainerDetailsStorage, $ionicPopover) {
+function ContainersController($scope, GetContainers, $location, ContainerDetailsStorage, $ionicPopover, $state) {
     $scope.containers = [];
     $scope.offset = 0;
     $scope.offset_p = '';
@@ -44,6 +44,12 @@ function ContainersController($scope, GetContainers, $location, ContainerDetails
     $scope.loadContainers = function(more) {
         console.log(more);
     	more = typeof more !== 'undefined' ? more : false;
+
+        if ( $state.current.name == 'app.containers_archive' ) {
+            params += "&archive=true";
+        } else {
+            params += "&archive=false";
+        }
 
     	if ( more === true && $scope.containers !== [] ) {
             $scope.offset++; $scope.offset_p = '&offset='+$scope.offset; 

@@ -44,7 +44,8 @@ var translations = {
 		"LCL_CARGO": "LCL cargo",
 		"RAIL_TRANSPORTATION": "Rail transportation",
 		"DOCUMENTS_LIST": "Documents list",
-		"ADD_NEW_REVIEW": "Add new review"
+		"ADD_NEW_REVIEW": "Add new review",
+		"ARCHIVE": "Archive"
 	},
 	"ru": {
 		"LANGUAGE": "Язык",
@@ -92,7 +93,8 @@ var translations = {
 		"LCL_CARGO": "LCL грузы",
 		"RAIL_TRANSPORTATION": "Ж/Д перевозки",
 		"DOCUMENTS_LIST": "Список документов",
-		"ADD_NEW_REVIEW": "Добавить отзыв"
+		"ADD_NEW_REVIEW": "Добавить отзыв",
+		"ARCHIVE": "Архив"
 	},
 	"ua": {
 		"LANGUAGE": "Мова",
@@ -140,7 +142,8 @@ var translations = {
 		"LCL_CARGO": "LCL вантажі",
 		"RAIL_TRANSPORTATION": "Ж/Д перевезення",
 		"DOCUMENTS_LIST": "Перелік документів",
-		"ADD_NEW_REVIEW": "Додати відгук"
+		"ADD_NEW_REVIEW": "Додати відгук",
+		"ARCHIVE": "Архів"
 	}
 }
 
@@ -183,6 +186,16 @@ angular.module('app')
 
 	.state('app.containers', {
 		url: '/containers',
+		views: {
+			'menuContent': {
+				templateUrl: 'app/components/containers/containers.html',
+				controller: 'ContainersController'
+			}
+		}
+	})
+
+	.state('app.containers_archive', {
+		url: '/containers_archive',
 		views: {
 			'menuContent': {
 				templateUrl: 'app/components/containers/containers.html',
@@ -321,7 +334,7 @@ angular.module('app')
 		}
 	});
 })
-.run(function($ionicPlatform, $rootScope, $ionicLoading, $ionicPopup, $cordovaNetwork, $cordovaToast, $translate) {
+.run(function($ionicPlatform, $rootScope, $ionicLoading, $ionicPopup, $cordovaNetwork, $cordovaToast, $translate, $http) {
 	$translate.use(localStorage['lang']);
 
 	$rootScope.$on('loading:show', function() {
@@ -374,5 +387,45 @@ angular.module('app')
 
 			   }, false);
         }, false);
+
+		var push = PushNotification.init({
+            "android": {
+                "senderID": "159592749979"
+            },
+            "ios": {"alert": "true", "badge": "true", "sound": "true"}, 
+            "windows": {} 
+        });
+        
+        push.on('registration', function(data) {
+            console.log("registration event");
+            localStorage['device_token'] = data.registrationId;
+            console.log(JSON.stringify(data));
+        });
+
+        push.on('notification', function(data) {
+        	console.log("notification event");
+            console.log(JSON.stringify(data));
+            /*var cards = document.getElementById("cards");
+            var card = '<div class="row">' +
+		  		  '<div class="col s12 m6">' +
+				  '  <div class="card darken-1">' +
+				  '    <div class="card-content black-text">' +
+				  '      <span class="card-title black-text">' + data.title + '</span>' +
+				  '      <p>' + data.message + '</p>' +
+				  '    </div>' +
+				  '  </div>' +
+				  ' </div>' +
+				  '</div>';
+            cards.innerHTML += card;*/
+            
+            push.finish(function () {
+                console.log('finish successfully called');
+            });
+        });
+
+        push.on('error', function(e) {
+            console.log("push error");
+        });
+
 	});
 });

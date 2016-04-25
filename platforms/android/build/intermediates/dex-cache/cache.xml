@@ -2,11 +2,88 @@
 <items version="2" >
 
     <item
+        jar="/home/syrbu/projects/uni_laman/platforms/android/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0-alpha2/libs/internal_impl-24.0.0-alpha2.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="e460bc069dfd21d22770cf2a2370c9021b9c98a2">
+        <dex dex="/home/syrbu/projects/uni_laman/platforms/android/build/intermediates/pre-dexed/debug/internal_impl-24.0.0-alpha2-ffa4eb08c3987e788a993f36e9ba66f696e7ef58.jar" />
+    </item>
+    <item
+        jar="/home/syrbu/projects/uni_laman/platforms/android/build/intermediates/exploded-aar/com.android.support/support-v13/23.3.0/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="a809555a2599054c3dcd1bf82b089315ac3a11df">
+        <dex dex="/home/syrbu/projects/uni_laman/platforms/android/build/intermediates/pre-dexed/debug/classes-b070493ca4e1337c6180d32d9fdc0711e5a9bf31.jar" />
+    </item>
+    <item
+        jar="/home/syrbu/projects/uni_laman/platforms/android/build/intermediates/exploded-aar/android/CordovaLib/unspecified/debug/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="2dc53d409b364117fc513d39e4126f569eb680c7">
+        <dex dex="/home/syrbu/projects/uni_laman/platforms/android/build/intermediates/pre-dexed/debug/classes-efdeab11397b4a2533aeb561a011509c2ff10e82.jar" />
+    </item>
+    <item
         jar="/home/syrbu/projects/uni_laman/platforms/android/build/intermediates/exploded-aar/android/CordovaLib/unspecified/debug/classes.jar"
         jumboMode="false"
         revision="23.0.0"
         sha1="2dc53d409b364117fc513d39e4126f569eb680c7">
         <dex dex="/home/syrbu/projects/uni_laman/platforms/android/build/intermediates/pre-dexed/debug/classes-efdeab11397b4a2533aeb561a011509c2ff10e82.jar" />
+    </item>
+    <item
+        jar="/home/syrbu/projects/uni_laman/platforms/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/8.4.0/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="fef2b3e4b6b1b0e5fe7b69fa137a5fa55a3182ab">
+        <dex dex="/home/syrbu/projects/uni_laman/platforms/android/build/intermediates/pre-dexed/debug/classes-00a9afd099355e5950fe3095c4e933cea7f712a1.jar" />
+    </item>
+    <item
+        jar="/home/syrbu/projects/uni_laman/platforms/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.4.0/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="8e673cdfadd8f2d98fdb2fda2285c30f6e449782">
+        <dex dex="/home/syrbu/projects/uni_laman/platforms/android/build/intermediates/pre-dexed/debug/classes-8ee8c71b3dcce84ec055b1d994373ee9e29ff31c.jar" />
+    </item>
+    <item
+        jar="/home/syrbu/projects/uni_laman/platforms/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-gcm/8.4.0/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="2d7fe76982677315c4dc4edfb459c8ca718a9d4c">
+        <dex dex="/home/syrbu/projects/uni_laman/platforms/android/build/intermediates/pre-dexed/debug/classes-083c3f6e3ffe743726ed067ac588997f0cc0a741.jar" />
+    </item>
+    <item
+        jar="/home/syrbu/projects/uni_laman/platforms/android/libs/gcm.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="a6d7bce795a14c7f86111756c4ceb44b79de14aa">
+        <dex dex="/home/syrbu/projects/uni_laman/platforms/android/build/intermediates/pre-dexed/debug/gcm-beda41c2b92922c3635b8d7fc929666f05b60fa1.jar" />
+    </item>
+    <item
+        jar="/home/syrbu/projects/uni_laman/platforms/android/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0-alpha2/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="32ab8bede8cd600f25a5bb3fe15068c81c8910dc">
+        <dex dex="/home/syrbu/projects/uni_laman/platforms/android/build/intermediates/pre-dexed/debug/classes-c2edf661c86cefd06b98be1c16498c182b76dde7.jar" />
+    </item>
+    <item
+        jar="/home/syrbu/projects/uni_laman/platforms/android/build/intermediates/exploded-aar/com.android.support/support-v13/23.3.0/libs/internal_impl-23.3.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="8813bdcf7583107c4873150075d17c8072ec50cf">
+        <dex dex="/home/syrbu/projects/uni_laman/platforms/android/build/intermediates/pre-dexed/debug/internal_impl-23.3.0-cee7566640e7e83e96270829c6502e657e34ac75.jar" />
+    </item>
+    <item
+        jar="/home/syrbu/android-sdk/extras/android/m2repository/com/android/support/support-annotations/24.0.0-alpha2/support-annotations-24.0.0-alpha2.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="8071e1e6cd07e9253720313d6c14286a7ee424e0">
+        <dex dex="/home/syrbu/projects/uni_laman/platforms/android/build/intermediates/pre-dexed/debug/support-annotations-24.0.0-alpha2-e6bc196f456af84663ebf9f9d22a4d0a68c2f7e3.jar" />
+    </item>
+    <item
+        jar="/home/syrbu/projects/uni_laman/platforms/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-measurement/8.4.0/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="613298b7aa012f121ce542881c0a599ebd8078f2">
+        <dex dex="/home/syrbu/projects/uni_laman/platforms/android/build/intermediates/pre-dexed/debug/classes-cc0bc8c29f833059a8ec1bc0b83c10c6b7086b97.jar" />
     </item>
 
 </items>

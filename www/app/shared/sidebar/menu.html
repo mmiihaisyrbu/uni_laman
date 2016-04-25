@@ -29,10 +29,23 @@
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     {{ 'HOME' | translate }}
                 </ion-item>
-                <ion-item nav-clear menu-close href="#/app/containers" ng-click="menu.item_sel='containers'" ng-class="{'menu-item-active': menu.item_sel == 'containers'}">
+                <ion-item nav-clear menu-close 
+                    href="#/app/containers" 
+                    ng-click="menu.item_sel='containers'" 
+                    ng-class="{'menu-item-active': menu.item_sel == 'containers'}"
+                    >
                     <i class="icon ion-archive menu-icon"></i>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     {{ 'CONTAINERS_LIST' | translate }}
+                </ion-item>
+                <ion-item nav-clear menu-close 
+                    href="#/app/containers_archive" 
+                    ng-click="menu.item_sel='containers_archive'" 
+                    ng-class="{'menu-item-active': menu.item_sel == 'containers_archive'}"
+                    >
+                    <i class="icon ion-archive menu-icon"></i>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    {{ 'CONTAINERS_LIST' | translate }} ({{ 'ARCHIVE' | translate }})
                 </ion-item>
                 <ion-item nav-clear menu-close href="#/app/invoices" ng-click="menu.item_sel='invoices'" ng-class="{'menu-item-active': menu.item_sel == 'invoices'}">
                     <i class="icon ion-card menu-icon"></i>

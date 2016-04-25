@@ -18,6 +18,13 @@
         },
         "org.apache.cordova.network-information": {
             "PACKAGE_NAME": "com.ionicframework.unilaman171672"
+        },
+        "com.phonegap.plugins.PushPlugin": {
+            "PACKAGE_NAME": "com.ionicframework.unilaman171672"
+        },
+        "phonegap-plugin-push": {
+            "SENDER_ID": "159592749979",
+            "PACKAGE_NAME": "com.ionicframework.unilaman171672"
         }
     },
     "dependent_plugins": {}

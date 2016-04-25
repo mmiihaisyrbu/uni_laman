@@ -3,7 +3,8 @@
 		<ul class="list">
 		    <li class="item">
 		    	<div style="float:left">{{ 'ORDER_NO' | translate }}</div>
-				<div style="float:right">{{container.order_no_ext}}</div>
+				<div style="float:right" ng-show="mode == 'manager'">{{container.order_no_ext}}</div>
+				<div style="float:right" ng-show="mode == 'client'">{{container.custom_order_no}}</div>
 		    </li>
 		    <li class="item">
 		    	<div style="float:left">{{ 'CONT_NO' | translate }}</div>

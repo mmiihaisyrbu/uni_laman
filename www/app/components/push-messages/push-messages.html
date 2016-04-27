@@ -1,0 +1,9 @@
+<ion-view title="{{ 'PUSH_MESSAGES' | translate }}">
+    <ion-content padding="true" scroll="true">
+        <ion-list>
+            <ion-item ng-repeat="message in messages" style="padding: 0px !important;">
+                <ng-include src="'app/components/push-messages/push-messages-item.html'" />
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

@@ -1,34 +1,24 @@
 <ion-item>
-	<table border="0" cellpadding="5" width="100%" align="center" style="table-layout: fixed;">
-		<tr align="center">
-			<th width="40%">
-				<div ng-show="mode == 'manager'">{{invoice.order_no_ext}}</div>
-				<div ng-show="mode == 'client'">{{invoice.custom_order_no}}</div>
-			</th>
-			<th width="30%">
-				{{invoice.ports_of_loading}}
-			</th>
-			<th width="30%">
-				{{invoice.debit_all}} USD
-			</th>
-		</tr>
-		<!--<tr align="center">
-			<td width="30%">{{invoice.debit_all}} USD <br><small>{{invoice.create_date}}<small></td>
-		</tr>
-		<tr align="center">
-			<td width="30%"><u>Final date of payment</u> <br>{{invoice.debt_date_delay}}</td>
-		</tr>-->
-	</table>
-	<!--<div class="row">
-	  <div class="col" ng-bind-html="addHr(invoice.containers)"></div>
-	  <div class="col"></div>
+	<div ng-class="{'expired':'invoice-item-expired-debt'}[invoice.invoice_status]">
+		<table border="0" cellpadding="5" width="100%" align="center" style="table-layout: fixed;">
+			<tr align="center">
+				<th width="40%">
+					<div ng-show="mode == 'manager'">{{invoice.custom_order_no}}/{{invoice.order_no}}</div>
+					<div ng-show="mode == 'client'">{{invoice.custom_order_no}}</div>
+				</th>
+				<th width="30%">
+					{{invoice.ports_of_loading}}
+				</th>
+				<th width="30%">
+					{{invoice.debit_all}} USD
+				</th>
+			</tr>
+			<!--<tr align="center">
+				<td width="30%">{{invoice.debit_all}} USD <br><small>{{invoice.create_date}}<small></td>
+			</tr>
+			<tr align="center">
+				<td width="30%"><u>Final date of payment</u> <br>{{invoice.debt_date_delay}}</td>
+			</tr>-->
+		</table>
 	</div>
-	<div class="row">
-	  <div class="col">11</div>
-	  <div class="col">22</div>
-	</div>
-	<div class="row">
-	  <div class="col">111</div>
-	  <div class="col">222</div>
-	</div> -->
 </ion-item>

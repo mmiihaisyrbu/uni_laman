@@ -5,8 +5,11 @@
 		    	<div class="inv-info-th">Order no:</div>
 				<div class="inv-info-td">
 					&nbsp;
-					{{invoice.order_no_ext}}
-				</div>
+					<div style="float:right" ng-show="mode == 'manager'">
+						{{invoice.custom_order_no}}/{{invoice.order_no}}
+					</div>
+					<div style="float:right" ng-show="mode == 'client'">{{invoice.custom_order_no}}</div>
+					</div>
 		    </li>
 		    <li class="item">
 		    	<div class="inv-info-th">Conts no:</div>

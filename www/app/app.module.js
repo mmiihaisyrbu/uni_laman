@@ -11,6 +11,8 @@ angular.module('mail', []);
 angular.module('app.menu', ['ionic', 'ionic-material']);
 angular.module('app.documents', []);
 angular.module('app.settings', []);
+angular.module('app.clients-list', []);
+angular.module('app.push-messages', []);
 
 angular.module('app', [
 	'ionic', 
@@ -29,5 +31,7 @@ angular.module('app', [
 	'app.menu', 
 	'app.documents', 
 	'app.settings',
-	'pascalprecht.translate'
+	'pascalprecht.translate',
+	'app.clients-list',
+	'app.push-messages'
 	]);

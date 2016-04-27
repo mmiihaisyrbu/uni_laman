@@ -1,0 +1,66 @@
+<ion-list ng-init="menu.item_sel='home'">
+	<ion-item nav-clear menu-close href="#/app/main" ion-home ng-click="menu.item_sel='home'" ng-class="{'menu-item-active': menu.item_sel == 'home'}">
+        <i class="icon ion-home menu-icon"></i>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        {{ 'HOME' | translate }}
+    </ion-item>
+    <ion-item nav-clear menu-close 
+        href="#/app/containers?archive=false"
+        ng-click="menu.item_sel='containers'" 
+        ng-class="{'menu-item-active': menu.item_sel == 'containers'}"
+        >
+        <i class="icon ion-archive menu-icon"></i>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        {{ 'CONTAINERS_LIST' | translate }}
+    </ion-item>
+    <ion-item nav-clear menu-close 
+        href="#/app/containers?archive=true" 
+        ng-click="menu.item_sel='containers_archive'" 
+        ng-class="{'menu-item-active': menu.item_sel == 'containers_archive'}"
+        >
+        <i class="icon ion-archive menu-icon"></i>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        {{ 'CONTAINERS_LIST' | translate }} ({{ 'ARCHIVE' | translate }})
+    </ion-item>
+    <ion-item nav-clear menu-close href="#/app/invoices" ng-click="menu.item_sel='invoices'" ng-class="{'menu-item-active': menu.item_sel == 'invoices'}">
+        <i class="icon ion-card menu-icon"></i>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        {{ 'INVOICES' | translate }}
+    </ion-item>
+    <hr>
+    <ion-item nav-clear 
+        menu-close 
+        href="#/app/push-messages" 
+        ng-click="menu.item_sel='push-messages'" 
+        ng-class="{'menu-item-active': menu.item_sel == 'push-messages'}"
+        >
+        <i class="icon ion-android-notifications menu-icon"></i>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        {{ 'PUSH_MESSAGES' | translate }}
+    </ion-item>
+    <ion-item nav-clear menu-close 
+        href="#/app/contact" 
+        ng-click="menu.item_sel='contact'" 
+        ng-class="{'menu-item-active': menu.item_sel == 'contact'}"
+        >
+        <i class="icon ion-android-contacts menu-icon"></i>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        {{ 'CONTACT_MANAGER' | translate }}
+    </ion-item>
+    <ion-item nav-clear menu-close href="#/app/reviews" ng-click="menu.item_sel='reviews'" ng-class="{'menu-item-active': menu.item_sel == 'reviews'}">
+        <i class="icon ion-android-star menu-icon"></i>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        {{ 'APP_FEEDBACK' | translate }}
+    </ion-item>
+    <hr>
+    <ion-item nav-clear menu-close href="#/app/settings" ng-click="menu.item_sel='settings'" ng-class="{'menu-item-active': menu.item_sel == 'settings'}">
+        <i class="icon ion-gear-a menu-icon"></i>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        {{ 'SETTINGS' | translate }}
+    </ion-item>
+    <ion-item nav-clear menu-close href="#" ng-click="logOut()" ng-click="menu.item_sel='logout'" ng-class="{'menu-item-active': menu.item_sel == 'logout'}">
+        <i class="icon ion-log-out menu-icon"></i>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        {{ 'LOG_OUT' |translate }}
+    </ion-item>
+</ion-list>

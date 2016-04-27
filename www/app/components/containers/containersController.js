@@ -16,7 +16,7 @@ function ContainerDetailsStorage() {
     }
 }
 
-function ContainersController($scope, GetContainers, $location, ContainerDetailsStorage, $ionicPopover, $state) {
+function ContainersController($scope, GetContainers, $location, ContainerDetailsStorage, $ionicPopover, $stateParams) {
     $scope.containers = [];
     $scope.offset = 0;
     $scope.offset_p = '';
@@ -38,17 +38,18 @@ function ContainersController($scope, GetContainers, $location, ContainerDetails
         value: 4
     }];
 
-    if ( window.localStorage['from_to_cont'] != 'home' ) { window.localStorage.removeItem('cont_status'); }
-    var params = window.localStorage['cont_status']||"/q=0";
+    var params = "/q=0";
 
     $scope.loadContainers = function(more) {
         console.log(more);
     	more = typeof more !== 'undefined' ? more : false;
 
-        if ( $state.current.name == 'app.containers_archive' ) {
-            params += "&archive=true";
-        } else {
-            params += "&archive=false";
+        if ( $stateParams.archive != undefined ) {
+            params += "&archive=" + $stateParams.archive;
+        }
+
+        if ( $stateParams.client_id != undefined ) {
+            params += "&orderer=" + $stateParams.client_id;
         }
 
     	if ( more === true && $scope.containers !== [] ) {
@@ -72,11 +73,10 @@ function ContainersController($scope, GetContainers, $location, ContainerDetails
     }
 
     //$scope.loadContainers();
-    window.localStorage['from_to_cont'] = ' ';
 
     $scope.openContainerDetails = function(container) {
-        window.localStorage['cont_id'] = container.cont_id;
-        console.log(window.localStorage['cont_id']);
+        localStorage['cont_id'] = container.cont_id;
+        console.log(localStorage['cont_id']);
     	ContainerDetailsStorage.setData(container);
 		$location.path('/app/container-info');
 	};

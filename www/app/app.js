@@ -45,7 +45,9 @@ var translations = {
 		"RAIL_TRANSPORTATION": "Rail transportation",
 		"DOCUMENTS_LIST": "Documents list",
 		"ADD_NEW_REVIEW": "Add new review",
-		"ARCHIVE": "Archive"
+		"ARCHIVE": "Archive",
+		"CLIENTS_LIST": "Clients list",
+		"PUSH_MESSAGES": "Notifications"
 	},
 	"ru": {
 		"LANGUAGE": "Язык",
@@ -94,7 +96,9 @@ var translations = {
 		"RAIL_TRANSPORTATION": "Ж/Д перевозки",
 		"DOCUMENTS_LIST": "Список документов",
 		"ADD_NEW_REVIEW": "Добавить отзыв",
-		"ARCHIVE": "Архив"
+		"ARCHIVE": "Архив",
+		"CLIENTS_LIST": "Список клиентов",
+		"PUSH_MESSAGES": "Уведомления"
 	},
 	"ua": {
 		"LANGUAGE": "Мова",
@@ -143,7 +147,9 @@ var translations = {
 		"RAIL_TRANSPORTATION": "Ж/Д перевезення",
 		"DOCUMENTS_LIST": "Перелік документів",
 		"ADD_NEW_REVIEW": "Додати відгук",
-		"ARCHIVE": "Архів"
+		"ARCHIVE": "Архів",
+		"CLIENTS_LIST": "Список клієнтів",
+		"PUSH_MESSAGES": "Повідомлення"
 	}
 }
 
@@ -185,7 +191,7 @@ angular.module('app')
     })
 
 	.state('app.containers', {
-		url: '/containers',
+		url: '/containers?archive&client_id',
 		views: {
 			'menuContent': {
 				templateUrl: 'app/components/containers/containers.html',
@@ -194,12 +200,22 @@ angular.module('app')
 		}
 	})
 
-	.state('app.containers_archive', {
-		url: '/containers_archive',
+	.state('app.clients-list', {
+		url: '/clients-list',
 		views: {
 			'menuContent': {
-				templateUrl: 'app/components/containers/containers.html',
-				controller: 'ContainersController'
+				templateUrl: 'app/components/clients-list/clients-list.html',
+				controller: 'ClientsListController'
+			}
+		}
+	})
+
+	.state('app.push-messages', {
+		url: '/push-messages',
+		views: {
+			'menuContent': {
+				templateUrl: 'app/components/push-messages/push-messages.html',
+				controller: 'PushMessagesCtrl'
 			}
 		}
 	})
@@ -255,7 +271,7 @@ angular.module('app')
 	})
 
 	.state('app.invoices', {
-		url: '/invoices',
+		url: '/invoices?client_id',
 		views: {
 			'menuContent': {
 				templateUrl: 'app/components/invoices/invoices.html',
@@ -315,9 +331,6 @@ angular.module('app')
 			},
 			response: function(response) {
 				$rootScope.$broadcast('loading:hide');
-				/*window.cookies.clear(function() {
-					console.log('Cookies cleared!');
-				});*/
 				return response
 			},
 			requestError: function(config) {

@@ -1,0 +1,25 @@
+<ion-item>
+	<div class="client-list-item">
+		<div>
+			<pre><b>{{client.name}}</b></pre>
+		</div>
+		<div>
+			<ion-item href="#/app/containers?archive=false&client_id={{client.id}}">
+				<i class="icon ion-archive menu-icon"></i>
+				{{ 'CONTAINERS_LIST' | translate }}
+				&nbsp;
+				{{client.count_conts}}
+			</ion-item>
+			<ion-item href="#/app/containers?archive=true&client_id={{client.id}}">
+				<i class="icon ion-archive menu-icon"></i>
+				{{ 'CONTAINERS_LIST' | translate }} ({{ 'ARCHIVE' | translate }})
+				&nbsp;
+				{{client.count_conts_archive}}
+			</ion-item>
+			<ion-item href="#/app/invoices?client_id={{client.id}}">
+				<i class="icon ion-card menu-icon"></i>
+				{{ 'INVOICES' | translate }}&nbsp;
+				{{client.count_invoices}}
+			</ion-item>
+		</div>
+</ion-item>

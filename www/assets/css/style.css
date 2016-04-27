@@ -99,6 +99,14 @@
 	background-color: #EFF2FB !important;
 }
 
+.push-messages-item {
+  background-color: #EFF2FB !important;
+}
+
+.client-list-item {
+  background-color: #EFF2FB !important;
+}
+
 .cont-list {
 	@import 'ionic.filter.bar.css';
 }
@@ -117,4 +125,8 @@
 
 .item {
   padding: 1% !important;
+}
+
+.invoice-item-expired-debt  {
+  background-color: #FC6262 !important;
 }

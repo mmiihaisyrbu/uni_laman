@@ -16,9 +16,13 @@ function InvoiceDetailsStorage() {
     }
 }
 
-function InvoicesController($scope, GetInvoices, $location, InvoiceDetailsStorage) {
+function InvoicesController($scope, GetInvoices, $location, InvoiceDetailsStorage, $stateParams) {
     $scope.invoices = [];
-    var params = "";
+    var params = "/q=0";
+
+    if ( $stateParams.client_id != undefined ) {
+        params += "&orderer=" + $stateParams.client_id;
+    }
 
     $scope.loadInvoices = function() {
         GetInvoices.InvoicesList(params, function(response) {

@@ -1,17 +1,52 @@
 <ion-view title="{{ 'SETTINGS' | translate }}">
     <ion-content>
-    	<div class="list">
-    	<label class="item item-input item-select">
-			<div class="input-label">
+    	<!--<div class="list">
+	    	<label class="item item-input item-select">
+				<div class="input-label">
+					{{ 'LANGUAGE' | translate }}
+				</div>
+				<select
+					ng-model="this.selectedLanguage"
+					ng-options="language.name for language in languageList"
+					ng-change="changeLanguage(this.selectedLanguage.value)"
+					>
+				</select>
+			</label>
+		</div>-->
+		<ion-list>
+			<ion-item>
 				{{ 'LANGUAGE' | translate }}
-			</div>
-			<select
-				ng-model="this.selectedLanguage"
-				ng-options="language.name for language in languageList"
-				ng-change="changeLanguage(this.selectedLanguage.value)"
-				>
-			</select>
-		</label>
-		</div>
+				<span class="item-note">
+					<select
+						ng-model="this.selectedLanguage"
+						ng-options="language.name for language in languageList"
+						ng-change="changeLanguage(this.selectedLanguage.value)"
+						>
+					</select>
+				</span>
+			</ion-item>
+			<ion-item class="item-divider">
+				{{ 'PUSH_MESSAGES' | translate }}
+			</ion-item>
+			<ion-item>
+				<ion-list ng-repeat="push_item in push_list">
+				    <ion-item>
+				    	{{push_item.name}}
+				    	<span class="item-note">
+					    	<label class="toggle toggle-positive">
+								<input 
+									type="checkbox" 
+									ng-model="push_item.receive"
+									ng-change="updatePushCustom(push_item.id, push_item.receive)"
+									>
+								<div class="track">
+									<div class="handle"></div>
+								</div>
+							</label>
+						</span>
+				    </ion-item>
+				</ion-list>
+			</ion-item>
+		</ion-list>
 	</ion-content>
 </ion-view>

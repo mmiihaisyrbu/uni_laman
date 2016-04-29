@@ -123,10 +123,14 @@
   background-color: #91EE89;
 }
 
-.item {
+.item-custom {
   padding: 1% !important;
 }
 
 .invoice-item-expired-debt  {
   background-color: #FC6262 !important;
+}
+
+.client-list-item-name {
+  height: 60px;
 }

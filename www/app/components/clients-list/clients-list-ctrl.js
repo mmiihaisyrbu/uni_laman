@@ -37,6 +37,12 @@ function ClientsListController($scope, GetClients) {
         });
     }
 
+    $scope.expandItem = function(client) {
+        angular.forEach($scope.clients, function (currentClient) {
+            currentClient.showfull = currentClient === client && !currentClient.showfull;
+        });
+    };
+
     $scope.loadClientsList();
 }
 

@@ -1,5 +1,9 @@
-<ion-view title="{{ 'PUSH_MESSAGES' | translate }}">
+<ion-view title="{{ 'PUSH_MESSAGES' | translate }}" onload="loadPushMessages()">
     <ion-content padding="true" scroll="true">
+    	<ion-refresher
+		    pulling-text="{{ 'PULL_TO_REFRESH' | translate }}"
+		    on-refresh="loadPushMessages()">
+		</ion-refresher>
         <ion-list>
             <ion-item ng-repeat="message in messages" style="padding: 0px !important;">
                 <ng-include src="'app/components/push-messages/push-messages-item.html'" />

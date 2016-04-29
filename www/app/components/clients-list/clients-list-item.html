@@ -1,9 +1,9 @@
-<ion-item>
+<ion-item class="item-custom">
 	<div class="client-list-item">
-		<div>
+		<div class="client-list-item-name" ng-click="expandItem(client)">
 			<pre><b>{{client.name}}</b></pre>
 		</div>
-		<div>
+		<div ng-show="client.showfull">
 			<ion-item href="#/app/containers?archive=false&client_id={{client.id}}">
 				<i class="icon ion-archive menu-icon"></i>
 				{{ 'CONTAINERS_LIST' | translate }}

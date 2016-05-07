@@ -172,7 +172,7 @@ angular.module('app')
         templateUrl: 'app/shared/sidebar/menu.html',
         controller: 'MenuController'
     })
-    
+
     .state('login', {
       url: '/login',
       controller: 'LoginController as login',
@@ -347,7 +347,7 @@ angular.module('app')
 		}
 	});
 })
-.run(function($ionicPlatform, $rootScope, $ionicLoading, $ionicPopup, $cordovaNetwork, $cordovaToast, $translate, $http) {
+.run(function($ionicPlatform, $rootScope, $ionicLoading, $ionicPopup, $cordovaNetwork, $cordovaToast, $translate, $http, $location) {
 	$translate.use(localStorage['lang']);
 
 	$rootScope.$on('loading:show', function() {
@@ -405,10 +405,10 @@ angular.module('app')
             "android": {
                 "senderID": "159592749979"
             },
-            "ios": {"alert": "true", "badge": "true", "sound": "true"}, 
-            "windows": {} 
+            "ios": {"alert": "true", "badge": "true", "sound": "true"},
+            "windows": {}
         });
-        
+
         push.on('registration', function(data) {
             console.log("registration event");
             localStorage['device_token'] = data.registrationId;
@@ -417,7 +417,8 @@ angular.module('app')
 
         push.on('notification', function(data) {
         	console.log("notification event");
-            console.log(JSON.stringify(data));
+					console.log(JSON.stringify(data));
+					$location.path('/app/push-messages');
             /*var cards = document.getElementById("cards");
             var card = '<div class="row">' +
 		  		  '<div class="col s12 m6">' +
@@ -430,7 +431,7 @@ angular.module('app')
 				  ' </div>' +
 				  '</div>';
             cards.innerHTML += card;*/
-            
+
             push.finish(function () {
                 console.log('finish successfully called');
             });

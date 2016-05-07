@@ -21,6 +21,7 @@
     "cordova-plugin-whitelist",
     "cordova-plugin-splashscreen",
     "com.ionic.keyboard",
+    "cordova-plugin-network-information",
     {
       "variables": {
         "SENDER_ID": "159592749979"
@@ -30,6 +31,7 @@
     }
   ],
   "cordovaPlatforms": [
-    "android"
+    "android",
+    "ios"
   ]
 }

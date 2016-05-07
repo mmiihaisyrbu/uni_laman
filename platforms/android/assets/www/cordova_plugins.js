@@ -3,7 +3,6 @@ module.exports = [
     {
         "file": "plugins/com.bez4pieci.cookies/www/cookies.js",
         "id": "com.bez4pieci.cookies.cookies",
-        "pluginId": "com.bez4pieci.cookies",
         "clobbers": [
             "cookies"
         ]
@@ -11,51 +10,37 @@ module.exports = [
     {
         "file": "plugins/cordova-plugin-whitelist/whitelist.js",
         "id": "cordova-plugin-whitelist.whitelist",
-        "pluginId": "cordova-plugin-whitelist",
         "runs": true
     },
     {
         "file": "plugins/cordova-plugin-x-toast/www/Toast.js",
         "id": "cordova-plugin-x-toast.Toast",
-        "pluginId": "cordova-plugin-x-toast",
         "clobbers": [
             "window.plugins.toast"
         ]
     },
     {
         "file": "plugins/cordova-plugin-x-toast/test/tests.js",
-        "id": "cordova-plugin-x-toast.tests",
-        "pluginId": "cordova-plugin-x-toast"
+        "id": "cordova-plugin-x-toast.tests"
     },
     {
-        "file": "plugins/org.apache.cordova.network-information/www/network.js",
-        "id": "org.apache.cordova.network-information.network",
-        "pluginId": "org.apache.cordova.network-information",
+        "file": "plugins/cordova-plugin-network-information/www/network.js",
+        "id": "cordova-plugin-network-information.network",
         "clobbers": [
             "navigator.connection",
             "navigator.network.connection"
         ]
     },
     {
-        "file": "plugins/org.apache.cordova.network-information/www/Connection.js",
-        "id": "org.apache.cordova.network-information.Connection",
-        "pluginId": "org.apache.cordova.network-information",
+        "file": "plugins/cordova-plugin-network-information/www/Connection.js",
+        "id": "cordova-plugin-network-information.Connection",
         "clobbers": [
             "Connection"
         ]
     },
     {
-        "file": "plugins/com.phonegap.plugins.PushPlugin/www/PushNotification.js",
-        "id": "com.phonegap.plugins.PushPlugin.PushNotification",
-        "pluginId": "com.phonegap.plugins.PushPlugin",
-        "clobbers": [
-            "PushNotification"
-        ]
-    },
-    {
         "file": "plugins/phonegap-plugin-push/www/push.js",
         "id": "phonegap-plugin-push.PushNotification",
-        "pluginId": "phonegap-plugin-push",
         "clobbers": [
             "PushNotification"
         ]
@@ -67,9 +52,8 @@ module.exports.metadata =
     "com.bez4pieci.cookies": "0.0.1",
     "cordova-plugin-whitelist": "1.2.0",
     "cordova-plugin-x-toast": "2.2.3",
-    "org.apache.cordova.network-information": "0.2.15",
-    "com.phonegap.plugins.PushPlugin": "2.5.0",
-    "phonegap-plugin-push": "1.6.2"
-}
+    "cordova-plugin-network-information": "1.2.1",
+    "phonegap-plugin-push": "1.6.3"
+};
 // BOTTOM OF METADATA
 });

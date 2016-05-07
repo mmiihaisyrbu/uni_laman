@@ -2,8 +2,16 @@ angular.module('app.home')
 	.controller('HomeController', HomeController)
 	.factory('GetCustomerInfo', GetCustomerInfo);
 
-function HomeController($scope, GetCustomerInfo, $location) {
-    $scope.data = [];
+function HomeController($scope, GetCustomerInfo, $location, $translate) {
+	$scope.loadCustomerSettings = function() {
+		GetCustomerInfo.GetCustomerSettings(function(response) {
+			$translate.use(response.language_code);
+			console.log(response);
+		});
+	}
+
+	$scope.loadCustomerSettings();
+    //$scope.data = [];
 
     /*$scope.getCustomerInfo = function() {
         GetCustomerInfo.Info(function(response) {
@@ -49,11 +57,26 @@ function GetCustomerInfo($http) {
             .then(function(data, status, headers, config) {
                 console.log(JSON.stringify(data));
                 callback(data);
-            }, 
+            },
             function(response) { // optional
                 // bad request
             });
     };
+
+		service.GetCustomerSettings = function(callback) {
+			$http({
+							method: "GET",
+							headers: {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'},
+							url: server_url+"/customer-settings/"+localStorage['session_id']
+					})
+					.then(function(data, status, headers, config) {
+							console.log(JSON.stringify(data));
+							callback(data.data.data);
+					},
+					function(response) { // optional
+							// bad request
+					});
+		};
 
     service.Report = function(callback) {
         $http({
@@ -64,7 +87,7 @@ function GetCustomerInfo($http) {
             .then(function(data, status, headers, config) {
                 console.log(JSON.stringify(data));
                 callback(data);
-            }, 
+            },
             function(response) { // optional
                 // bad request
             });

@@ -25,10 +25,6 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"PushPlugin\"><param name=\"android-package\" value=\"com.plugin.gcm.PushPlugin\" /></feature>",
-                            "count": 1
-                        },
-                        {
                             "xml": "<feature name=\"PushNotification\"><param name=\"android-package\" value=\"com.adobe.phonegap.push.PushPlugin\" /></feature>",
                             "count": 1
                         }
@@ -45,51 +41,35 @@
                     ],
                     "/manifest": [
                         {
-                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
-                            "count": 2
+                            "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
+                            "count": 1
                         },
                         {
-                            "xml": "<uses-permission android:name=\"android.permission.GET_ACCOUNTS\" />",
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
                             "count": 1
                         },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.WAKE_LOCK\" />",
-                            "count": 2
+                            "count": 1
                         },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.VIBRATE\" />",
-                            "count": 2
+                            "count": 1
                         },
                         {
                             "xml": "<uses-permission android:name=\"com.google.android.c2dm.permission.RECEIVE\" />",
-                            "count": 2
+                            "count": 1
                         },
                         {
-                            "xml": "<permission android:name=\"com.ionicframework.unilaman171672.permission.C2D_MESSAGE\" android:protectionLevel=\"signature\" />",
-                            "count": 2
+                            "xml": "<permission android:name=\"${applicationId}.permission.C2D_MESSAGE\" android:protectionLevel=\"signature\" />",
+                            "count": 1
                         },
                         {
-                            "xml": "<uses-permission android:name=\"com.ionicframework.unilaman171672.permission.C2D_MESSAGE\" />",
-                            "count": 2
-                        },
-                        {
-                            "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
+                            "xml": "<uses-permission android:name=\"${applicationId}.permission.C2D_MESSAGE\" />",
                             "count": 1
                         }
                     ],
                     "/manifest/application": [
-                        {
-                            "xml": "<activity android:exported=\"true\" android:name=\"com.plugin.gcm.PushHandlerActivity\" />",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<receiver android:name=\"com.plugin.gcm.CordovaGCMBroadcastReceiver\" android:permission=\"com.google.android.c2dm.permission.SEND\"><intent-filter><action android:name=\"com.google.android.c2dm.intent.RECEIVE\" /><action android:name=\"com.google.android.c2dm.intent.REGISTRATION\" /><category android:name=\"com.ionicframework.unilaman171672\" /></intent-filter></receiver>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<service android:name=\"com.plugin.gcm.GCMIntentService\" />",
-                            "count": 1
-                        },
                         {
                             "xml": "<activity android:exported=\"true\" android:name=\"com.adobe.phonegap.push.PushHandlerActivity\" />",
                             "count": 1
@@ -99,7 +79,7 @@
                             "count": 1
                         },
                         {
-                            "xml": "<receiver android:exported=\"true\" android:name=\"com.google.android.gms.gcm.GcmReceiver\" android:permission=\"com.google.android.c2dm.permission.SEND\"><intent-filter><action android:name=\"com.google.android.c2dm.intent.RECEIVE\" /><category android:name=\"com.ionicframework.unilaman171672\" /></intent-filter></receiver>",
+                            "xml": "<receiver android:exported=\"true\" android:name=\"com.google.android.gms.gcm.GcmReceiver\" android:permission=\"com.google.android.c2dm.permission.SEND\"><intent-filter><action android:name=\"com.google.android.c2dm.intent.RECEIVE\" /><category android:name=\"${applicationId}\" /></intent-filter></receiver>",
                             "count": 1
                         },
                         {
@@ -139,10 +119,7 @@
         "cordova-plugin-x-toast": {
             "PACKAGE_NAME": "com.ionicframework.unilaman171672"
         },
-        "org.apache.cordova.network-information": {
-            "PACKAGE_NAME": "com.ionicframework.unilaman171672"
-        },
-        "com.phonegap.plugins.PushPlugin": {
+        "cordova-plugin-network-information": {
             "PACKAGE_NAME": "com.ionicframework.unilaman171672"
         },
         "phonegap-plugin-push": {
@@ -155,7 +132,6 @@
         {
             "file": "plugins/com.bez4pieci.cookies/www/cookies.js",
             "id": "com.bez4pieci.cookies.cookies",
-            "pluginId": "com.bez4pieci.cookies",
             "clobbers": [
                 "cookies"
             ]
@@ -163,51 +139,37 @@
         {
             "file": "plugins/cordova-plugin-whitelist/whitelist.js",
             "id": "cordova-plugin-whitelist.whitelist",
-            "pluginId": "cordova-plugin-whitelist",
             "runs": true
         },
         {
             "file": "plugins/cordova-plugin-x-toast/www/Toast.js",
             "id": "cordova-plugin-x-toast.Toast",
-            "pluginId": "cordova-plugin-x-toast",
             "clobbers": [
                 "window.plugins.toast"
             ]
         },
         {
             "file": "plugins/cordova-plugin-x-toast/test/tests.js",
-            "id": "cordova-plugin-x-toast.tests",
-            "pluginId": "cordova-plugin-x-toast"
+            "id": "cordova-plugin-x-toast.tests"
         },
         {
-            "file": "plugins/org.apache.cordova.network-information/www/network.js",
-            "id": "org.apache.cordova.network-information.network",
-            "pluginId": "org.apache.cordova.network-information",
+            "file": "plugins/cordova-plugin-network-information/www/network.js",
+            "id": "cordova-plugin-network-information.network",
             "clobbers": [
                 "navigator.connection",
                 "navigator.network.connection"
             ]
         },
         {
-            "file": "plugins/org.apache.cordova.network-information/www/Connection.js",
-            "id": "org.apache.cordova.network-information.Connection",
-            "pluginId": "org.apache.cordova.network-information",
+            "file": "plugins/cordova-plugin-network-information/www/Connection.js",
+            "id": "cordova-plugin-network-information.Connection",
             "clobbers": [
                 "Connection"
             ]
         },
         {
-            "file": "plugins/com.phonegap.plugins.PushPlugin/www/PushNotification.js",
-            "id": "com.phonegap.plugins.PushPlugin.PushNotification",
-            "pluginId": "com.phonegap.plugins.PushPlugin",
-            "clobbers": [
-                "PushNotification"
-            ]
-        },
-        {
             "file": "plugins/phonegap-plugin-push/www/push.js",
             "id": "phonegap-plugin-push.PushNotification",
-            "pluginId": "phonegap-plugin-push",
             "clobbers": [
                 "PushNotification"
             ]
@@ -217,8 +179,7 @@
         "com.bez4pieci.cookies": "0.0.1",
         "cordova-plugin-whitelist": "1.2.0",
         "cordova-plugin-x-toast": "2.2.3",
-        "org.apache.cordova.network-information": "0.2.15",
-        "com.phonegap.plugins.PushPlugin": "2.5.0",
-        "phonegap-plugin-push": "1.6.2"
+        "cordova-plugin-network-information": "1.2.1",
+        "phonegap-plugin-push": "1.6.3"
     }
 }

@@ -47,7 +47,8 @@ var translations = {
 		"ADD_NEW_REVIEW": "Add new review",
 		"ARCHIVE": "Archive",
 		"CLIENTS_LIST": "Clients list",
-		"PUSH_MESSAGES": "Notifications"
+		"PUSH_MESSAGES": "Notifications",
+		"TIME_OF_SENDING": "Time of sending"
 	},
 	"ru": {
 		"LANGUAGE": "Язык",
@@ -98,7 +99,8 @@ var translations = {
 		"ADD_NEW_REVIEW": "Добавить отзыв",
 		"ARCHIVE": "Архив",
 		"CLIENTS_LIST": "Список клиентов",
-		"PUSH_MESSAGES": "Уведомления"
+		"PUSH_MESSAGES": "Уведомления",
+		"TIME_OF_SENDING": "Время отправки"
 	},
 	"ua": {
 		"LANGUAGE": "Мова",
@@ -149,11 +151,14 @@ var translations = {
 		"ADD_NEW_REVIEW": "Додати відгук",
 		"ARCHIVE": "Архів",
 		"CLIENTS_LIST": "Список клієнтів",
-		"PUSH_MESSAGES": "Повідомлення"
+		"PUSH_MESSAGES": "Повідомлення",
+		"TIME_OF_SENDING": "Час відправлення"
 	}
 }
 
 var server_url = "http://client.uni-laman.com/android/ver_3/index.php";
+
+var app_state = "";
 
 angular.module('app')
 
@@ -317,7 +322,7 @@ angular.module('app')
 
 	$translateProvider.preferredLanguage('en');
 
-    if ( window.localStorage['session_id'] ) {
+  if ( window.localStorage['session_id'] ) {
 		$urlRouterProvider.otherwise('app/home');
 	} else {
 		$urlRouterProvider.otherwise('/login');
@@ -395,15 +400,20 @@ angular.module('app')
             }
         }
         document.addEventListener("deviceReady", function () {
-            document.addEventListener("resume", function () {
-            	console.log("on resume !!!!!!!");
-
-			   }, false);
-        }, false);
+					document.addEventListener("pause", function () {
+          	console.log("on pause !!!!!!!");
+						app_state = "pause";
+					}, false);
+	        document.addEventListener("resume", function () {
+          	console.log("on resume !!!!!!!");
+						app_state = "resume";
+					}, false);
+				}, false);
 
 		var push = PushNotification.init({
             "android": {
-                "senderID": "159592749979"
+                "senderID": "159592749979",
+								"forceShow" : "true"
             },
             "ios": {"alert": "true", "badge": "true", "sound": "true"},
             "windows": {}
@@ -416,25 +426,17 @@ angular.module('app')
         });
 
         push.on('notification', function(data) {
+					//cordova.plugins.notification.badge.set(1);
+					cordova.plugins.notification.badge.increase();
+
+					console.log(app_state);
         	console.log("notification event");
 					console.log(JSON.stringify(data));
 					$location.path('/app/push-messages');
-            /*var cards = document.getElementById("cards");
-            var card = '<div class="row">' +
-		  		  '<div class="col s12 m6">' +
-				  '  <div class="card darken-1">' +
-				  '    <div class="card-content black-text">' +
-				  '      <span class="card-title black-text">' + data.title + '</span>' +
-				  '      <p>' + data.message + '</p>' +
-				  '    </div>' +
-				  '  </div>' +
-				  ' </div>' +
-				  '</div>';
-            cards.innerHTML += card;*/
 
-            push.finish(function () {
-                console.log('finish successfully called');
-            });
+          push.finish(function () {
+              console.log('finish successfully called');
+          });
         });
 
         push.on('error', function(e) {

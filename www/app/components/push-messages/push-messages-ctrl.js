@@ -6,11 +6,16 @@ function PushMessagesCtrl($scope, GetPushMessages) {
 	$scope.messages = [];
 
 	$scope.loadPushMessages = function() {
+		cordova.plugins.notification.badge.clear();
 		GetPushMessages.MessagesList(function(response) {
 			$scope.messages = response.data.data;
 		});
 	}
-	$scope.loadPushMessages();
+
+	$scope.$on('$ionicView.enter', function(){
+		console.log("push view enter");
+		$scope.loadPushMessages();
+	});
 }
 
 function GetPushMessages($http) {
@@ -25,7 +30,7 @@ function GetPushMessages($http) {
             .then(function(data, status, headers, config) {
                 console.log(JSON.stringify(data));
                 callback(data);
-            }, 
+            },
             function(response) { // optional
                 // bad request
             });

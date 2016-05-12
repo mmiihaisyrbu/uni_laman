@@ -3,6 +3,23 @@ angular.module('app.settings')
 	.factory('SettingsService', SettingsService);
 
 function SettingsController($scope, $translate, SettingsService) {
+	$scope.sendPushStart = localStorage["send_push_start"];
+	$scope.sendPushStop = localStorage["send_push_stop"];
+
+	$scope.getHoursList = function() {
+		var hours_list = [];
+		for (i=0; i<24; i++) {
+			if ( i < 10 ) {
+				hours_list.push('0'+i+':00');
+			} else {
+				hours_list.push(i+':00');
+			}
+		}
+
+		return hours_list;
+	}
+
+	$scope.hours_list=$scope.getHoursList();
 
 	SettingsService.GetLanguagesList(function(response) {
 		$scope.languageList = response.data.data;
@@ -15,12 +32,20 @@ function SettingsController($scope, $translate, SettingsService) {
 		var language_id = $scope.languageList.filter(function(l) {
 				return l.code === lang;
 			})[0].id;
-		SettingsService.SetCustomLanguage(language_id, function(response) {
+		SettingsService.SetCustomerSettings('language_id', language_id, function(response) {
 			if ( response.status === 200 ) {
 				console.log("changeLanguage:"+lang);
 				$translate.use(lang);
 				localStorage['lang'] = lang;
 				$scope.getPushList();
+			}
+		});
+	}
+
+	$scope.changePushTime = function(field, value) {
+		SettingsService.SetCustomerSettings(field, value, function(response) {
+			if ( response.status === 200 ) {
+				localStorage[field] = value;
 			}
 		});
 	}
@@ -95,14 +120,15 @@ function SettingsService($http) {
             });
     };
 
-		service.SetCustomLanguage = function(language_id, callback) {
+		service.SetCustomerSettings = function(field, value, callback) {
     	$http({
                 method: "POST",
                 headers: {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'},
-                url: server_url+"/custom-language-set",
+                url: server_url+"/customer-settings",
                 data: {
                 	'session_id': localStorage['session_id'],
-                	'language_id': language_id
+                	'field': field,
+									'value': value
                 }
             })
             .then(function(data) {

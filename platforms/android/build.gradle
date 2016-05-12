@@ -86,6 +86,7 @@ ext {
 }
 
 // PLUGIN GRADLE EXTENSIONS START
+apply from: "cordova-plugin-badge/unilaman171672-badge.gradle"
 apply from: "phonegap-plugin-push/unilaman171672-push.gradle"
 // PLUGIN GRADLE EXTENSIONS END
 

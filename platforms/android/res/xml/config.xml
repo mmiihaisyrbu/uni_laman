@@ -1,8 +1,14 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.ionicframework.unilaman171672" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.ionicframework.unilaman171672" version="0.0.7" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <preference name="loglevel" value="DEBUG" />
     <feature name="Cookies">
         <param name="android-package" value="com.bez4pieci.cookies.Cookies" />
+    </feature>
+    <feature name="Badge">
+        <param name="android-package" value="de.appplant.cordova.plugin.badge.Badge" />
+    </feature>
+    <feature name="NetworkStatus">
+        <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
     </feature>
     <feature name="Whitelist">
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
@@ -10,9 +16,6 @@
     </feature>
     <feature name="Toast">
         <param name="android-package" value="nl.xservices.plugins.Toast" />
-    </feature>
-    <feature name="NetworkStatus">
-        <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
     </feature>
     <feature name="PushNotification">
         <param name="android-package" value="com.adobe.phonegap.push.PushPlugin" />
@@ -49,8 +52,7 @@
     <preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="16" />
-    <preference name="android-targetSdkVersion" value="22" />
-    <preference name="android-maxSdkVersion" value="22" />
+    <preference name="android-targetSdkVersion" value="23" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="1000" />

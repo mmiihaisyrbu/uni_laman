@@ -15,6 +15,24 @@
 			<ion-item class="item-divider">
 				{{ 'PUSH_MESSAGES' | translate }}
 			</ion-item>
+      <ion-item>
+				{{ 'TIME_OF_SENDING' | translate }}
+				<span class="item-note">
+					<select
+						ng-model="this.sendPushStart"
+						ng-options="hour for hour in hours_list"
+						ng-change="changePushTime('send_push_start', this.sendPushStart)"
+						>
+					</select>
+          -
+          <select
+						ng-model="this.sendPushStop"
+            ng-options="hour for hour in hours_list"
+						ng-change="changePushTime('send_push_stop', this.sendPushStop)"
+						>
+					</select>
+				</span>
+			</ion-item>
 			<ion-item>
 				<ion-list ng-repeat="push_item in push_list">
 				    <ion-item>

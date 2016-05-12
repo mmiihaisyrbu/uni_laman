@@ -6,6 +6,8 @@ function HomeController($scope, GetCustomerInfo, $location, $translate) {
 	$scope.loadCustomerSettings = function() {
 		GetCustomerInfo.GetCustomerSettings(function(response) {
 			$translate.use(response.language_code);
+			localStorage["send_push_start"] = response.send_push_start;
+			localStorage["send_push_stop"] = response.send_push_stop;
 			console.log(response);
 		});
 	}

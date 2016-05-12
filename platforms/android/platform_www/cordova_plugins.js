@@ -8,20 +8,12 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/cordova-plugin-whitelist/whitelist.js",
-        "id": "cordova-plugin-whitelist.whitelist",
-        "runs": true
-    },
-    {
-        "file": "plugins/cordova-plugin-x-toast/www/Toast.js",
-        "id": "cordova-plugin-x-toast.Toast",
+        "file": "plugins/cordova-plugin-badge/www/badge.js",
+        "id": "cordova-plugin-badge.Badge",
         "clobbers": [
-            "window.plugins.toast"
+            "plugin.notification.badge",
+            "cordova.plugins.notification.badge"
         ]
-    },
-    {
-        "file": "plugins/cordova-plugin-x-toast/test/tests.js",
-        "id": "cordova-plugin-x-toast.tests"
     },
     {
         "file": "plugins/cordova-plugin-network-information/www/network.js",
@@ -39,6 +31,22 @@ module.exports = [
         ]
     },
     {
+        "file": "plugins/cordova-plugin-whitelist/whitelist.js",
+        "id": "cordova-plugin-whitelist.whitelist",
+        "runs": true
+    },
+    {
+        "file": "plugins/cordova-plugin-x-toast/www/Toast.js",
+        "id": "cordova-plugin-x-toast.Toast",
+        "clobbers": [
+            "window.plugins.toast"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-x-toast/test/tests.js",
+        "id": "cordova-plugin-x-toast.tests"
+    },
+    {
         "file": "plugins/phonegap-plugin-push/www/push.js",
         "id": "phonegap-plugin-push.PushNotification",
         "clobbers": [
@@ -50,9 +58,11 @@ module.exports.metadata =
 // TOP OF METADATA
 {
     "com.bez4pieci.cookies": "0.0.1",
+    "cordova-plugin-app-event": "1.2.0",
+    "cordova-plugin-badge": "0.7.2",
+    "cordova-plugin-network-information": "1.2.1",
     "cordova-plugin-whitelist": "1.2.0",
     "cordova-plugin-x-toast": "2.2.3",
-    "cordova-plugin-network-information": "1.2.1",
     "phonegap-plugin-push": "1.6.3"
 };
 // BOTTOM OF METADATA

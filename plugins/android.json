@@ -10,13 +10,16 @@
         "com.bez4pieci.cookies": {
             "PACKAGE_NAME": "com.ionicframework.unilaman171672"
         },
+        "cordova-plugin-badge": {
+            "PACKAGE_NAME": "com.ionicframework.unilaman171672"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.ionicframework.unilaman171672"
+        },
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.ionicframework.unilaman171672"
         },
         "cordova-plugin-x-toast": {
-            "PACKAGE_NAME": "com.ionicframework.unilaman171672"
-        },
-        "cordova-plugin-network-information": {
             "PACKAGE_NAME": "com.ionicframework.unilaman171672"
         },
         "phonegap-plugin-push": {
@@ -24,5 +27,9 @@
             "PACKAGE_NAME": "com.ionicframework.unilaman171672"
         }
     },
-    "dependent_plugins": {}
+    "dependent_plugins": {
+        "cordova-plugin-app-event": {
+            "PACKAGE_NAME": "com.ionicframework.unilaman171672"
+        }
+    }
 }

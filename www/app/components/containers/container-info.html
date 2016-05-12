@@ -1,5 +1,5 @@
 <ion-view title="{{ 'CONTAINERS_DETAILS' | translate }}">
-    <ion-content padding="true" scroll="true">
+    <ion-content padding="true" scroll="true" overflow-scroll="true">
 		<ul class="list">
 		    <li class="item">
 		    	<div style="float:left">{{ 'ORDER_NO' | translate }}</div>
@@ -50,18 +50,18 @@
             	<ul class="list">
 					<li class="item">
 						<div style="float:left">{{ 'DRIVER' | translate }}</div>
-						<div style="float:right">{{container.driver_name}}</div>
+						<div style="float:right" class="selectable-text">{{container.driver_name}}</div>
 					</li>
 					<li class="item">
 						<div style="float:left">{{ 'AUTO_NO' | translate }}</div>
-						<div style="float:right">{{container.auto_no}}</div>
+						<div style="float:right" class="selectable-text">{{container.auto_no}}</div>
 					</li>
 					<li class="item">
 						<div style="float:left">{{ 'PHONE' | translate }}</div>
 						<div>
 							<ul>
 							    <li ng-repeat="phone in container.driver_phone.split(',')">
-			                		<div class="item item-button-right">
+			                		<div class="item item-button-right selectable-text">
 										{{phone}}
 										<a class="button button-balanced ink" ng-href="tel: {{phone}}">
 											<i class="icon ion-ios-telephone"></i>

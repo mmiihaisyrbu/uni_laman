@@ -1,4 +1,4 @@
-<ion-view title="{{ 'PUSH_MESSAGES' | translate }}" onload="loadPushMessages()">
+<ion-view title="{{ 'PUSH_MESSAGES' | translate }}" ng-init="loadPushMessages()">
     <ion-content padding="true" scroll="true">
     	<ion-refresher
 		    pulling-text="{{ 'PULL_TO_REFRESH' | translate }}"

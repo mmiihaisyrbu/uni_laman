@@ -1,21 +1,21 @@
 <ion-list ng-init="menu.item_sel='home'">
-	<ion-item nav-clear menu-close href="#/app/main" ion-home ng-click="menu.item_sel='home'" ng-class="{'menu-item-active': menu.item_sel == 'home'}">
+	<ion-item nav-clear menu-close href="#/app/home" ion-home ng-click="menu.item_sel='home'" ng-class="{'menu-item-active': menu.item_sel == 'home'}">
         <i class="icon ion-home menu-icon"></i>
         &nbsp;&nbsp;&nbsp;&nbsp;
         {{ 'HOME' | translate }}
     </ion-item>
-    <ion-item nav-clear menu-close 
+    <ion-item nav-clear menu-close
         href="#/app/containers?archive=false"
-        ng-click="menu.item_sel='containers'" 
+        ng-click="menu.item_sel='containers'"
         ng-class="{'menu-item-active': menu.item_sel == 'containers'}"
         >
         <i class="icon ion-archive menu-icon"></i>
         &nbsp;&nbsp;&nbsp;&nbsp;
         {{ 'CONTAINERS_LIST' | translate }}
     </ion-item>
-    <ion-item nav-clear menu-close 
-        href="#/app/containers?archive=true" 
-        ng-click="menu.item_sel='containers_archive'" 
+    <ion-item nav-clear menu-close
+        href="#/app/containers?archive=true"
+        ng-click="menu.item_sel='containers_archive'"
         ng-class="{'menu-item-active': menu.item_sel == 'containers_archive'}"
         >
         <i class="icon ion-archive menu-icon"></i>
@@ -28,19 +28,19 @@
         {{ 'INVOICES' | translate }}
     </ion-item>
     <hr>
-    <ion-item nav-clear 
-        menu-close 
-        href="#/app/push-messages" 
-        ng-click="menu.item_sel='push-messages'" 
+    <ion-item nav-clear
+        menu-close
+        href="#/app/push-messages"
+        ng-click="menu.item_sel='push-messages'"
         ng-class="{'menu-item-active': menu.item_sel == 'push-messages'}"
         >
         <i class="icon ion-android-notifications menu-icon"></i>
         &nbsp;&nbsp;&nbsp;&nbsp;
         {{ 'PUSH_MESSAGES' | translate }}
     </ion-item>
-    <ion-item nav-clear menu-close 
-        href="#/app/contact" 
-        ng-click="menu.item_sel='contact'" 
+    <ion-item nav-clear menu-close
+        href="#/app/contact"
+        ng-click="menu.item_sel='contact'"
         ng-class="{'menu-item-active': menu.item_sel == 'contact'}"
         >
         <i class="icon ion-android-contacts menu-icon"></i>

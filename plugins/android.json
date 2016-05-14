@@ -25,6 +25,9 @@
         "phonegap-plugin-push": {
             "SENDER_ID": "159592749979",
             "PACKAGE_NAME": "com.ionicframework.unilaman171672"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.ionicframework.unilaman171672"
         }
     },
     "dependent_plugins": {

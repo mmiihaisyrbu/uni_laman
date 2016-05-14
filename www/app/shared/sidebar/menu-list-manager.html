@@ -1,13 +1,13 @@
 <ion-list ng-init="menu.item_sel='home'">
-	<ion-item nav-clear menu-close href="#/app/main" ion-home ng-click="menu.item_sel='home'" ng-class="{'menu-item-active': menu.item_sel == 'home'}">
+	<ion-item nav-clear menu-close href="#/app/home" ion-home ng-click="menu.item_sel='home'" ng-class="{'menu-item-active': menu.item_sel == 'home'}">
         <i class="icon ion-home menu-icon"></i>
         &nbsp;&nbsp;&nbsp;&nbsp;
         {{ 'HOME' | translate }}
     </ion-item>
-    <ion-item nav-clear 
-        menu-close 
-        href="#/app/clients-list" 
-        ng-click="menu.item_sel='clients-list'" 
+    <ion-item nav-clear
+        menu-close
+        href="#/app/clients-list"
+        ng-click="menu.item_sel='clients-list'"
         ng-class="{'menu-item-active': menu.item_sel == 'clients-list'}"
         >
         <i class="icon ion-document-text menu-icon"></i>
@@ -15,10 +15,10 @@
         {{ 'CLIENTS_LIST' | translate }}
     </ion-item>
     <hr>
-    <ion-item nav-clear 
-        menu-close 
-        href="#/app/push-messages" 
-        ng-click="menu.item_sel='push-messages'" 
+    <ion-item nav-clear
+        menu-close
+        href="#/app/push-messages"
+        ng-click="menu.item_sel='push-messages'"
         ng-class="{'menu-item-active': menu.item_sel == 'push-messages'}"
         >
         <i class="icon ion-android-notifications menu-icon"></i>
@@ -36,7 +36,7 @@
         &nbsp;&nbsp;&nbsp;&nbsp;
         {{ 'SETTINGS' | translate }}
     </ion-item>
-    <ion-item nav-clear menu-close href="#" ng-click="logOut()" ng-click="menu.item_sel='logout'" ng-class="{'menu-item-active': menu.item_sel == 'logout'}">
+    <ion-item nav-clear menu-close href="#" ng-click="menu.item_sel='logout'; logOut()" ng-class="{'menu-item-active': menu.item_sel == 'logout'}">
         <i class="icon ion-log-out menu-icon"></i>
         &nbsp;&nbsp;&nbsp;&nbsp;
         {{ 'LOG_OUT' |translate }}

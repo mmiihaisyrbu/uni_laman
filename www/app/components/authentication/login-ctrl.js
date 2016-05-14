@@ -4,16 +4,12 @@ angular.module('app.authentication')
 
 function LoginController($location, AuthenticationService, $ionicHistory) {
     this.logIn = function() {
-
         AuthenticationService.LogIn(this.username, this.password, function(response) {
         	console.log('response', response);
             if( response.status == 201 ) {
 							$ionicHistory.nextViewOptions({
 								disableBack: true
 							});
-							if ( ionic.Platform.isAndroid() ) {
-	    					window.location.reload();
-							}
 							$location.path('/app/home');
             } else {
 							this.error = response.message;
@@ -31,7 +27,12 @@ function AuthenticationService($http, $ionicPlatform) {
 		        method: "POST",
 		        headers: {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'},
 		        url: server_url+"/login",
-		        data: { 'login': username, 'pass': password, 'device_token': localStorage['device_token']||'' }
+		        data: {
+							'login': username,
+							'pass': password,
+							'device_token': localStorage['device_token']||'',
+							'device': ionic.Platform.platform()||''
+						}
 		    })
 		    .then(function(response) {
                 localStorage['session_id'] = response.data['session_id'];
@@ -55,11 +56,13 @@ function AuthenticationService($http, $ionicPlatform) {
 		    })
 		    .then(function(response) {
 
-					$ionicPlatform.ready(function() {
-						window.cookies.clear(function() {
-					    console.log('Cookies cleared!');
-						});
-			    });
+					if ( ionic.Platform.isAndroid() || ionic.Platform.isIOS() ) {
+						$ionicPlatform.ready(function() {
+							window.cookies.clear(function() {
+						    console.log('Cookies cleared!');
+							});
+				    });
+					}
 
 			    window.localStorage.removeItem("session_id");
 			    window.localStorage.removeItem("mode");
@@ -67,7 +70,11 @@ function AuthenticationService($http, $ionicPlatform) {
           callback(response.data);
 		    },
 		    function(response) { // optional
-                // bad login
+	        // bad login
+					window.localStorage.removeItem("session_id");
+			    window.localStorage.removeItem("mode");
+
+					callback(response.data);
 			});
     }
 

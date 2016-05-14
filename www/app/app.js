@@ -167,7 +167,7 @@ angular.module('app')
   //templateUrl: '/img/loader.gif'
 })
 
-.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $translateProvider) {
+.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $translateProvider, $ionicConfigProvider) {
 
   $stateProvider
 
@@ -318,15 +318,19 @@ angular.module('app')
 	for(lang in translations){
 		$translateProvider.translations(lang, translations[lang]);
 	}
-
-
 	$translateProvider.preferredLanguage('en');
+
+	if ( ionic.Platform.isIOS() ) {
+		$ionicConfigProvider.views.swipeBackEnabled(false);
+	}
 
   if ( window.localStorage['session_id'] ) {
 		$urlRouterProvider.otherwise('app/home');
 	} else {
 		$urlRouterProvider.otherwise('/login');
 	}
+
+	$httpProvider.useApplyAsync(true);
 
 	$httpProvider.interceptors.push(function($rootScope, $cordovaNetwork) {
 		return {

@@ -3,30 +3,32 @@
 
 function MenuController($scope, $ionicModal, $ionicPopover, GetCustomerInfo, AuthenticationService, $location, $ionicHistory) {
 	$scope.data = [];
-    $scope.mode = localStorage['mode'];
+  $scope.mode = localStorage['mode'];
 
 	GetCustomerInfo.Info(function(response) {
 		$scope.data.customer_name = response.data.data['customer_name'];
 	});
 
-    $scope.getIncludeList = function() {
-        if ( $scope.mode == 'client' ) {
-            return "app/shared/sidebar/menu-list-client.html";
-        } else if ( $scope.mode == 'manager' ) {
-            return "app/shared/sidebar/menu-list-manager.html";
-        }
-    }
+  $scope.getIncludeList = function() {
+      if ( $scope.mode == 'client' ) {
+          return "app/shared/sidebar/menu-list-client.html";
+      } else if ( $scope.mode == 'manager' ) {
+          return "app/shared/sidebar/menu-list-manager.html";
+      }
+  }
 
 	$scope.logOut = function() {
     	AuthenticationService.LogOut(function(response) {
             if( response.status == 200 ) {
-                $ionicHistory.nextViewOptions({
-					disableBack: true
-				});
-				$location.path('/login');
+              $ionicHistory.nextViewOptions({
+								disableBack: true
+							});
+							$location.path('/login');
             } else {
                 $scope.error = response.message;
+								$location.path('/login');
             }
+						window.location.reload(true);
         });
 	}
 

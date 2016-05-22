@@ -7,14 +7,17 @@
     </div>
     <ion-content padding="true" class="has-header has-subheader">
     	<div class="spacer" style="width: auto; height: 15px;"></div>
-    	<ion-refresher
+		<ion-refresher
 		    pulling-text="{{ 'PULL_TO_REFRESH' | translate }}"
 		    on-refresh="loadInvoices()">
 		</ion-refresher>
-        <ion-list>
-            <ion-item ng-repeat="invoice in invoices | filter:search" style="padding: 0px !important;" ng-click="openInvoiceDetails(invoice)">
-                <ng-include src="'app/components/invoices/invoice-item.html'" />
-            </ion-item>
-        </ion-list>
+    <ion-list>
+        <ion-item ng-repeat="invoice in invoices | filter:search" style="padding: 0px !important;" ng-click="openInvoiceDetails(invoice)">
+            <ng-include src="'app/components/invoices/invoice-item.html'" />
+        </ion-item>
+    </ion-list>
+		<div ng-if="invoices !== undefined && !invoices.length" class="no-results">
+			<p>{{ 'NO_RESULTS' | translate }}</p>
+		</div>
     </ion-content>
 </ion-view>

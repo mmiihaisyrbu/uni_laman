@@ -45,30 +45,32 @@
 			{{ 'DOCUMENTS' | translate }}
 		</a>
 		<div class="list card" ng-show="container.driver_name != null">
-		    <div class="item item-divider">{{ 'DRIVER_INFO' | translate }}</div>
+		    <div class="item item-divider"
+          ng-click="copyToClipboard(container.driver_name + '\n' + container.auto_no + '\n' + container.driver_phone, 'DRIVER_INFO')"
+          >{{ 'DRIVER_INFO' | translate }}</div>
             <div class="item item-body">
             	<ul class="list">
 					<li class="item">
 						<div style="float:left">{{ 'DRIVER' | translate }}</div>
-						<div style="float:right" class="selectable-text">{{container.driver_name}}</div>
+						<div style="float:right">{{container.driver_name}}</div>
 					</li>
 					<li class="item">
 						<div style="float:left">{{ 'AUTO_NO' | translate }}</div>
-						<div style="float:right" class="selectable-text">{{container.auto_no}}</div>
+						<div style="float:right">{{container.auto_no}}</div>
 					</li>
 					<li class="item">
 						<div style="float:left">{{ 'PHONE' | translate }}</div>
 						<div>
 							<ul>
-							    <li ng-repeat="phone in container.driver_phone.split(',')">
-			                		<div class="item item-button-right selectable-text">
-										{{phone}}
+  					    <li ng-repeat="phone in container.driver_phone.split(',')">
+              		<div class="item item-button-right selectable-text">
+  									{{phone}}
 										<a class="button button-balanced ink" ng-href="tel: {{phone}}">
-											<i class="icon ion-ios-telephone"></i>
+  										<i class="icon ion-ios-telephone"></i>
 										</a>
 									</div>
-			            		</li>
-			                </ul>
+            		</li>
+              </ul>
 						</div>
 					</li>
 			    </ul>

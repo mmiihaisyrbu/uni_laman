@@ -1,0 +1,21 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-positive">
+    <h1 class="title">{{ 'CLIENTS_LIST' | translate }}</h1>
+  </ion-header-bar>
+  <ion-content>
+    <div class="list">
+      <label class="item item-input">
+        <input type="text" placeholder="Order No" ng-model="search_filters.order_no">
+      </label>
+      <label class="item item-input">
+        <input type="text" placeholder="Customer order No" ng-model="search_filters.customer_order_no">
+      </label>
+      <label class="item item-input">
+        <input type="text" placeholder="Cont No" ng-model="search_filters.cont_no">
+      </label>
+    </div>
+  </ion-content>
+  <button class="button button-balanced button-fab button-fab-bottom-right" ng-click="applyFilters()">
+      <i class="icon ion-checkmark-round"></i>
+  </button>
+</ion-modal-view>

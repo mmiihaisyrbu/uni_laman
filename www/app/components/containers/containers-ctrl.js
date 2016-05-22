@@ -23,6 +23,7 @@ function ContainersController($scope, GetContainers, $location, ContainerDetails
     $scope.is_last = false;
     $scope.order_by = 1;
     $scope.activeLoad = false;
+		$scope.extended_search = '';
 
     $scope.sortList = [{
         name: 'ETA_MAX_TO_MIN',
@@ -38,38 +39,43 @@ function ContainersController($scope, GetContainers, $location, ContainerDetails
         value: 4
     }];
 
-    var params = "/q=0";
-
     $scope.loadContainers = function(more) {
-        console.log(more);
+			var params = "/q=0";
+			
     	more = typeof more !== 'undefined' ? more : false;
 
-        if ( $stateParams.archive != undefined ) {
-            params += "&archive=" + $stateParams.archive;
-        }
+      if ( $stateParams.archive != undefined ) {
+        params += "&archive=" + $stateParams.archive;
+      }
 
-        if ( $stateParams.client_id != undefined ) {
-            params += "&orderer=" + $stateParams.client_id;
-        }
+      if ( $stateParams.client_id != undefined ) {
+        params += "&orderer=" + $stateParams.client_id;
+      }
+			if ( $stateParams.params != undefined ) {
+				params += decodeURIComponent($stateParams.params);
+			}
+			if ( $scope.extended_search != '' ) {
+				params += '&extended_search=' + $scope.extended_search;
+			}
 
     	if ( more === true && $scope.containers !== [] ) {
-            $scope.offset++; $scope.offset_p = '&offset='+$scope.offset; 
+        $scope.offset++; $scope.offset_p = '&offset='+$scope.offset;
+	    } else {
+        $scope.offset_p = '';
+        $scope.is_last = false;
+        $scope.containers = [];
+      }
+
+      GetContainers.ContainersList(params+$scope.offset_p+'&order_by='+$scope.order_by, function(response) {
+        if ( response.data.data.length > 0 ) {
+        	$scope.containers = $scope.containers.concat(response.data.data);
         } else {
-            $scope.offset_p = '';
-            $scope.is_last = false;
-            $scope.containers = [];
+        	$scope.is_last = true;
         }
 
-        GetContainers.ContainersList(params+$scope.offset_p+'&order_by='+$scope.order_by, function(response) {
-            if ( response.data.data.length > 0 ) {
-            	$scope.containers = $scope.containers.concat(response.data.data);
-            } else {
-            	$scope.is_last = true;
-            }
-
-			$scope.$broadcast('scroll.infiniteScrollComplete');
-            $scope.activeLoad = true;
-        });
+				$scope.$broadcast('scroll.infiniteScrollComplete');
+	      $scope.activeLoad = true;
+			});
     }
 
     //$scope.loadContainers();
@@ -122,6 +128,12 @@ function ContainersController($scope, GetContainers, $location, ContainerDetails
         $scope.order_by = order_by;
         $scope.loadContainers();
     }
+		$scope.showSerchBar = function() {
+			$scope.show_search_bar = !$scope.show_search_bar;
+			if ( !$scope.show_search_bar ) {
+				$scope.loadContainers();
+			}
+		};
 }
 
 function GetContainers($http) {
@@ -136,7 +148,7 @@ function GetContainers($http) {
             .then(function(data, status, headers, config) {
                 console.log(JSON.stringify(data));
                 callback(data);
-            }, 
+            },
             function(response) { // optional
                 // bad request
             });
@@ -144,6 +156,35 @@ function GetContainers($http) {
     return service;
 }
 
-function containerDetailsController($scope, ContainerDetailsStorage) {
+function containerDetailsController($scope, ContainerDetailsStorage, $cordovaClipboard, $cordovaToast, $translate) {
 	$scope.container = ContainerDetailsStorage.getData();
+
+	$translate('COPIED_SUCCESSFULLY').then(function (copied_successfully) {
+    $scope.copied_successfully = copied_successfully;
+  });
+
+	$scope.showToast = function(text) {
+		$cordovaToast
+	    .show(text, 'short', 'bottom')
+	    .then(function(success) {
+	      // success
+	    }, function (error) {
+	      // error
+	    });
+	}
+
+	$scope.copyToClipboard = function(text, copied_field) {
+		$translate(copied_field).then(function (copied_field) {
+	    $scope.copied_field = copied_field;
+	  });
+
+		$cordovaClipboard
+	  .copy(text)
+	  .then(function () {
+	    // success
+			$scope.showToast($scope.copied_field + ' ' + $scope.copied_successfully);
+	  }, function () {
+	    // error
+	  });
+	}
 }

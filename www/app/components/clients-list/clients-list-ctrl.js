@@ -3,47 +3,81 @@ angular.module('app.clients-list')
 	.factory('GetClients', GetClients);
 
 
-function ClientsListController($scope, GetClients) {
+function ClientsListController($scope, GetClients, $ionicModal) {
 	$scope.clients = [];
-    $scope.offset = 0;
-    $scope.offset_p = '';
-    $scope.is_last = false;
-    $scope.order_by = 1;
-    $scope.activeLoad = false;
+	$scope.search_filters = {};
+  $scope.offset = 0;
+  $scope.offset_p = '';
+  $scope.is_last = false;
+  $scope.order_by = 1;
+  $scope.activeLoad = false;
+	$scope.show_search_bar = false;
+	$scope.extended_search = '';
 
-	var params = localStorage['cont_status']||"/q=0";
+  $scope.loadClientsList = function(more) {
+		var params = '';
 
-    $scope.loadClientsList = function(more) {
-        console.log(more);
-    	more = typeof more !== 'undefined' ? more : false;
+		angular.forEach($scope.search_filters, function(value, key) {
+		  console.log(key + ': ' + value);
+			params += '&'+key+'='+value;
+		});
 
-    	if ( more === true && $scope.clients !== [] ) {
-            $scope.offset++; $scope.offset_p = '&offset='+$scope.offset; 
-        } else {
-            $scope.offset_p = '';
-            $scope.is_last = false;
-            $scope.clients = [];
-        }
+		if ( $scope.extended_search != '' ) {
+			params += '&extended_search=' + $scope.extended_search;
+		}
 
-        GetClients.ClientsList(params+$scope.offset_p+'&order_by='+$scope.order_by, function(response) {
-            if ( response.data.data.length > 0 ) {
-            	$scope.clients = $scope.clients.concat(response.data.data);
-            } else {
-            	$scope.is_last = true;
-            }
+  	more = typeof more !== 'undefined' ? more : false;
 
-			$scope.$broadcast('scroll.infiniteScrollComplete');
-            $scope.activeLoad = true;
-        });
+  	if ( more === true && $scope.clients !== [] ) {
+      $scope.offset++; $scope.offset_p = '&offset='+$scope.offset;
+    } else {
+      $scope.offset_p = '';
+      $scope.is_last = false;
+      $scope.clients = [];
     }
 
-    $scope.expandItem = function(client) {
-        angular.forEach($scope.clients, function (currentClient) {
-            currentClient.showfull = currentClient === client && !currentClient.showfull;
-        });
-    };
+    GetClients.ClientsList('/q=0'+params+$scope.offset_p+'&order_by='+$scope.order_by, function(response) {
+      if ( response.data.data.length > 0 ) {
+      	$scope.clients = $scope.clients.concat(response.data.data);
+				$scope.clients['params'] = '&params=' + encodeURIComponent(params);
+      } else {
+      	$scope.is_last = true;
+      }
 
-    $scope.loadClientsList();
+			$scope.$broadcast('scroll.infiniteScrollComplete');
+	    $scope.activeLoad = true;
+    });
+  }
+
+  $scope.expandItem = function(client) {
+    angular.forEach($scope.clients, function (currentClient) {
+      currentClient.showfull = currentClient === client && !currentClient.showfull;
+    });
+  };
+
+  $scope.loadClientsList();
+
+	$ionicModal.fromTemplateUrl('app/components/clients-list/clients-list-filters.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+  $scope.openFilters = function() {
+    $scope.modal.show();
+  };
+
+	$scope.applyFilters = function() {
+		$scope.modal.hide();
+		$scope.loadClientsList();
+	};
+
+	$scope.showSerchBar = function() {
+		$scope.show_search_bar = !$scope.show_search_bar;
+		if ( !$scope.show_search_bar ) {
+			$scope.loadClientsList();
+		}
+	};
 }
 
 function GetClients($http) {
@@ -58,7 +92,7 @@ function GetClients($http) {
             .then(function(data, status, headers, config) {
                 console.log(JSON.stringify(data));
                 callback(data);
-            }, 
+            },
             function(response) { // optional
                 // bad request
             });

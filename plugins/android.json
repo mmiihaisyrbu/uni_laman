@@ -28,6 +28,9 @@
         },
         "cordova-plugin-console": {
             "PACKAGE_NAME": "com.ionicframework.unilaman171672"
+        },
+        "com.verso.cordova.clipboard": {
+            "PACKAGE_NAME": "com.ionicframework.unilaman171672"
         }
     },
     "dependent_plugins": {

@@ -21,14 +21,17 @@ function InvoicesController($scope, GetInvoices, $location, InvoiceDetailsStorag
     var params = "/q=0";
 
     if ( $stateParams.client_id != undefined ) {
-        params += "&orderer=" + $stateParams.client_id;
+      params += "&orderer=" + $stateParams.client_id;
     }
+		if ( $stateParams.params != undefined ) {
+			params += decodeURIComponent($stateParams.params);
+		}
 
     $scope.loadInvoices = function() {
-        GetInvoices.InvoicesList(params, function(response) {
-            console.log(response.data.data);
-            $scope.invoices = response.data.data;
-		});
+      GetInvoices.InvoicesList(params, function(response) {
+        console.log(response.data.data);
+        $scope.invoices = response.data.data;
+			});
     }
 
     $scope.loadInvoices();
@@ -41,10 +44,10 @@ function InvoicesController($scope, GetInvoices, $location, InvoiceDetailsStorag
     };
 
     $scope.openInvoiceDetails = function(invoice) {
-        invoice.containers = $scope.addHr(invoice.containers);
-		InvoiceDetailsStorage.setData(invoice);
-		$location.path('/app/invoice-info');
-	};
+	    invoice.containers = $scope.addHr(invoice.containers);
+			InvoiceDetailsStorage.setData(invoice);
+			$location.path('/app/invoice-info');
+		};
 }
 
 function invoiceDetailsController($scope, InvoiceDetailsStorage) {
@@ -63,7 +66,7 @@ function GetInvoices($http) {
             .then(function(data, status, headers, config) {
                 console.log(JSON.stringify(data));
                 callback(data);
-            }, 
+            },
             function(response) { // optional
                 // bad request
             });

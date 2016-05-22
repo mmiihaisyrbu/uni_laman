@@ -31,6 +31,10 @@
                         {
                             "xml": "<feature name=\"PushNotification\"><param name=\"android-package\" value=\"com.adobe.phonegap.push.PushPlugin\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Clipboard\"><param name=\"android-package\" value=\"com.verso.cordova.clipboard.Clipboard\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -138,6 +142,9 @@
         },
         "cordova-plugin-console": {
             "PACKAGE_NAME": "com.ionicframework.unilaman171672"
+        },
+        "com.verso.cordova.clipboard": {
+            "PACKAGE_NAME": "com.ionicframework.unilaman171672"
         }
     },
     "dependent_plugins": {},
@@ -194,6 +201,13 @@
             "clobbers": [
                 "PushNotification"
             ]
+        },
+        {
+            "file": "plugins/com.verso.cordova.clipboard/www/clipboard.js",
+            "id": "com.verso.cordova.clipboard.Clipboard",
+            "clobbers": [
+                "cordova.plugins.clipboard"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -204,6 +218,7 @@
         "cordova-plugin-whitelist": "1.2.0",
         "cordova-plugin-x-toast": "2.2.3",
         "phonegap-plugin-push": "1.6.3",
-        "cordova-plugin-console": "1.0.4-dev"
+        "cordova-plugin-console": "1.0.4-dev",
+        "com.verso.cordova.clipboard": "0.1.0"
     }
 }

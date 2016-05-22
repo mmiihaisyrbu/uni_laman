@@ -48,7 +48,10 @@ var translations = {
 		"ARCHIVE": "Archive",
 		"CLIENTS_LIST": "Clients list",
 		"PUSH_MESSAGES": "Notifications",
-		"TIME_OF_SENDING": "Time of sending"
+		"TIME_OF_SENDING": "Time of sending",
+		"COPIED_SUCCESSFULLY": "copied successfully",
+		"FILTER": "Filter",
+		"NO_RESULTS": "No Results"
 	},
 	"ru": {
 		"LANGUAGE": "Язык",
@@ -100,7 +103,10 @@ var translations = {
 		"ARCHIVE": "Архив",
 		"CLIENTS_LIST": "Список клиентов",
 		"PUSH_MESSAGES": "Уведомления",
-		"TIME_OF_SENDING": "Время отправки"
+		"TIME_OF_SENDING": "Время отправки",
+		"COPIED_SUCCESSFULLY": "скопирована",
+		"FILTER": "Фильтр",
+		"NO_RESULTS": "Нет результатов"
 	},
 	"ua": {
 		"LANGUAGE": "Мова",
@@ -152,7 +158,10 @@ var translations = {
 		"ARCHIVE": "Архів",
 		"CLIENTS_LIST": "Список клієнтів",
 		"PUSH_MESSAGES": "Повідомлення",
-		"TIME_OF_SENDING": "Час відправлення"
+		"TIME_OF_SENDING": "Час відправлення",
+		"COPIED_SUCCESSFULLY": "скопійована",
+		"FILTER": "Фільтр",
+		"NO_RESULTS": "Немає результатів"
 	}
 }
 
@@ -167,153 +176,7 @@ angular.module('app')
   //templateUrl: '/img/loader.gif'
 })
 
-.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $translateProvider, $ionicConfigProvider) {
-
-  $stateProvider
-
-  	.state('app', {
-        url: '/app',
-        abstract: true,
-        templateUrl: 'app/shared/sidebar/menu.html',
-        controller: 'MenuController'
-    })
-
-    .state('login', {
-      url: '/login',
-      controller: 'LoginController as login',
-      templateUrl: 'app/components/authentication/login.html',
-      hideMenus: true
-    })
-
-    .state('app.home', {
-        url: '/home',
-        views: {
-            'menuContent': {
-                templateUrl: 'app/components/home/home.html',
-                controller: 'HomeController'
-            }
-        }
-    })
-
-	.state('app.containers', {
-		url: '/containers?archive&client_id',
-		views: {
-			'menuContent': {
-				templateUrl: 'app/components/containers/containers.html',
-				controller: 'ContainersController'
-			}
-		}
-	})
-
-	.state('app.clients-list', {
-		url: '/clients-list',
-		views: {
-			'menuContent': {
-				templateUrl: 'app/components/clients-list/clients-list.html',
-				controller: 'ClientsListController'
-			}
-		}
-	})
-
-	.state('app.push-messages', {
-		url: '/push-messages',
-		views: {
-			'menuContent': {
-				templateUrl: 'app/components/push-messages/push-messages.html',
-				controller: 'PushMessagesCtrl'
-			}
-		}
-	})
-
-	.state('app.container-info', {
-		url: '/container-info',
-		views: {
-			'menuContent': {
-				templateUrl: 'app/components/containers/container-info.html',
-				controller: 'containerDetailsController'
-			}
-		}
-	})
-
-	.state('app.reviews', {
-		url: '/reviews',
-		views: {
-			'menuContent': {
-				templateUrl: 'app/components/reviews/reviews.html',
-				controller: 'ReviewsController'
-			}
-		}
-	})
-
-	.state('app.review-add', {
-		url: '/review-add',
-		views: {
-			'menuContent': {
-				templateUrl: 'app/components/reviews/review-add.html',
-				controller: 'ReviewsController'
-			}
-		}
-	})
-
-	.state('app.contact', {
-		url: '/contact',
-		views: {
-			'menuContent': {
-				templateUrl: 'app/components/contact/contact.html',
-				controller: 'ContactController as contact'
-			}
-		}
-	})
-
-	.state('app.contact-mail', {
-		url: '/contact-mail',
-		views: {
-			'menuContent': {
-				templateUrl: 'app/components/contact/mail.html',
-				controller: 'SendMailController as mail'
-			}
-		}
-	})
-
-	.state('app.invoices', {
-		url: '/invoices?client_id',
-		views: {
-			'menuContent': {
-				templateUrl: 'app/components/invoices/invoices.html',
-				controller: 'InvoicesController'
-			}
-		}
-	})
-
-	.state('app.invoice-info', {
-		url: '/invoice-info',
-		views: {
-			'menuContent': {
-				templateUrl: 'app/components/invoices/invoice-info.html',
-				controller: 'invoiceDetailsController'
-			}
-		}
-	})
-
-	.state('app.documents', {
-		url: '/documents',
-		views: {
-			'menuContent': {
-				templateUrl: 'app/components/documents/documents.html',
-				controller: 'DocumentsController'
-			}
-		}
-	})
-
-	.state('app.settings', {
-		url: '/settings',
-		views: {
-			'menuContent': {
-				templateUrl: 'app/components/settings/settings.html',
-				controller: 'SettingsController'
-			}
-		}
-	});
+.config(function ($httpProvider, $translateProvider, $ionicConfigProvider) {
 
 	for(lang in translations){
 		$translateProvider.translations(lang, translations[lang]);
@@ -322,12 +185,6 @@ angular.module('app')
 
 	if ( ionic.Platform.isIOS() ) {
 		$ionicConfigProvider.views.swipeBackEnabled(false);
-	}
-
-  if ( window.localStorage['session_id'] ) {
-		$urlRouterProvider.otherwise('app/home');
-	} else {
-		$urlRouterProvider.otherwise('/login');
 	}
 
 	$httpProvider.useApplyAsync(true);

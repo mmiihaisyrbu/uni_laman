@@ -4,19 +4,19 @@
 			<pre><b>{{client.name}}</b></pre>
 		</div>
 		<div ng-show="client.showfull">
-			<ion-item href="#/app/containers?archive=false&client_id={{client.id}}">
+			<ion-item href="#/app/containers?archive=false&client_id={{client.id}}{{clients.params}}">
 				<i class="icon ion-archive menu-icon"></i>
 				{{ 'CONTAINERS_LIST' | translate }}
 				&nbsp;
 				{{client.count_conts}}
 			</ion-item>
-			<ion-item href="#/app/containers?archive=true&client_id={{client.id}}">
+			<ion-item href="#/app/containers?archive=true&client_id={{client.id}}{{clients.params}}">
 				<i class="icon ion-archive menu-icon"></i>
 				{{ 'CONTAINERS_LIST' | translate }} ({{ 'ARCHIVE' | translate }})
 				&nbsp;
 				{{client.count_conts_archive}}
 			</ion-item>
-			<ion-item href="#/app/invoices?client_id={{client.id}}">
+			<ion-item href="#/app/invoices?client_id={{client.id}}{{clients.params}}">
 				<i class="icon ion-card menu-icon"></i>
 				{{ 'INVOICES' | translate }}&nbsp;
 				{{client.count_invoices}}

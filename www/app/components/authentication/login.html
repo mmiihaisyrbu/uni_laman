@@ -7,25 +7,25 @@
             </div>
         </div>
         <div class="list">
-            <ion-md-input 
-                placeholder="{{ 'USERNAME' | translate }}" 
-                highlight-color="balanced" 
-                type="text" 
+            <ion-md-input
+                placeholder="{{ 'USERNAME' | translate }}"
+                highlight-color="balanced"
+                type="text"
                 ng-model="login.username"
                 >
             </ion-md-input>
             <ion-md-input 
-                placeholder="{{ 'PASSWORD' | translate }}" 
-                highlight-color="energized" 
-                type="password" 
+                placeholder="{{ 'PASSWORD' | translate }}"
+                highlight-color="energized"
+                type="password"
                 ng-model="login.password"
                 >
             </ion-md-input>
         </div>
         <div class="padding">
-            <button 
-                class="button button-full button-positive ink" 
-                ng-disabled="!login.username || !login.password" 
+            <button
+                class="button button-full button-positive ink"
+                ng-disabled="!login.username || !login.password"
                 ng-click="login.logIn()"
                 >{{ 'LOGIN' | translate }}
             </button>

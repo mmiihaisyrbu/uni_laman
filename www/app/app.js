@@ -51,7 +51,9 @@ var translations = {
 		"TIME_OF_SENDING": "Time of sending",
 		"COPIED_SUCCESSFULLY": "copied successfully",
 		"FILTER": "Filter",
-		"NO_RESULTS": "No Results"
+		"NO_RESULTS": "No Results",
+		"COPY": "copy",
+		"PLAN_FOR_TODAY": "Plan for today"
 	},
 	"ru": {
 		"LANGUAGE": "Язык",
@@ -106,7 +108,9 @@ var translations = {
 		"TIME_OF_SENDING": "Время отправки",
 		"COPIED_SUCCESSFULLY": "скопирована",
 		"FILTER": "Фильтр",
-		"NO_RESULTS": "Нет результатов"
+		"NO_RESULTS": "Нет результатов",
+		"COPY": "скопировать",
+		"PLAN_FOR_TODAY": "План на сегодня"
 	},
 	"ua": {
 		"LANGUAGE": "Мова",
@@ -161,7 +165,9 @@ var translations = {
 		"TIME_OF_SENDING": "Час відправлення",
 		"COPIED_SUCCESSFULLY": "скопійована",
 		"FILTER": "Фільтр",
-		"NO_RESULTS": "Немає результатів"
+		"NO_RESULTS": "Немає результатів",
+		"COPY": "скопіювати",
+		"PLAN_FOR_TODAY": "План на сьогодні"
 	}
 }
 
@@ -189,7 +195,7 @@ angular.module('app')
 
 	$httpProvider.useApplyAsync(true);
 
-	$httpProvider.interceptors.push(function($rootScope, $cordovaNetwork) {
+	$httpProvider.interceptors.push(function($rootScope, $cordovaNetwork, $location) {
 		return {
 			request: function(config) {
 				$rootScope.$broadcast('loading:show')
@@ -200,9 +206,16 @@ angular.module('app')
 				return response
 			},
 			requestError: function(config) {
-				//
+
 			},
 			responseError: function(response) {
+				console.log(response.data);
+				if ( (response.data.status == 401 || response.data.status == 500) && response.data.code != 1 && response.data.code != 2 ) {
+					window.localStorage.removeItem("session_id");
+			    window.localStorage.removeItem("mode");
+					$location.path('/login');
+					window.location.reload(true);
+				}
 				$rootScope.$broadcast('loading:hide');
 				if ( ! $cordovaNetwork.isOnline() ) {
 					$rootScope.showToast('The internet is disconnected on your device!');
@@ -273,10 +286,16 @@ angular.module('app')
 
 		var push = PushNotification.init({
             "android": {
-                "senderID": "159592749979",
-								"forceShow" : "true"
+              "senderID": "159592749979",
+							"forceShow" : "true"
             },
-            "ios": {"alert": "true", "badge": "true", "sound": "true"},
+            "ios": {
+							"senderID": "159592749979",
+							"alert": "true",
+							"badge": "true",
+							"sound": "true",
+							"gcmSandbox": "false"
+						},
             "windows": {}
         });
 
@@ -288,7 +307,7 @@ angular.module('app')
 
         push.on('notification', function(data) {
 					//cordova.plugins.notification.badge.set(1);
-					cordova.plugins.notification.badge.increase();
+					//cordova.plugins.notification.badge.increase();
 
 					console.log(app_state);
         	console.log("notification event");

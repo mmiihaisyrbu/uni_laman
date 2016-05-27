@@ -14,6 +14,16 @@
         &nbsp;&nbsp;&nbsp;&nbsp;
         {{ 'CLIENTS_LIST' | translate }}
     </ion-item>
+		<ion-item nav-clear
+        menu-close
+        href="#/app/today-plan"
+        ng-click="menu.item_sel='today-plan'"
+        ng-class="{'menu-item-active': menu.item_sel == 'today-plan'}"
+        >
+        <i class="icon ion-document-text menu-icon"></i>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        {{ 'PLAN_FOR_TODAY' | translate }}
+    </ion-item>
     <hr>
     <ion-item nav-clear
         menu-close

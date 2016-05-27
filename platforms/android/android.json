@@ -35,6 +35,10 @@
                         {
                             "xml": "<feature name=\"Clipboard\"><param name=\"android-package\" value=\"com.verso.cordova.clipboard.Clipboard\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"SplashScreen\"><param name=\"android-package\" value=\"org.apache.cordova.splashscreen.SplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -145,6 +149,9 @@
         },
         "com.verso.cordova.clipboard": {
             "PACKAGE_NAME": "com.ionicframework.unilaman171672"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.ionicframework.unilaman171672"
         }
     },
     "dependent_plugins": {},
@@ -208,6 +215,13 @@
             "clobbers": [
                 "cordova.plugins.clipboard"
             ]
+        },
+        {
+            "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+            "id": "cordova-plugin-splashscreen.SplashScreen",
+            "clobbers": [
+                "navigator.splashscreen"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -219,6 +233,7 @@
         "cordova-plugin-x-toast": "2.2.3",
         "phonegap-plugin-push": "1.6.3",
         "cordova-plugin-console": "1.0.4-dev",
-        "com.verso.cordova.clipboard": "0.1.0"
+        "com.verso.cordova.clipboard": "0.1.0",
+        "cordova-plugin-splashscreen": "3.2.2"
     }
 }

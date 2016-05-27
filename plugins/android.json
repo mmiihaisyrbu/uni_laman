@@ -31,6 +31,9 @@
         },
         "com.verso.cordova.clipboard": {
             "PACKAGE_NAME": "com.ionicframework.unilaman171672"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.ionicframework.unilaman171672"
         }
     },
     "dependent_plugins": {

@@ -1,53 +1,53 @@
 <ion-view title="{{ 'CONTACT_MANAGER' | translate }}">
-    <ion-content padding="true" class="has-header">
-        <div class="list card">
-	        <div class="item item-divider">{{ 'CONTACT_SALES_MANAGER' | translate }}</div>
-            <div class="item item-body">
-                <div class="item item-button-right">
+  <ion-content padding="true" class="has-header">
+    <div class="list card">
+      <div class="item item-divider">{{ 'CONTACT_SALES_MANAGER' | translate }}</div>
+      <div class="item item-body">
+        <div class="item item-button-right">
 					{{contact.sales_name}}
 					<a ng-click="openMailWindow(contact.sales_email, contact.sales_name)" class="button button-calm ink">
 						<i class="icon ion-ios-email"></i>
 					</a>
 				</div>
-                <div>
-                	<ul>
-					    <li ng-repeat="phone in formatPhone(contact.sales_phone)">
-	                		<div class="list">
-								<div class="item item-button-right">
-									{{phone}}
-									<a class="button button-balanced ink" ng-href="tel: {{phone}}">
-										<i class="icon ion-ios-telephone"></i>
-									</a>
-								</div>
-							</div>
-	            		</li>
-	                </ul>
-                </div>
-            </div>
+        <div>
+        	<ul>
+  			    <li ng-repeat="phone in formatPhone(contact.sales_phone)">
+          		<div class="list">
+    						<div class="item item-button-right">
+    							{{phone}}
+  								<a class="button button-balanced ink" ng-href="tel: {{phone}}">
+    								<i class="icon ion-ios-telephone"></i>
+  								</a>
+  							</div>
+  						</div>
+        		</li>
+          </ul>
         </div>
-        <div class="list card">
-	        <div class="item item-divider">{{ 'CONTACT_CHIEF_OF_SALES' | translate }}</div>
-            <div class="item item-body">
-                <div class="item item-button-right">
+      </div>
+    </div>
+    <div class="list card">
+      <div class="item item-divider">{{ 'CONTACT_CHIEF_OF_SALES' | translate }}</div>
+      <div class="item item-body">
+        <div class="item item-button-right">
 					{{contact.sales_chief_name}}
 					<a ng-click="openMailWindow(contact.sales_chief_email, contact.sales_chief_name)" class="button button-calm ink">
 						<i class="icon ion-ios-email"></i>
 					</a>
 				</div>
-                <div>
-                	<ul>
-					    <li ng-repeat="phone in formatPhone(contact.sales_chief_phone)">
-	                		<!--<a class="button button-icon icon ion-ios-telephone" ng-href="tel: {{phone}}">&nbsp;Call {{phone}}</a>-->
-	                		<div class="item item-button-right">
-								{{phone}}
-								<a class="button button-balanced ink" ng-href="tel: {{phone}}">
-									<i class="icon ion-ios-telephone"></i>
-								</a>
-							</div>
-	            		</li>
-	                </ul>
-                </div>
-            </div>
+        <div>
+        	<ul>
+				    <li ng-repeat="phone in formatPhone(contact.sales_chief_phone)">
+          		<!--<a class="button button-icon icon ion-ios-telephone" ng-href="tel: {{phone}}">&nbsp;Call {{phone}}</a>-->
+          		<div class="item item-button-right">
+							{{phone}}
+							<a class="button button-balanced ink" href="tel: {{phone}}">
+								<i class="icon ion-ios-telephone"></i>
+							</a>
+  						</div>
+        		</li>
+          </ul>
         </div>
-    </ion-content>
+      </div>
+    </div>
+  </ion-content>
 </ion-view>

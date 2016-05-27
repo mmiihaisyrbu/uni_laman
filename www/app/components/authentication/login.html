@@ -7,6 +7,7 @@
             </div>
         </div>
         <div class="list">
+          <form ng-submit="login.logIn()">
             <ion-md-input
                 placeholder="{{ 'USERNAME' | translate }}"
                 highlight-color="balanced"
@@ -14,13 +15,14 @@
                 ng-model="login.username"
                 >
             </ion-md-input>
-            <ion-md-input 
+            <ion-md-input
                 placeholder="{{ 'PASSWORD' | translate }}"
                 highlight-color="energized"
                 type="password"
                 ng-model="login.password"
                 >
             </ion-md-input>
+          </form>
         </div>
         <div class="padding">
             <button

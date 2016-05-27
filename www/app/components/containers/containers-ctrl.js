@@ -41,7 +41,7 @@ function ContainersController($scope, GetContainers, $location, ContainerDetails
 
     $scope.loadContainers = function(more) {
 			var params = "/q=0";
-			
+
     	more = typeof more !== 'undefined' ? more : false;
 
       if ( $stateParams.archive != undefined ) {
@@ -53,6 +53,9 @@ function ContainersController($scope, GetContainers, $location, ContainerDetails
       }
 			if ( $stateParams.params != undefined ) {
 				params += decodeURIComponent($stateParams.params);
+			}
+			if ( $stateParams.extended_search != undefined ) {
+				$scope.extended_search = $stateParams.extended_search;
 			}
 			if ( $scope.extended_search != '' ) {
 				params += '&extended_search=' + $scope.extended_search;
@@ -69,6 +72,9 @@ function ContainersController($scope, GetContainers, $location, ContainerDetails
       GetContainers.ContainersList(params+$scope.offset_p+'&order_by='+$scope.order_by, function(response) {
         if ( response.data.data.length > 0 ) {
         	$scope.containers = $scope.containers.concat(response.data.data);
+					if ( $scope.containers[0].count_rows <= 20 ) {
+						$scope.is_last = true;
+					}
         } else {
         	$scope.is_last = true;
         }
@@ -81,11 +87,11 @@ function ContainersController($scope, GetContainers, $location, ContainerDetails
     //$scope.loadContainers();
 
     $scope.openContainerDetails = function(container) {
-        localStorage['cont_id'] = container.cont_id;
-        console.log(localStorage['cont_id']);
+      localStorage['cont_id'] = container.cont_id;
+      console.log(localStorage['cont_id']);
     	ContainerDetailsStorage.setData(container);
-		$location.path('/app/container-info');
-	};
+			$location.path('/app/container-info');
+		};
 
     /*$scope.showFilterBar = function () {
       filterBarInstance = $ionicFilterBar.show({
@@ -132,6 +138,7 @@ function ContainersController($scope, GetContainers, $location, ContainerDetails
 			$scope.show_search_bar = !$scope.show_search_bar;
 			if ( !$scope.show_search_bar ) {
 				$scope.loadContainers();
+				$scope.offset = 0;
 			}
 		};
 }

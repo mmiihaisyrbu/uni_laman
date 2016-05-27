@@ -2,11 +2,13 @@ angular.module('app.push-messages')
 	.controller('PushMessagesCtrl', PushMessagesCtrl)
 	.factory('GetPushMessages', GetPushMessages);
 
-function PushMessagesCtrl($scope, GetPushMessages) {
+function PushMessagesCtrl($scope, GetPushMessages, $location) {
 	$scope.messages = [];
 
 	$scope.loadPushMessages = function() {
-		cordova.plugins.notification.badge.clear();
+		if ( ionic.Platform.isAndroid() || ionic.Platform.isIOS() ) {
+			cordova.plugins.notification.badge.clear();
+		}
 		GetPushMessages.MessagesList(function(response) {
 			$scope.messages = response.data.data;
 		});
@@ -16,6 +18,14 @@ function PushMessagesCtrl($scope, GetPushMessages) {
 		console.log("push view enter");
 		$scope.loadPushMessages();
 	});
+
+	$scope.goToOrder = function(order_no) {
+		if ( localStorage['mode'] == 'manager' ) {
+			$location.path('/app/clients-list').search({'extended_search': order_no});
+		} else {
+			$location.path('/app/containers').search({'extended_search': order_no});
+		}
+	}
 }
 
 function GetPushMessages($http) {

@@ -3,7 +3,7 @@ angular.module('app.clients-list')
 	.factory('GetClients', GetClients);
 
 
-function ClientsListController($scope, GetClients, $ionicModal) {
+function ClientsListController($scope, GetClients, $ionicModal, $stateParams) {
 	$scope.clients = [];
 	$scope.search_filters = {};
   $scope.offset = 0;
@@ -21,6 +21,10 @@ function ClientsListController($scope, GetClients, $ionicModal) {
 		  console.log(key + ': ' + value);
 			params += '&'+key+'='+value;
 		});
+
+		if ( $stateParams.extended_search != undefined ) {
+			$scope.extended_search = $stateParams.extended_search;
+		}
 
 		if ( $scope.extended_search != '' ) {
 			params += '&extended_search=' + $scope.extended_search;
@@ -40,6 +44,9 @@ function ClientsListController($scope, GetClients, $ionicModal) {
       if ( response.data.data.length > 0 ) {
       	$scope.clients = $scope.clients.concat(response.data.data);
 				$scope.clients['params'] = '&params=' + encodeURIComponent(params);
+				if ( $scope.clients[0].count_rows <= 20 ) {
+					$scope.is_last = true;
+				}
       } else {
       	$scope.is_last = true;
       }
@@ -55,7 +62,7 @@ function ClientsListController($scope, GetClients, $ionicModal) {
     });
   };
 
-  $scope.loadClientsList();
+  //$scope.loadClientsList();
 
 	$ionicModal.fromTemplateUrl('app/components/clients-list/clients-list-filters.html', {
     scope: $scope,
@@ -76,6 +83,7 @@ function ClientsListController($scope, GetClients, $ionicModal) {
 		$scope.show_search_bar = !$scope.show_search_bar;
 		if ( !$scope.show_search_bar ) {
 			$scope.loadClientsList();
+			$scope.offset = 0;
 		}
 	};
 }

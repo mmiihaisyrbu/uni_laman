@@ -27,7 +27,7 @@ angular.module('app.routes', [])
       })
 
   	.state('app.containers', {
-  		url: '/containers?archive&client_id&params',
+  		url: '/containers?archive&client_id&params&extended_search',
   		views: {
   			'menuContent': {
   				templateUrl: 'app/components/containers/containers.html',
@@ -37,7 +37,7 @@ angular.module('app.routes', [])
   	})
 
   	.state('app.clients-list', {
-  		url: '/clients-list',
+  		url: '/clients-list?extended_search',
   		views: {
   			'menuContent': {
   				templateUrl: 'app/components/clients-list/clients-list.html',
@@ -142,6 +142,16 @@ angular.module('app.routes', [])
   			'menuContent': {
   				templateUrl: 'app/components/settings/settings.html',
   				controller: 'SettingsController'
+  			}
+  		}
+  	})
+
+    .state('app.today-plan', {
+  		url: '/today-plan',
+  		views: {
+  			'menuContent': {
+  				templateUrl: 'app/components/today-plan/today-plan.html',
+  				controller: 'TodayPlanCtrl'
   			}
   		}
   	});

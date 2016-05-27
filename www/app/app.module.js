@@ -14,6 +14,7 @@ angular.module('app.settings', []);
 angular.module('app.clients-list', []);
 angular.module('app.push-messages', []);
 angular.module('app.routes', []);
+angular.module('app.today-plan', []);
 
 angular.module('app', [
 	'ionic',
@@ -35,5 +36,6 @@ angular.module('app', [
 	'pascalprecht.translate',
 	'app.clients-list',
 	'app.push-messages',
-	'app.routes'
+	'app.routes',
+	'app.today-plan'
 	]);

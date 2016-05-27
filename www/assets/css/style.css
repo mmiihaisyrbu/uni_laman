@@ -24,11 +24,12 @@
 .app-icon {
     background-color: #fff;
     background: url('../img/icon.png') center;
-    background-size: cover;
+		background-size: initial;
+    background-repeat: no-repeat;
     border-radius: 50%;
-    height: 125px;
+    height: 130px;
     margin: 0 auto;
-    width: 125px;
+    width: 130px;
 }
 
 .app-background {
@@ -149,12 +150,14 @@
 /* for paste in iOS */
 input, textarea {
 	-webkit-user-select: auto !important;
-	-khtml-user-select: auto !important;
-	-moz-user-select: auto !important;
-	-ms-user-select: auto !important;
-	-o-user-select: auto !important;
-	user-select: auto !important;
+  -khtml-user-select: auto !important;
+  -moz-user-select: auto !important;
+  -ms-user-select: auto !important;
+  -o-user-select: auto !important;
+  user-select: auto !important;
 }
+.backdrop:not(.visible),
+.loading-container:not(.visible) { display: none; }
 
 /*
 .flash {

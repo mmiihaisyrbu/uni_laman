@@ -59,6 +59,13 @@ module.exports = [
         "clobbers": [
             "cordova.plugins.clipboard"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+        "id": "cordova-plugin-splashscreen.SplashScreen",
+        "clobbers": [
+            "navigator.splashscreen"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -72,7 +79,8 @@ module.exports.metadata =
     "cordova-plugin-x-toast": "2.2.3",
     "phonegap-plugin-push": "1.6.3",
     "cordova-plugin-console": "1.0.4-dev",
-    "com.verso.cordova.clipboard": "0.1.0"
+    "com.verso.cordova.clipboard": "0.1.0",
+    "cordova-plugin-splashscreen": "3.2.2"
 };
 // BOTTOM OF METADATA
 });

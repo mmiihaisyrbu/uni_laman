@@ -18,19 +18,45 @@ function InvoiceDetailsStorage() {
 
 function InvoicesController($scope, GetInvoices, $location, InvoiceDetailsStorage, $stateParams) {
     $scope.invoices = [];
-    var params = "/q=0";
+		$scope.offset = 0;
+    $scope.is_last = false;
+		$scope.extended_search = '';
 
-    if ( $stateParams.client_id != undefined ) {
-      params += "&orderer=" + $stateParams.client_id;
-    }
-		if ( $stateParams.params != undefined ) {
-			params += decodeURIComponent($stateParams.params);
-		}
+    $scope.loadInvoices = function(more) {
+			var params = "/q=0";
 
-    $scope.loadInvoices = function() {
+    	more = typeof more !== 'undefined' ? more : false;
+
+			if ( $stateParams.client_id != undefined ) {
+	      params += "&orderer=" + $stateParams.client_id;
+	    }
+			if ( $stateParams.params != undefined ) {
+				params += decodeURIComponent($stateParams.params);
+			}
+			if ( $scope.extended_search != '' ) {
+				params += '&extended_search=' + $scope.extended_search;
+			}
+
+			if ( more === true && $scope.invoices !== [] ) {
+        $scope.offset++;
+				params += '&offset='+$scope.offset;
+	    } else {
+        $scope.is_last = false;
+        $scope.invoices = [];
+      }
+
       GetInvoices.InvoicesList(params, function(response) {
-        console.log(response.data.data);
-        $scope.invoices = response.data.data;
+				if ( response.data.data.length > 0 ) {
+        	$scope.invoices = $scope.invoices.concat(response.data.data);
+					if ( $scope.invoices[0].count_rows <= 20 ) {
+						$scope.is_last = true;
+					}
+        } else {
+        	$scope.is_last = true;
+        }
+
+				$scope.$broadcast('scroll.infiniteScrollComplete');
+	      $scope.activeLoad = true;
 			});
     }
 
@@ -47,6 +73,14 @@ function InvoicesController($scope, GetInvoices, $location, InvoiceDetailsStorag
 	    invoice.containers = $scope.addHr(invoice.containers);
 			InvoiceDetailsStorage.setData(invoice);
 			$location.path('/app/invoice-info');
+		};
+
+		$scope.showSerchBar = function() {
+			$scope.show_search_bar = !$scope.show_search_bar;
+			if ( !$scope.show_search_bar ) {
+				$scope.loadInvoices();
+				$scope.offset = 0;
+			}
 		};
 }
 

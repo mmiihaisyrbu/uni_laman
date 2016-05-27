@@ -47,8 +47,12 @@
 		<div class="list card" ng-show="container.driver_name != null">
 		    <div class="item item-divider"
           ng-click="copyToClipboard(container.driver_name + '\n' + container.auto_no + '\n' + container.driver_phone, 'DRIVER_INFO')"
-          >{{ 'DRIVER_INFO' | translate }}</div>
-            <div class="item item-body">
+          >
+          {{ 'DRIVER_INFO' | translate }}
+          &nbsp;
+          <i class="icon ion-ios-copy-outline" style="font-size: 30px"></i>
+        </div>
+        <div class="item item-body">
             	<ul class="list">
 					<li class="item">
 						<div style="float:left">{{ 'DRIVER' | translate }}</div>
@@ -74,7 +78,7 @@
 						</div>
 					</li>
 			    </ul>
-            </div>
         </div>
+      </div>
 	</ion-content>
 </ion-view>

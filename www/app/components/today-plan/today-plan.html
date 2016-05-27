@@ -1,0 +1,20 @@
+<ion-view title="{{ 'PLAN_FOR_TODAY' | translate }}" ng-init="loadTodayPlan()">
+    <ion-content padding="true" scroll="true">
+    	<ion-refresher
+		    pulling-text="{{ 'PULL_TO_REFRESH' | translate }}"
+		    on-refresh="loadTodayPlan()">
+		</ion-refresher>
+        <ion-list>
+            <ion-item
+              ng-repeat="container in plans"
+              style="padding: 0px !important;"
+              ng-click="openContainerDetails(container)"
+              >
+              <ng-include src="'app/components/today-plan/today-plan-item.html'" />
+            </ion-item>
+        </ion-list>
+        <div ng-if="plans !== undefined && !plans.length" class="no-results">
+    			<p>{{ 'NO_RESULTS' | translate }}</p>
+    		</div>
+    </ion-content>
+</ion-view>

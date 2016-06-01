@@ -3,26 +3,24 @@
         <div class="hero no-header flat">
             <div class="content">
                 <div class="app-icon"></div>
-                <h1>UNI-Laman Group</h1>
+                <h1>UNI-LAMAN GROUP</h1>
             </div>
         </div>
         <div class="list">
-          <form ng-submit="login.logIn()">
-            <ion-md-input
-                placeholder="{{ 'USERNAME' | translate }}"
-                highlight-color="balanced"
-                type="text"
-                ng-model="login.username"
-                >
-            </ion-md-input>
-            <ion-md-input
-                placeholder="{{ 'PASSWORD' | translate }}"
-                highlight-color="energized"
-                type="password"
-                ng-model="login.password"
-                >
-            </ion-md-input>
-          </form>
+          <ion-md-input
+              placeholder="{{ 'USERNAME' | translate }}"
+              highlight-color="balanced"
+              type="text"
+              ng-model="login.username"
+              >
+          </ion-md-input>
+          <ion-md-input
+              placeholder="{{ 'PASSWORD' | translate }}"
+              highlight-color="energized"
+              type="password"
+              ng-model="login.password"
+              >
+          </ion-md-input>
         </div>
         <div class="padding">
             <button

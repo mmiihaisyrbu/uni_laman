@@ -1,4 +1,4 @@
-<ion-view title="{{ 'CONTAINERS_LIST' | translate }}" class="cont-list" onload="loadContainers()">
+<ion-view title="{{ 'CONTAINERS_LIST' | translate }}" class="cont-list" onload="loadContainers(false, true)">
 	<ion-nav-buttons side="secondary">
 		<button class="button button-clear button-icon icon ion-ios-search" ng-click="showSerchBar()">
 		</button>
@@ -16,7 +16,7 @@
   <ion-content padding="true">
 		<ion-refresher
 	    pulling-text="{{ 'PULL_TO_REFRESH' | translate }}"
-	    on-refresh="loadContainers()">
+	    on-refresh="loadContainers(false, true)">
 		</ion-refresher>
     <ion-list>
         <ion-item

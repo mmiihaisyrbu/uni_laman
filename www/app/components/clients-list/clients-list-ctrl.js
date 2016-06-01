@@ -14,8 +14,14 @@ function ClientsListController($scope, GetClients, $ionicModal, $stateParams) {
 	$scope.show_search_bar = false;
 	$scope.extended_search = '';
 
-  $scope.loadClientsList = function(more) {
+  $scope.loadClientsList = function(more, clear_filtres) {
 		var params = '';
+		more = typeof more !== 'undefined' ? more : false;
+		clear_filtres = typeof clear_filtres !== 'undefined' ? clear_filtres : false;
+
+		if ( clear_filtres === true ) {
+			$scope.extended_search = '';
+		}
 
 		angular.forEach($scope.search_filters, function(value, key) {
 		  console.log(key + ': ' + value);
@@ -29,8 +35,6 @@ function ClientsListController($scope, GetClients, $ionicModal, $stateParams) {
 		if ( $scope.extended_search != '' ) {
 			params += '&extended_search=' + $scope.extended_search;
 		}
-
-  	more = typeof more !== 'undefined' ? more : false;
 
   	if ( more === true && $scope.clients !== [] ) {
       $scope.offset++; $scope.offset_p = '&offset='+$scope.offset;

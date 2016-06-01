@@ -22,10 +22,14 @@ function InvoicesController($scope, GetInvoices, $location, InvoiceDetailsStorag
     $scope.is_last = false;
 		$scope.extended_search = '';
 
-    $scope.loadInvoices = function(more) {
+    $scope.loadInvoices = function(more, clear_filtres) {
 			var params = "/q=0";
-
     	more = typeof more !== 'undefined' ? more : false;
+			clear_filtres = typeof clear_filtres !== 'undefined' ? clear_filtres : false;
+
+			if ( clear_filtres === true ) {
+				$scope.extended_search = '';
+			}
 
 			if ( $stateParams.client_id != undefined ) {
 	      params += "&orderer=" + $stateParams.client_id;

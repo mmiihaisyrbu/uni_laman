@@ -1,4 +1,4 @@
-<ion-view title="{{ 'CLIENTS_LIST' | translate }}" onload="loadClientsList()">
+<ion-view title="{{ 'CLIENTS_LIST' | translate }}" onload="loadClientsList(false, true)">
 		<ion-nav-buttons side="secondary">
 	    <button class="button button-clear button-icon icon ion-ios-search" ng-click="showSerchBar()">
 	    </button>
@@ -13,10 +13,10 @@
 	    </label>
 		</div>
 
-    <ion-content padding="true" class="has-header">
+    <ion-content padding="true">
 			<ion-refresher
 		    pulling-text="{{ 'PULL_TO_REFRESH' | translate }}"
-		    on-refresh="loadClientsList()">
+		    on-refresh="loadClientsList(false, true)">
 			</ion-refresher>
       <ion-list>
         <ion-item
@@ -30,7 +30,7 @@
 	      <p>{{ 'NO_RESULTS' | translate }}</p>
 	    </div>
 	    <ion-infinite-scroll
-	        	immediate-check="false"
+      	immediate-check="false"
 				on-infinite="loadClientsList(activeLoad)"
 				distance="1%"
 				ng-if="!is_last">

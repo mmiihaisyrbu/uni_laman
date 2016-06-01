@@ -39,10 +39,14 @@ function ContainersController($scope, GetContainers, $location, ContainerDetails
         value: 4
     }];
 
-    $scope.loadContainers = function(more) {
+    $scope.loadContainers = function(more, clear_filtres) {
 			var params = "/q=0";
-
     	more = typeof more !== 'undefined' ? more : false;
+			clear_filtres = typeof clear_filtres !== 'undefined' ? clear_filtres : false;
+
+			if ( clear_filtres === true ) {
+				$scope.extended_search = '';
+			}
 
       if ( $stateParams.archive != undefined ) {
         params += "&archive=" + $stateParams.archive;

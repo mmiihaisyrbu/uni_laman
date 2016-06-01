@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.ionicframework.unilaman171672" version="0.1.10" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.ionicframework.unilaman171672" version="0.1.21" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <preference name="loglevel" value="DEBUG" />
     <feature name="Cookies">
         <param name="android-package" value="com.bez4pieci.cookies.Cookies" />
@@ -55,7 +55,6 @@
     <content src="index.html" />
     <access origin="client.uni-laman.com" />
     <access launch-external="yes" origin="tel:*" />
-    <allow-navigation href="tel:*" />
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />

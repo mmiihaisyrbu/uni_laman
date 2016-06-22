@@ -10,35 +10,43 @@
 		    </li>
 		    <li class="item">
 		    	<div style="float:left">{{ 'CONT_NO' | translate }}</div>
-				<div style="float:right">{{container.cont_no}}</div>
+				<div style="float:right" ng-click="copyToClipboard(container.cont_no, 'CONT_NO')">{{container.cont_no}}</div>
 		    </li>
 		    <li class="item">
 		    	<div style="float:left">{{ 'CONT_TYPE' | translate }}</div>
-				<div style="float:right">{{container.cont_type}}</div>
+				<div style="float:right" ng-click="copyToClipboard(container.cont_type, 'CONT_TYPE')">{{container.cont_type}}</div>
 		    </li>
 		    <li class="item">
 		    	<div style="float:left">{{ 'ETD' | translate }}</div>
-				<div style="float:right">{{container.etd}}</div>
+				<div style="float:right" ng-click="copyToClipboard(container.etd, 'ETD')">{{container.etd}}</div>
 		    </li>
 		    <li class="item">
 		    	<div style="float:left">{{ 'ETA' | translate }}</div>
-				<div style="float:right">{{container.eta}}</div>
+				<div style="float:right" ng-click="copyToClipboard(container.eta, 'ETA')">{{container.eta}}</div>
 		    </li>
 		    <li class="item">
 		    	<div style="float:left">{{ 'POL' | translate }}</div>
-				<div style="float:right">{{container.ports_of_loading}}</div>
+				<div style="float:right" ng-click="copyToClipboard(container.ports_of_loading, 'POL')">{{container.ports_of_loading}}</div>
 		    </li>
 		    <li class="item">
 		    	<div style="float:left">{{ 'POD' | translate }}</div>
-				<div style="float:right">{{container.ports_of_discharge}}</div>
+				<div style="float:right" ng-click="copyToClipboard(container.ports_of_discharge, 'POD')">{{container.ports_of_discharge}}</div>
 		    </li>
 		    <li class="item">
 		    	<div style="float:left">{{ 'CARGO' | translate }}</div>
-				<div style="float:right">{{container.cargo}}</div>
+          <div style="float:right" ng-click="copyToClipboard(container.cargo, 'CARGO')">{{container.cargo}}</div>
 		    </li>
 		    <li class="item">
 		    	<div style="float:left">{{ 'BRUTTO' | translate }}</div>
-				<div style="float:right">{{container.brutto}}</div>
+          <div style="float:right" ng-click="copyToClipboard(container.brutto, 'BRUTTO')">{{container.brutto}}</div>
+		    </li>
+        <li class="item">
+		    	<div style="float:left">{{ 'HBL' | translate }}</div>
+          <div style="float:right" ng-click="copyToClipboard(container.hbl, 'HBL')">{{container.hbl}}</div>
+		    </li>
+        <li class="item">
+		    	<div style="float:left">{{ 'MBL' | translate }}</div>
+          <div style="float:right" ng-click="copyToClipboard(container.mbl, 'MBL')">{{container.mbl}}</div>
 		    </li>
 		</ul>
 		<a ng-href="#/app/documents" class="button button-full button-positive">

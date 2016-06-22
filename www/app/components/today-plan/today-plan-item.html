@@ -1,23 +1,30 @@
-<ion-item class="item-custom">
+<ion-item class="item-custom today-plan-item">
 	<div ng-class="{closed:'container-item-closed', on_week_arrive:'container-item-onweek', 'delivery':'container-item-delivery'}[container.cont_status]">
-		<table>
-			<tr align="left">
-				<th><u>{{container.cont_no}}</u></th>
-				<td align="center">{{container.cont_type}}</td>
-				<td>
-					<small ng-show="mode == 'manager'">{{container.custom_order_no}}/{{container.order_no}}</small>
-					<small ng-show="mode == 'client'">{{container.custom_order_no}}</small>
-				</td>
-			</tr>
-			<tr align="center">
-				<td width="20%">{{container.ports_of_loading}}</td>
-				<td width="10%" rowspan="2"><img src="assets/img/vessel.png" align="AbsMiddle" width="70"></td>
-				<td width="20%">{{container.ports_of_discharge}}</td>
-			</tr>
-			<tr align="center">
-				<td width="20%"><small>{{container.etd}}</small></td>
-				<td width="20%"><small>{{container.eta}}</small></td>
-			</tr>
-		</table>
+		<div class="row">
+			<div class="col">{{container.orderer}}</div>
+		</div>
+		<div class="row today-plan-item-center">
+			<div class="col">{{container.cont_no}}</div>
+			<div class="col col-70">
+				{{container.custom_order_no}}/{{container.order_no}}
+			</div>
+		</div>
+		<div class="row today-plan-item-center ">
+			<div class="col">
+				{{container.ports_of_loading}}
+				<br>
+				<small>({{container.etd}})</small>
+			</div>
+			<div class="col">
+				<i class="icon" ng-class="{air:'ion-android-plane', lcl:'ion-cube', 'cont': 'ion-android-boat'}[container.type_of_eq]"></i>
+				<br>
+				<small>{{container.cont_type}}</small>
+			</div>
+			<div class="col">
+				{{container.ports_of_discharge}}
+				<br>
+				<small>({{container.eta}})</small>
+			</div>
+		</div>
 	</div>
 </ion-item>

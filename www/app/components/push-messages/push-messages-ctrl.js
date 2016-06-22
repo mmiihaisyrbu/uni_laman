@@ -14,7 +14,7 @@ function PushMessagesCtrl($scope, GetPushMessages, $location) {
 		});
 	}
 
-	$scope.$on('$ionicView.enter', function(){
+	$scope.$on('$ionicView.enter', function() {
 		console.log("push view enter");
 		$scope.loadPushMessages();
 	});

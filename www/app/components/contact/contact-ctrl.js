@@ -15,7 +15,7 @@ function MailInfoStorage() {
     }
 }
 
-function ContactController($scope, $location, GetCustomerInfo, MailInfoStorage) {
+function ContactController($scope, $state, GetCustomerInfo, MailInfoStorage) {
 	$scope.contact = [];
 
 	GetCustomerInfo.Info(function(response) {
@@ -34,18 +34,28 @@ function ContactController($scope, $location, GetCustomerInfo, MailInfoStorage) 
 	$scope.openMailWindow = function(to, to_name) {
 		MailInfoStorage.setData('send_to_email', to);
 		MailInfoStorage.setData('send_to_name_email', to_name);
-		$location.path('/app/contact-mail');
+		$state.go("app.contact-mail");
 	};
 }
 
-function SendMailController($scope, EmailService, MailInfoStorage) {
+function SendMailController($scope, EmailService, MailInfoStorage, $cordovaToast, $translate, $state) {
 	this.send_to_email = MailInfoStorage.getData('send_to_email');
 	this.send_to_name_email = MailInfoStorage.getData('send_to_name_email');
 
+	$translate('MSG_SEND').then(function (msg_send) {
+		this.msg_send = msg_send;
+	});
+
 	this.sendEmail = function(to, subject, message) {
 		EmailService.SendEmail(to, subject, message, function(response) {
-			console.log(response);
-			//modal.hide();
+			$cordovaToast
+		    .show(this.msg_send, 'short', 'bottom')
+		    .then(function(success) {
+		      // success
+		    }, function (error) {
+		      // error
+		    });
+			$state.go("app.contact");
 		});
 	};
 }

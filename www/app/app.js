@@ -53,7 +53,16 @@ var translations = {
 		"FILTER": "Filter",
 		"NO_RESULTS": "No Results",
 		"COPY": "copy",
-		"PLAN_FOR_TODAY": "Plan for today"
+		"PLAN_FOR_TODAY": "Plan for today",
+		"HBL": "HBL",
+		"MBL": "MBL",
+		"AIR_TRANSPORT": "Air",
+		"MSG_SEND": "Message sent",
+		"MARINE_CONTAINER_TRANSPORTATION_DESCR": "The most popular form of international transport. Thousands of importers, exporters prefer this way of transporting cargo. Existing methods of organization allow traffic to transport both large batches and single loads with maximum efficiency.",
+		"AUTO_TRANSPORT_DESCR": "Transport - the fastest delivery method after the air. Therefore, it can be applied in many land supply chains, given that the cost of road transport is lower than that of air.",
+		"LCL_CARGO_DESCR": "LCL – one of the most popular shipment types which enables transportation of small freights owned by different customers in one vehicle; note that each customer pays only for his cargo placement",
+		"RAIL_TRANSPORTATION_DESCR": "International railway transportations implement delivery whether within required tonnage containers (from 3 to 40 tones) or by railcars of any kind. We have sufficient experience and competence for optimal arrangement of delivery and rate of charge for activated rolling-stock.",
+		"AIR_TRANSPORT_DESCR": "The main advantage of the international air cargo transportation, of course, is speed. This is the most efficient way to delivery. And despite the relatively high price of this type of transportation is in demand when it is necessary to deliver the goods quickly, reliably and at a long distance."
 	},
 	"ru": {
 		"LANGUAGE": "Язык",
@@ -110,7 +119,16 @@ var translations = {
 		"FILTER": "Фильтр",
 		"NO_RESULTS": "Нет результатов",
 		"COPY": "скопировать",
-		"PLAN_FOR_TODAY": "План на сегодня"
+		"PLAN_FOR_TODAY": "План на сегодня",
+		"HBL": "HBL",
+		"MBL": "MBL",
+		"AIR_TRANSPORT": "Авиаперевозки",
+		"MSG_SEND": "Сообщение отправлено",
+		"MARINE_CONTAINER_TRANSPORTATION_DESCR": "Самый популярный вид международных перевозок. Тысячи импортеров-экспортеров предпочитают именно этот способ транспортировки груза. Существующие сегодня способы организации перевозок дают возможность транспортировать как крупные партии, так и одиночные грузы с максимальной эффективностью.",
+		"AUTO_TRANSPORT_DESCR": "Автотранспорт — самый быстрый способ доставки после воздушного. Следовательно, его можно применить во многих сухопутных логистических цепочках, учитывая, что стоимость автоперевозок ниже, чем у авиационных.",
+		"LCL_CARGO_DESCR": "Перевозка сборных грузов (LCL) – один из наиболее востребованных видов перевозок, который позволяет перевозить малогабаритные партии грузов от разных клиентов в одном транспортном средстве, оплачивая, при этом, только занимаемое их грузом место.",
+		"RAIL_TRANSPORTATION_DESCR": "Железнодорожные перевозки грузов являются самыми эффективными в соотношении цена/качество по сравнению с морскими, авто и авиа перевозками.",
+		"AIR_TRANSPORT_DESCR": "Главным достоинством грузовых международных авиа перевозок, безусловно, является скорость. Это наиболее оперативный способ доставки. И не смотря на достаточно высокие цены этот вид перевозок пользуется спросом когда необходимо доставить груз быстро , надежно и на дальнее расстояние."
 	},
 	"ua": {
 		"LANGUAGE": "Мова",
@@ -167,11 +185,20 @@ var translations = {
 		"FILTER": "Фільтр",
 		"NO_RESULTS": "Немає результатів",
 		"COPY": "скопіювати",
-		"PLAN_FOR_TODAY": "План на сьогодні"
+		"PLAN_FOR_TODAY": "План на сьогодні",
+		"HBL": "HBL",
+		"MBL": "MBL",
+		"AIR_TRANSPORT": "Авіаперевезення",
+		"MSG_SEND": "Повідомлення відправлено",
+		"MARINE_CONTAINER_TRANSPORTATION_DESCR": "Найпопулярніший вид міжнародних перевезень. Тисячі імпортерів-експортерів віддають перевагу саме цей спосіб транспортування вантажу. Існуючі сьогодні способи організації перевезень дають можливість транспортувати як великі партії, так і одиночні вантажі з максимальною ефективністю.",
+		"AUTO_TRANSPORT_DESCR": "Автотранспорт - найшвидший спосіб доставки після повітряного. Отже, його можна застосувати в багатьох сухопутних логістичних ланцюжках, враховуючи, що вартість автоперевезень нижче, ніж у авіаційних.",
+		"LCL_CARGO_DESCR": "Перевезення збірних вантажів (LCL) – один з найбільш затребуваних видів перевезень, який дозволяє перевозити малогабаритні партії вантажів від різних клієнтів в одному транспортному засобі, оплачуючи, при цьому, тільки займане їх вантажем місце.",
+		"RAIL_TRANSPORTATION_DESCR": "Міжнародні залізничні вантажоперевезення організовуються як контейнерами необхідного тоннажу (від 3 до 40 т), так і вагонами всіх видів. Ми володіємо необхідним досвідом і кваліфікацією для розробки оптимальних схем перевезення і тарифів задіяння рухомого складу.",
+		"AIR_TRANSPORT_DESCR": "Головною перевагою вантажних міжнародних авіа перевезень, безумовно, є швидкість. Це найбільш оперативний спосіб доставки. І не дивлячись на досить високі ціни цей вид перевезень користується попитом коли необхідно доставити вантаж швидко, надійно і на далеку відстань."
 	}
 }
 
-var server_url = "http://client.uni-laman.com/android/ver_3/index.php";
+var server_url = "http://client.uni-laman.com/android/ver_4/index.php";
 
 var app_state = "";
 

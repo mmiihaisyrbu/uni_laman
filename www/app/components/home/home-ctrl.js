@@ -13,6 +13,34 @@ function HomeController($scope, GetCustomerInfo, $location, $translate) {
 	}
 
 	$scope.loadCustomerSettings();
+
+	$scope.slides = {
+		"0": {
+			'src': 'assets/img/slide01.jpg',
+			'title': 'MARINE_CONTAINER_TRANSPORTATION',
+			'descr': 'MARINE_CONTAINER_TRANSPORTATION_DESCR'
+		},
+		"1": {
+			'src': 'assets/img/slide02.jpg',
+			'title': 'AUTO_TRANSPORT',
+			'descr': 'AUTO_TRANSPORT_DESCR'
+		},
+		"2": {
+			'src': 'assets/img/slide03.jpg',
+			'title': 'LCL_CARGO',
+			'descr': 'LCL_CARGO_DESCR'
+		},
+		"3": {
+			'src': 'assets/img/slide04.jpg',
+			'title': 'RAIL_TRANSPORTATION',
+			'descr': 'RAIL_TRANSPORTATION_DESCR'
+		},
+		"4": {
+			'src': 'assets/img/slide05.jpg',
+			'title': 'AIR_TRANSPORT',
+			'descr': 'AIR_TRANSPORT_DESCR'
+		}
+	};
     //$scope.data = [];
 
     /*$scope.getCustomerInfo = function() {
@@ -59,9 +87,6 @@ function GetCustomerInfo($http) {
             .then(function(data, status, headers, config) {
                 console.log(JSON.stringify(data));
                 callback(data);
-            },
-            function(response) { // optional
-                // bad request
             });
     };
 
@@ -74,9 +99,6 @@ function GetCustomerInfo($http) {
 					.then(function(data, status, headers, config) {
 							console.log(JSON.stringify(data));
 							callback(data.data.data);
-					},
-					function(response) { // optional
-							// bad request
 					});
 		};
 
@@ -89,9 +111,6 @@ function GetCustomerInfo($http) {
             .then(function(data, status, headers, config) {
                 console.log(JSON.stringify(data));
                 callback(data);
-            },
-            function(response) { // optional
-                // bad request
             });
     };
 

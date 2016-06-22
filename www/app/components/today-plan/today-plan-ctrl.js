@@ -46,9 +46,6 @@ function GetTodayPlan($http) {
           .then(function(data, status, headers, config) {
               console.log(JSON.stringify(data));
               callback(data);
-          },
-          function(response) { // optional
-              // bad request
           });
   };
 

@@ -48,6 +48,18 @@
 		    	<div style="float:left">{{ 'MBL' | translate }}</div>
           <div style="float:right" ng-click="copyToClipboard(container.mbl, 'MBL')">{{container.mbl}}</div>
 		    </li>
+        <li class="item">
+		    	<div style="float:left">{{ 'VESSEL' | translate }}</div>
+          <div style="float:right" ng-click="copyToClipboard(container.vessel, 'VESSEL')">{{container.vessel}}</div>
+		    </li>
+        <li class="item">
+		    	<div style="float:left">{{ 'FLAG' | translate }}</div>
+          <div style="float:right" ng-click="copyToClipboard(container.flag, 'FLAG')">{{container.flag}}</div>
+		    </li>
+        <li class="item">
+		    	<div style="float:left">{{ 'CMR' | translate }}</div>
+          <div style="float:right" ng-click="copyToClipboard(container.cmr, 'CMR')">{{container.cmr}}</div>
+		    </li>
 		</ul>
 		<a ng-href="#/app/documents" class="button button-full button-positive">
 			{{ 'DOCUMENTS' | translate }}
